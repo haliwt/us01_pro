@@ -101,7 +101,7 @@ void Get_PTC_Temperature_Voltage(uint32_t channel,uint8_t times)
 {
     uint16_t adcx;
 
-    #if 1
+   
 	
 	adcx = Get_Ptc_Adc_Average(channel,times);
 
@@ -112,9 +112,12 @@ void Get_PTC_Temperature_Voltage(uint32_t channel,uint8_t times)
       printf("ptc= %d",run_t.ptc_temp_voltage);
 	#endif 
 
-      // ptc_temp_voltage = 200;
+    #if UNIT_TEST
+    ptc_temp_voltage = 200;
 
     #endif 
+
+
 
 
 	if(ptc_temp_voltage < 373 || ptc_temp_voltage ==373){ //87 degree
@@ -140,29 +143,6 @@ void Get_PTC_Temperature_Voltage(uint32_t channel,uint8_t times)
    	      
    }
 }
-
-
-/*****************************************************************
-	*
-	*Function Name: void Judge_PTC_Temperature_Value(void)
-	*Function: PTC adc read voltage
-	*Input Ref: NO
-	*Return Ref: No
-	*
-	*
-*****************************************************************/
-//void Judge_PTC_Temperature_Value(void)
-//{
-//  
-//  if(run_t.ptc_temp_voltage < 373 || run_t.ptc_temp_voltage ==373){ //87 degree
-//  
-//	    gctl_t.plasma_flag = 0; //turn off
-//	    PTC_SetLow(); //turn off
-//        Buzzer_Ptc_Error_Sound();
-//   	      
-//   }
-//   
-//}
 
 /*****************************************************************
 	*
@@ -195,6 +175,8 @@ void Get_Fan_Adc_Fun(uint32_t channel,uint8_t times)
 		 gctl_t.fan_warning = 1;
          gkey_t.key_mode = fan_warning_item;
 
+         #if 0
+
 		  Buzzer_Fan_Error_Sound();
 
            gctl_t.ptc_flag = 0; //turn off
@@ -212,12 +194,44 @@ void Get_Fan_Adc_Fun(uint32_t channel,uint8_t times)
 
            MqttData_Publish_SetPtc(0x0);
 	        HAL_Delay(100);//osDelay(350);//HAL_Delay(350);
-      
+      #endif 
 
             }
           
-       
-        
+}
+
+
+void fan_fault_buzzer_sound_warning_fun(uint8_t idata)
+{
+
+   if(idata == 1){
+
+      if(gpro_t.gTimer_fan_waring_time > 9){
+        gpro_t.gTimer_fan_waring_time=0;
+            gkey_t.key_mode = fan_warning_item;
+    
+              Buzzer_Fan_Error_Sound();
+    
+               gctl_t.ptc_flag = 0; //turn off
+               Ptc_Off(); //turn off
+    
+               wifi_t.set_wind_speed_value = 2; //wind speed is min 
+              
+           
+              if(wifi_link_net_state() ==1){
+               Publish_Data_Warning(fan_warning,warning);
+               HAL_Delay(100);//osDelay(350);//HAL_Delay(350);
+    
+               MqttData_Publis_SetFan(0);
+               HAL_Delay(100);//osDelay(350);//HAL_Delay(350);
+    
+               MqttData_Publish_SetPtc(0x0);
+                HAL_Delay(100);//osDelay(350);//HAL_Delay(350);
+          
+
+                }
+
+       }
    }
 }
 

@@ -14,6 +14,8 @@ static void interval_continuce_works_fun(void);
 static void interval_two_hours_stop_action(void);
 
 
+static void Detected_Fan_Works_State(void);
+static void Detected_Ptc_Works_State(void);
 
 
 //uint8_t power_off_flag;
@@ -103,6 +105,18 @@ void power_on_run_handler(void)
            gpro_t.power_on_every_times = 1;
            
            Disp_HumidityTemp_Value();
+
+           
+            if(wifi_link_net_state() ==1){
+               Publish_Data_Warning(fan_warning,no_warning);
+               osDelay(50);//HAL_Delay(100);//osDelay(350);//HAL_Delay(350);
+               Publish_Data_Warning(ptc_warning,no_warning);
+               osDelay(50);//HAL_Delay(100);//osDelay(350);//HAL_Delay(350);
+    
+               
+          
+
+             }
 
 		  break;
 
@@ -679,9 +693,26 @@ static void power_on_init_function(void)
 
 
 }
+/***********************************************************************
+*
+*Function Name:void detected_fault_state(void)
+*Function: 
+*Input Ref:NO
+*Return Ref:NO
+*
+************************************************************************/
+void detected_fault_state(void)
+{
+
+    Detected_Fan_Works_State();
+    Detected_Ptc_Works_State();
 
 
 
+}
+
+/**********************************************************************************
+***********************************************************************************/
 void Detected_Fan_Works_State(void)
 {
     if(gpro_t.gTimer_run_adc > 30 && gctl_t.interval_stop_run_flag==0){ //2 minute 180s
@@ -697,6 +728,10 @@ void Detected_Fan_Works_State(void)
 
    }
 
+   fan_fault_buzzer_sound_warning_fun(gctl_t.fan_warning);
+
+    
+
 
 }
 
@@ -704,18 +739,19 @@ void Detected_Ptc_Works_State(void)
 {
 
    if(gpro_t.gTimer_ptc_detected > 6 ){ //3 minutes 120s
-			gpro_t.gTimer_ptc_detected =0;	
-			  Get_PTC_Temperature_Voltage(ADC_CHANNEL_1,10);
+	   gpro_t.gTimer_ptc_detected =0;	
+	    Get_PTC_Temperature_Voltage(ADC_CHANNEL_1,10);
 
               
 					
-       }
+     }
 
 
 
 }
 
-
+/***********************************************************************
+************************************************************************/
 void mode_key_adjust_fun(void)
 {
 

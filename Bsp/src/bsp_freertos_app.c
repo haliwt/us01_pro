@@ -299,8 +299,9 @@ static void vTaskMsgPro(void *pvParameters)
              
               Disip_Wifi_Icon_State();
 
-              Detected_Fan_Works_State();
-              Detected_Ptc_Works_State();
+              detected_fault_state();
+
+             
              
              }
             else {

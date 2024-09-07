@@ -141,6 +141,7 @@ typedef struct {
    uint8_t gTimer_power_off_run_times;
    uint8_t gTimer_link_net_timer_time;
    uint8_t gTimer_fan_to_ptc_warning ;
+   uint8_t gTimer_fan_waring_time ;
         
 
    
@@ -164,12 +165,14 @@ void power_on_run_handler(void);
 
 void mainboard_active_handler(void);
 
-void Detected_Fan_Works_State(void);
-void Detected_Ptc_Works_State(void);
+
 
 void disp_works_or_timer_timing_fun(void);
 
 void mode_key_adjust_fun(void);
+
+void detected_fault_state(void)
+;
 
 #endif 
 
