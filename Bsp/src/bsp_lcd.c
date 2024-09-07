@@ -1353,7 +1353,7 @@ void LCD_Timer_Colon_Flicker(void)
    if(gkey_t.key_mode != mode_set_timer || (gkey_t.key_mode != fan_warning  || gkey_t.key_mode != ptc_warning)){
 
    if(gctl_t.ptc_warning ==0 && gctl_t.fan_warning ==0){
-   if(glcd_t.gTimer_colon_blink < 20){ //20 * 10
+   if(glcd_t.gTimer_colon_blink < 20){ 
 
         
          if(gkey_t.key_mode  == disp_works_timing){
@@ -1740,10 +1740,10 @@ void fan_default_warning_fun(void)
     if(glcd_t.gTimer_colon_blink < 20){           
          TM1723_Write_Display_Data(0xCB,0x01+lcdNumber6_Low_r[0]+lcdNumber7_High[0]);//display "6,7"
     }
-   else if(glcd_t.gTimer_colon_blink > 5 && glcd_t.gTimer_colon_blink < 11){
+   else if(glcd_t.gTimer_colon_blink > 19 && glcd_t.gTimer_colon_blink < 41){
       TM1723_Write_Display_Data(0xCB,lcdNumber6_Low_r[0]+lcdNumber7_High[0]);//
    }
-   else 
+   else if(glcd_t.gTimer_colon_blink > 40)
    {
       glcd_t.gTimer_colon_blink = 0;
    }
