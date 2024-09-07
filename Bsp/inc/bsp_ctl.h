@@ -53,7 +53,7 @@ typedef struct _bsp_ctl{
     uint8_t smart_phone_manual_on_off;
     
 
-
+    uint8_t gFan_pwm_duty_level;
 
     //wifi
    

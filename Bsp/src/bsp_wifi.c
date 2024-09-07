@@ -257,7 +257,7 @@ void wifi_get_beijint_time_handler(void)
     		Get_Beijing_Time();
             wifi_t.get_rx_beijing_time_enable=1; //enable beijing times
     		wifi_t.wifi_uart_counter=0;
-    		osDelay(100);//HAL_Delay(200);
+    		osDelay(200);//HAL_Delay(200);
             
     		wifi_t.gTimer_read_beijing_time=0;
              beijing_step =2;
@@ -293,9 +293,9 @@ void wifi_get_beijint_time_handler(void)
 
                     }
                    
-
+                       get_beijing_flag = 0;
                 }
-                else if(wifi_t.wifi_data[50] == 0x31){  //"0x31" ASCII = '1'
+                else if(wifi_t.wifi_data[50] == 0x31 && gctl_t.get_beijing_time_success ==0){  //"0x31" ASCII = '1'
                   
                    wifi_t.get_rx_beijing_time_enable=0; //enable beijing times
                    if(wifi_link_net_state()==1){

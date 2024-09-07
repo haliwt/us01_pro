@@ -21,9 +21,7 @@
 #include "tim.h"
 
 /* USER CODE BEGIN 0 */
-
-
-
+#include "bsp.h"
 /* USER CODE END 0 */
 
 TIM_HandleTypeDef htim1;
@@ -158,7 +156,7 @@ void MX_TIM14_Init(void)
 
 /* TIM16 init function */
 /*fan set speed PWM */
-void MX_TIM16_Init(uint8_t duty_pwm)
+void MX_TIM16_Init(void)
 {
 
   /* USER CODE BEGIN TIM16_Init 0 */
@@ -191,7 +189,7 @@ void MX_TIM16_Init(uint8_t duty_pwm)
     Error_Handler();
   }
   sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = duty_pwm;// pwm duty rate.
+  sConfigOC.Pulse = gctl_t.gFan_pwm_duty_level;// pwm duty rate.
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;

@@ -76,7 +76,8 @@ void MX_ADC1_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN ADC1_Init 2 */
-
+  sConfig.Channel = ADC_CHANNEL_1;
+ 
   /* USER CODE END ADC1_Init 2 */
 
 }

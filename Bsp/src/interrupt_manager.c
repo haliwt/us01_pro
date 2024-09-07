@@ -126,21 +126,13 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
         //led 
        glcd_t.gTimer_error_times++;
        
-    
-  
-	   
        //key timer
 	
         gkey_t.gTimer_power_off_run_times++;
         
         gkey_t.gTimer_disp_set_timer++;
   
-       
-
-        //lcd timer
-     
-
-        //process gtimer
+       //process gtimer
         gpro_t.gTimer_ptc_detected++;
         gpro_t.gTimer_works_counter_sencods ++;
         gpro_t.gTimer_timer_Counter++;

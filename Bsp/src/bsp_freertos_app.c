@@ -143,7 +143,9 @@ static void vTaskMsgPro(void *pvParameters)
 
                      gpro_t.gTimer_shut_off_backlight =0;
                      wake_up_backlight_on();
-                     buzzer_sound();
+                       buzzer_sound();
+
+                       power_on_key_handler();
 
                   }
                  else{
@@ -176,77 +178,23 @@ static void vTaskMsgPro(void *pvParameters)
                      gpro_t.gTimer_shut_off_backlight =0;
                      wake_up_backlight_on();
                      buzzer_sound();
+                    
 
                 }
                 else{
-                
-                    power_on_sound = 1;
-                    power_key_long_conter=0;
-                    gpro_t.long_key_mode_counter=0; //WT.EIDT 2024.08.20 add new statement
-                    gpro_t.gTimer_shut_off_backlight =0;
+                     buzzer_sound();
+                     gkey_t.key_power=power_off;
+                     gctl_t.step_process=0;
+                   
                 }
                
             }
-            else if((ulValue & MODE_KEY_1) != 0){
-
-               //switch timer timing and works timing 
-                power_key_long_conter=0;//WT.EIDT 2024.08.20 add new statement
-                if(gkey_t.key_power == power_on  ){
-
-                    gpro_t.key_mode_be_pressed_flag = 1 ;
-
-                }
-
-            }   
-            else if((ulValue & DEC_KEY_2) != 0){
-
-              
-                 power_key_long_conter=0;
-                 gpro_t.long_key_mode_counter=0; //WT.EIDT 2024.08.20 add new statement
-                 if(gkey_t.key_power==power_on){
-
-                   if(gpro_t.shut_Off_backlight_flag == turn_off){
-
-                     gpro_t.gTimer_shut_off_backlight =0;
-                     wake_up_backlight_on();
-                     buzzer_sound();
-
-                  }
-                  else{
-                    dec_flag =1;
-                    gpro_t.gTimer_shut_off_backlight =0;
-
-
-                   }
-                  }
-               
-            }
-            else if((ulValue & ADD_KEY_3) != 0){
-
-                 power_key_long_conter=0;
-                 gpro_t.long_key_mode_counter=0; //WT.EIDT 2024.08.20 add new statement
-                  if(gkey_t.key_power==power_on){
-
-                 if(gpro_t.shut_Off_backlight_flag == turn_off){
-
-                     gpro_t.gTimer_shut_off_backlight =0;
-                     wake_up_backlight_on();
-                     buzzer_sound();
-
-                  }
-                  else{
-
-                   add_flag =1;
-                   gpro_t.gTimer_shut_off_backlight =0;
-
-                }
+           
+          
+          
                 
-                }
-                 
-                    
-            }
-        }
-        else{ //超时，时间是50ms
+       }
+       else{ //超时，时间是50ms
   
            if(gpro_t.key_power_flag == 1){
 
