@@ -146,7 +146,7 @@ void Publish_Data_Warning(warning_item whichone,uint8_t warning)
 {
      switch(whichone){
 
-	   case ptc_temp_warning:
+	   case ptc_warning:
 
 	    Publish_Data_Ptc_Temp_Warning_Handler(warning);
 

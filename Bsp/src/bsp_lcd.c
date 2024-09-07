@@ -1342,7 +1342,7 @@ void LCD_Wind_Run_Icon(uint8_t wind_speed)
 *****************************************************************************/
 void LCD_Timer_Colon_Flicker(void)
 {
-  if(gpro_t.power_on_every_times < 60 &&  gkey_t.key_mode != mode_set_timer){
+  if(gpro_t.power_on_every_times < 20 &&  gkey_t.key_mode != mode_set_timer ){
        gpro_t.power_on_every_times++;
 
 
@@ -1350,7 +1350,7 @@ void LCD_Timer_Colon_Flicker(void)
 
   }
   else{
-   if(gkey_t.key_mode != mode_set_timer){
+   if(gkey_t.key_mode != mode_set_timer || (gkey_t.key_mode != fan_warning  || gkey_t.key_mode != ptc_warning)){
 
    if(gctl_t.ptc_warning ==0 && gctl_t.fan_warning ==0){
    if(glcd_t.gTimer_colon_blink < 20){ //20 * 10
@@ -1417,7 +1417,7 @@ void LCD_Timer_Colon_Flicker(void)
    TIM1723_Write_Cmd(LUM_VALUE);//(0x9B);
    }
     }
-}
+   }
 
 }
 
@@ -1724,4 +1724,83 @@ void numbers_six_seven_init(void)
 
 
 }
+
+/**************************************************************************************************
+*
+*Function Name:void fan_default_warning_fun(void)
+*Function : fan of warning ,fan of leaf stop
+*
+*
+****************************************************************************************************/
+void fan_default_warning_fun(void)
+{
+
+   TM1723_Write_Display_Data(0xC9,(0x01+lcdNumber4_Low[glcd_t.number4_low]+lcdNumber5_High_E[0]));//display digital 'E'
+   TM1723_Write_Display_Data(0xCA,T15+lcdNumber5_Low_E[0]+lcdNumber6_High_r[0]);//display digital 'r'  
+    if(glcd_t.gTimer_colon_blink < 20){           
+         TM1723_Write_Display_Data(0xCB,0x01+lcdNumber6_Low_r[0]+lcdNumber7_High[0]);//display "6,7"
+    }
+   else if(glcd_t.gTimer_colon_blink > 5 && glcd_t.gTimer_colon_blink < 11){
+      TM1723_Write_Display_Data(0xCB,lcdNumber6_Low_r[0]+lcdNumber7_High[0]);//
+   }
+   else 
+   {
+      glcd_t.gTimer_colon_blink = 0;
+   }
+   TM1723_Write_Display_Data(0xCC,T14+lcdNumber7_Low[0]+lcdNumber8_High[2]);//display "02'
+   TM1723_Write_Display_Data(0xCE,T13+lcdNumber8_Low[2]);//display "t,c"
+   TM1723_Write_Display_Data(0xCF,(T10+T11+T12+T16));//
+
+}
+/**************************************************************************************************
+*
+*Function Name:static void ptc_high_temp_warning_fun(void)
+*Function : fan of warning ,fan of leaf stop
+*Input Ref:
+*Return Ref:
+*
+****************************************************************************************************/
+void ptc_high_temp_warning_fun(void)
+{
+   
+    TM1723_Write_Display_Data(0xC9,(0x01+lcdNumber4_Low[glcd_t.number4_low]+lcdNumber5_High_E[0]));//display digital 'E'
+   // TM1723_Write_Display_Data(0xCA,T15+lcdNumber5_Low_E[0]+lcdNumber6_High_r[0]);//display digital 'r'  
+    if(glcd_t.gTimer_colon_blink < 20 ){           
+        TM1723_Write_Display_Data(0xCB,0x01+lcdNumber6_Low_r[0]+lcdNumber7_High[0]);//display "6,7"
+    }
+    else if(glcd_t.gTimer_colon_blink > 5 && glcd_t.gTimer_colon_blink < 11){
+        TM1723_Write_Display_Data(0xCB,lcdNumber6_Low_r[0]+lcdNumber7_High[0]);//
+    }
+    else 
+    {
+        glcd_t.gTimer_colon_blink= 0;
+    }
+
+    if(glcd_t.gTimer_colon_blink >39 && glcd_t.gTimer_colon_blink<80){
+
+  
+
+    
+        TM1723_Write_Display_Data(0xCA,T15+lcdNumber5_Low_E[0]+lcdNumber6_High_r[0]);//display 
+        TM1723_Write_Display_Data(0xCC,lcdNumber7_Low[0]+lcdNumber8_High[1]);//display "7,8'
+        TM1723_Write_Display_Data(0xCE,T13+lcdNumber8_Low[1]);//display "t,c"
+        TM1723_Write_Display_Data(0xCF,((T11+T16)& 0x05));//
+               
+   }
+   else if(glcd_t.gTimer_colon_blink <40){
+                
+   
+    TM1723_Write_Display_Data(0xCA,lcdNumber5_Low_E[0]+lcdNumber6_High_r[0]);//display digital '5,6'
+    TM1723_Write_Display_Data(0xCC,T14+lcdNumber7_Low[0]+lcdNumber8_High[1]);//display "t,c
+    TM1723_Write_Display_Data(0xCE,lcdNumber8_Low[1]);//display "1"
+   
+    TM1723_Write_Display_Data(0xCF,((T16+T12+T10)&0x0B));//
+              
+  }
+  else if(glcd_t.gTimer_colon_blink > 79){
+             glcd_t.gTimer_colon_blink=0;
+  }
+
+}
+
 

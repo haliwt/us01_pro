@@ -188,6 +188,13 @@ void LCD_Disp_Temperature_Value_Handler(void);
 
 void LCD_disp_default_FiveSixSeveEight_Codes(void);
 
+void fan_default_warning_fun(void);
+
+
+
+void ptc_high_temp_warning_fun(void);
+
+
 #endif 
 
 

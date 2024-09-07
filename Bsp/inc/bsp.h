@@ -140,6 +140,7 @@ typedef struct {
    uint8_t gTimer_disp_humidity;
    uint8_t gTimer_power_off_run_times;
    uint8_t gTimer_link_net_timer_time;
+   uint8_t gTimer_fan_to_ptc_warning ;
         
 
    

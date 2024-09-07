@@ -671,7 +671,7 @@ static void power_on_init_function(void)
 
     Publish_Data_Warning(fan_warning,no_warning);
 
-    Publish_Data_Warning(ptc_temp_warning,no_warning);
+    Publish_Data_Warning(ptc_warning,no_warning);
 
     }
 

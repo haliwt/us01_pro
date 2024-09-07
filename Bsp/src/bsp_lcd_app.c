@@ -247,7 +247,7 @@ void Display_WorksTimingr_Handler(uint8_t sel_item)
 
     case disp_works_timing :
    
-       if(gctl_t.fan_warning ==0 && gctl_t.ptc_warning==0 ){
+  
 
             if((gpro_t.global_temporary_set_timer_flag == 1) &&   gpro_t.gTimer_set_timer_times <  11 && wifi_link_net_state()==0){
   
@@ -276,19 +276,19 @@ void Display_WorksTimingr_Handler(uint8_t sel_item)
                  gctl_t.ai_flag = 1; // AI DISPLAY AI ICON
                  Display_Works_Timing();
             }
-        }
-        else{
-            
-          LCD_Fault_Numbers_Code();
-
-        }
+     
+//        else{
+//            
+//          LCD_Fault_Numbers_Code();
+//
+//        }
       
     break;
     
     case disp_timer_timing:
    
 
-      if(gctl_t.fan_warning ==0 && gctl_t.ptc_warning==0 ){
+ 
             if(gkey_t.set_timer_timing_success ==1){
                gctl_t.ai_flag = 0; // don't  DISPLAY AI ICON
               
@@ -324,12 +324,12 @@ void Display_WorksTimingr_Handler(uint8_t sel_item)
                   
             }
                
-        }
-         else{
-
-            LCD_Fault_Numbers_Code();
-
-        }
+      
+//         else{
+//
+//            LCD_Fault_Numbers_Code();
+//
+//        }
     break;
 
 
@@ -379,6 +379,43 @@ void Display_WorksTimingr_Handler(uint8_t sel_item)
         }
 
        break;
+
+
+      case fan_warning_item:
+
+         fan_default_warning_fun();
+         if(gctl_t.ptc_warning == 1){
+
+             if(gpro_t.gTimer_fan_to_ptc_warning > 2){
+
+                   gpro_t.gTimer_fan_to_ptc_warning = 0;
+               
+               sel_item = ptc_warning_item ;
+
+            }
+
+         }
+
+
+      break;
+
+      case ptc_warning_item:
+
+         ptc_high_temp_warning_fun();
+         if(gctl_t.fan_warning == 1){
+
+             if(gpro_t.gTimer_fan_to_ptc_warning > 2){
+
+                   gpro_t.gTimer_fan_to_ptc_warning = 0;
+               
+               sel_item = fan_warning_item ;
+
+            }
+
+         }
+
+
+      break;
     }
 }
 

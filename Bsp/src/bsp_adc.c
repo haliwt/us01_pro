@@ -123,12 +123,13 @@ void Get_PTC_Temperature_Voltage(uint32_t channel,uint8_t times)
 	    Ptc_Off(); //turn off
 
         gctl_t.ptc_warning = 1;
+        gkey_t.key_mode = ptc_warning_item;
         
         Buzzer_Ptc_Error_Sound();
 
         if(wifi_link_net_state() ==1){
 
-        Publish_Data_Warning(ptc_temp_warning,warning);
+        Publish_Data_Warning(ptc_warning,warning);
 	     HAL_Delay(200);//osDelay(300);//HAL_Delay(350);
  
  
@@ -192,6 +193,7 @@ void Get_Fan_Adc_Fun(uint32_t channel,uint8_t times)
 
 	     
 		 gctl_t.fan_warning = 1;
+         gkey_t.key_mode = fan_warning_item;
 
 		  Buzzer_Fan_Error_Sound();
 
@@ -213,7 +215,7 @@ void Get_Fan_Adc_Fun(uint32_t channel,uint8_t times)
       
 
             }
-             //  LCD_Fault_Numbers_Code();
+          
        
         
    }

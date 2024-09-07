@@ -217,6 +217,7 @@ void wifi_get_beijint_time_handler(void)
 		}
 
 	   }
+       
       
      
     break;

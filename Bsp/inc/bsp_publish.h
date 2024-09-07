@@ -9,7 +9,7 @@ enum pub_Signal {                   /* enumeration for CParser signals */
 
 typedef enum{
 
-   ptc_temp_warning =0x01,
+   ptc_warning =0x01,
    fan_warning,
    plasma_warning,
    ultrasonic_warning,
