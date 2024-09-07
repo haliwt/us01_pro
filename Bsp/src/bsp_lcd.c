@@ -1768,15 +1768,15 @@ void ptc_high_temp_warning_fun(void)
     if(glcd_t.gTimer_colon_blink < 20 ){           
         TM1723_Write_Display_Data(0xCB,0x01+lcdNumber6_Low_r[0]+lcdNumber7_High[0]);//display "6,7"
     }
-    else if(glcd_t.gTimer_colon_blink > 5 && glcd_t.gTimer_colon_blink < 11){
+    else if(glcd_t.gTimer_colon_blink > 19 && glcd_t.gTimer_colon_blink < 41){
         TM1723_Write_Display_Data(0xCB,lcdNumber6_Low_r[0]+lcdNumber7_High[0]);//
     }
-    else 
+    else if(glcd_t.gTimer_colon_blink > 40)
     {
         glcd_t.gTimer_colon_blink= 0;
     }
 
-    if(glcd_t.gTimer_colon_blink >39 && glcd_t.gTimer_colon_blink<80){
+    if(glcd_t.gTimer_colon_blink >19 && glcd_t.gTimer_colon_blink<41){
 
   
 
@@ -1787,7 +1787,7 @@ void ptc_high_temp_warning_fun(void)
         TM1723_Write_Display_Data(0xCF,((T11+T16)& 0x05));//
                
    }
-   else if(glcd_t.gTimer_colon_blink <40){
+   else if(glcd_t.gTimer_colon_blink <20){
                 
    
     TM1723_Write_Display_Data(0xCA,lcdNumber5_Low_E[0]+lcdNumber6_High_r[0]);//display digital '5,6'
@@ -1797,9 +1797,9 @@ void ptc_high_temp_warning_fun(void)
     TM1723_Write_Display_Data(0xCF,((T16+T12+T10)&0x0B));//
               
   }
-  else if(glcd_t.gTimer_colon_blink > 79){
-             glcd_t.gTimer_colon_blink=0;
-  }
+//  else if(glcd_t.gTimer_colon_blink > 40){
+//             glcd_t.gTimer_colon_blink=0;
+//  }
 
 }
 
