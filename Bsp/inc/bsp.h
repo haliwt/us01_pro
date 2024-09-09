@@ -44,6 +44,7 @@
 #include "bsp_ptc.h"
 #include "bsp_usart.h"
 #include "bsp_lcd_app.h"
+#include "bsp_fan_leaf.h"
 #include "bsp_freertos_app.h"
 
 //wifi
@@ -168,8 +169,11 @@ void disp_works_or_timer_timing_fun(void);
 
 void mode_key_adjust_fun(void);
 
-void detected_fault_state(void)
-;
+void detected_fault_state(void);
+
+void disp_fan_leaf_icon_handler(void);
+
+
 
 #endif 
 

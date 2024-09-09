@@ -191,14 +191,17 @@ void ptc_fault_buzzer_sound_warning_fun(uint8_t data)
 void Get_Fan_Adc_Fun(uint32_t channel,uint8_t times)
 {
 	uint16_t adc_fan_hex;//,fan_detect_voltage;
+
+    fan_max_run();
+    osDelay(300);
 	
 	adc_fan_hex = Get_Fan_Adc_Average(channel,times);
 
     fan_detect_voltage  =(uint16_t)((adc_fan_hex * 3300)/4096); //amplification 1000 ,3.111V -> 3111
 	
    
-   //if(fan_detect_voltage >520 ){
-    if(fan_detect_voltage >400 ){
+   if(fan_detect_voltage >520){
+    
      
 		   #ifdef DEBUG
              printf("adc= %d",run_t.fan_detect_voltage);

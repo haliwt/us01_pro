@@ -296,10 +296,13 @@ static void vTaskMsgPro(void *pvParameters)
               fan_run_state_handler();
             
               LCD_Timer_Colon_Flicker();
+
+              disp_fan_leaf_icon_handler();
              
               Disip_Wifi_Icon_State();
 
               detected_fault_state();
+              
 
              
              
