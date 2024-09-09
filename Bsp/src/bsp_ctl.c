@@ -486,7 +486,7 @@ void disp_set_temperature_value_handler(void)
         
          }
 
-          lcd_disp_ptc_value(gctl_t.dht11_temp_value);
+      //    lcd_disp_ptc_value(gctl_t.dht11_temp_value);
 
         }
            gkey_t.set_temp_value_be_pressed++ ;

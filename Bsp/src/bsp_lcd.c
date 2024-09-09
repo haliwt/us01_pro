@@ -4,70 +4,7 @@
 lcd_ref glcd_t; 
 
 
-#define WIFI_Symbol     		0x01 //addr 0xC5
-#define WIFI_NO_Symbol 
 
-#define LINE_Symbol             0x01 //addr  0xC2
-
-
-#define AI_Symbol    			0x01 //addr 0xC3
-#define AI_NO_Symbol            0x0
-
-
-#define  T3                     0X01
-
-#define DRY_Symbol              0x02  //addr 0xC2 ->T4
-#define DRY_NO_Symbol           0x0
-
-#define KILL_Symbol             0x04  //addr 0xC2 ->T5
-#define KILL_NO_Symbol           0x0
-
-#define BUG_Symbol            0x08   //addr 0xC2 ->T6
-#define BUG_NO_Symbol         0x0
-
-#define TEMP_Symbol              0x01     //addr 0xC4
-#define HUMI_Symbol              0x01      //addr  0xC9
-
-#define TWO_DOT_Symbol           0x01       //addr 0xCB
-
-#define T9                       0x01
-#define T10                      0x08      //addr 0xCF
-#define T11                      0x04      //addr 0xCF
-#define T12                      0x02      //addr 0xCF
-#define T16                      0x01     //addr 0xCF
-
-#define T13                      0x01      //addr 0xCE
-#define T14                      0x01      //addr 0xCC
-#define T15                      0x01      //addr 0xCA
-#define WIND_T16                 0x01      //addr 0xCF
-
-#define T17_T18_T19				 0xE0  
-#define GLASS_T17                0x80
-#define GLASS_T18                0x40
-#define GLASS_T19                0x20
-#define WIND_SPEED_ONE           0x80
-#define WIND_SPEED_TWO           0xC0
-#define WIND_SPEED_FULL          0xE0
-
-//Low 4bit 
-#define seg_f   		0x02
-#define seg_g   		0x04
-#define seg_e	        0x08
-
-//High 4bit
-#define seg_a              0x10
-#define seg_b              0x20
-#define seg_c              0x40
-#define seg_d              0x80
-
-#define  COLON_SYMBOL                    0x01
-#define  NO_COLON_SYMBOL                 0x00
-
-
-
-#define LUM_VALUE      0X94//0x94//0x92//0x93//0x95//0x94//0x97(max)
-
-#define MAX_LUM_VALUE  0x9F
 
 
 
@@ -108,38 +45,40 @@ const unsigned char segNumber_High[]={
 
 };
 
-static const uint8_t lcdNumber1_Low[]  ={0x0A,0x0A,0x06,0x0E,0x0E,0x0C,0x0C,0x0A,0x0E,0x0E,0x00};
-static const uint8_t  lcdNumber1_High[]={0xF0,0,0xD0,0x90,0x20,0xB0,0xF0,0x10,0xF0,0xB0,0x0};
 
 
-static const uint8_t lcdNumber2_Low[]  ={0x0A,0x0A,0x06,0x0E,0x0E,0x0C,0x0C,0x0A,0x0E,0x0E,0x00};
-static const uint8_t lcdNumber2_High[] ={0xF0,0,0xD0,0x90,0x20,0xB0,0xF0,0x10,0xF0,0xB0,0x0};
+const uint8_t lcdNumber1_Low[]  ={0x0A,0x0A,0x06,0x0E,0x0E,0x0C,0x0C,0x0A,0x0E,0x0E,0x00};
+const uint8_t  lcdNumber1_High[]={0xF0,0,0xD0,0x90,0x20,0xB0,0xF0,0x10,0xF0,0xB0,0x0};
 
-static const uint8_t lcdNumber3_Low[]  ={0x0A,0x0A,0x06,0x0E,0x0E,0x0C,0x0C,0x0A,0x0E,0x0E,0x00};
-static const uint8_t lcdNumber3_High[] ={0xF0,0,0xD0, 0x90,0x20,0xB0,0xF0,0x10,0xF0,0xB0,0x0};
 
-static const uint8_t lcdNumber4_Low[]  ={0x0A,0x0A,0x06,0x0E,0x0E,0x0C,0x0C,0x0A,0x0E,0x0E,0x00};
-static const uint8_t lcdNumber4_High[] ={0xF0,0,0xD0,0x90,0x20,0xB0,0xF0,0x10,0xF0,0xB0,0x0};
+const uint8_t lcdNumber2_Low[]  ={0x0A,0x0A,0x06,0x0E,0x0E,0x0C,0x0C,0x0A,0x0E,0x0E,0x00};
+const uint8_t lcdNumber2_High[] ={0xF0,0,0xD0,0x90,0x20,0xB0,0xF0,0x10,0xF0,0xB0,0x0};
 
-static const uint8_t lcdNumber5_Low[]  ={0x0A,0x0A,0x06,0x0E,0x0E,0x0C,0x0C,0x0A,0x0E,0x0E,0x00};
-static const uint8_t lcdNumber5_High[] ={0xF0,0,0xD0,0x90,0x20,0xB0,0xF0,0x10,0xF0,0xB0,0x0};
+const uint8_t lcdNumber3_Low[]  ={0x0A,0x0A,0x06,0x0E,0x0E,0x0C,0x0C,0x0A,0x0E,0x0E,0x00};
+const uint8_t lcdNumber3_High[] ={0xF0,0,0xD0, 0x90,0x20,0xB0,0xF0,0x10,0xF0,0xB0,0x0};
 
-static const uint8_t lcdNumber6_Low[]  ={0x0A,0x0A,0x06,0x0E,0x0E,0x0C,0x0C,0x0A,0x0E,0x0E,0x00};
-static const uint8_t lcdNumber6_High[] ={0xF0,0,0xD0,0x90,0x20,0xB0,0xF0,0x10,0xF0,0xB0,0x0};
+const uint8_t lcdNumber4_Low[]  ={0x0A,0x0A,0x06,0x0E,0x0E,0x0C,0x0C,0x0A,0x0E,0x0E,0x00};
+const uint8_t lcdNumber4_High[] ={0xF0,0,0xD0,0x90,0x20,0xB0,0xF0,0x10,0xF0,0xB0,0x0};
 
-static const uint8_t lcdNumber7_Low[]  ={0x0A,0x0A,0x06,0x0E,0x0E,0x0C,0x0C,0x0A,0x0E,0x0E,0x00};
-static const uint8_t lcdNumber7_High[] ={0xF0,0,0xD0,0x90,0x20,0xB0,0xF0,0x10,0xF0,0xB0,0x0};
+const uint8_t lcdNumber5_Low[]  ={0x0A,0x0A,0x06,0x0E,0x0E,0x0C,0x0C,0x0A,0x0E,0x0E,0x00};
+const uint8_t lcdNumber5_High[] ={0xF0,0,0xD0,0x90,0x20,0xB0,0xF0,0x10,0xF0,0xB0,0x0};
 
-static const uint8_t lcdNumber8_Low[]  ={0x0A,0x0A,0x06,0x0E,0x0E,0x0C,0x0C,0x0A,0x0E,0x0E,0x00};
-static const uint8_t lcdNumber8_High[] ={0xF0,  0, 0xD0,0x90,0x20,0xB0,0xF0,0x10,0xF0,0xB0,0x0};
+const uint8_t lcdNumber6_Low[]  ={0x0A,0x0A,0x06,0x0E,0x0E,0x0C,0x0C,0x0A,0x0E,0x0E,0x00};
+const uint8_t lcdNumber6_High[] ={0xF0,0,0xD0,0x90,0x20,0xB0,0xF0,0x10,0xF0,0xB0,0x0};
+
+const uint8_t lcdNumber7_Low[]  ={0x0A,0x0A,0x06,0x0E,0x0E,0x0C,0x0C,0x0A,0x0E,0x0E,0x00};
+const uint8_t lcdNumber7_High[] ={0xF0,0,0xD0,0x90,0x20,0xB0,0xF0,0x10,0xF0,0xB0,0x0};
+
+const uint8_t lcdNumber8_Low[]  ={0x0A,0x0A,0x06,0x0E,0x0E,0x0C,0x0C,0x0A,0x0E,0x0E,0x00};
+const uint8_t lcdNumber8_High[] ={0xF0,  0, 0xD0,0x90,0x20,0xB0,0xF0,0x10,0xF0,0xB0,0x0};
 
 //"Er" ->digital positon '5''6'
 
-static const uint8_t lcdNumber5_Low_E[]  ={0x04};
-static const uint8_t lcdNumber5_High_E[] ={0xF0};
+const uint8_t lcdNumber5_Low_E[]  ={0x04};
+const uint8_t lcdNumber5_High_E[] ={0xF0};
 
-static const uint8_t lcdNumber6_Low_r[]={0x04};
-static const uint8_t lcdNumber6_High_r[] ={0x40};
+const uint8_t lcdNumber6_Low_r[]={0x04};
+const uint8_t lcdNumber6_High_r[] ={0x40};
 
 
 
@@ -153,7 +92,7 @@ static void TM1723_Start(void);
 static void TM1723_Stop(void);
 static void TM1723_Write_OneByte(uint8_t data);
 static void TIM1723_Write_Cmd(uint8_t cmd);
-static void TM1723_Write_Display_Data(uint8_t addr,uint8_t dat);
+//static void TM1723_Write_Display_Data(uint8_t addr,uint8_t dat);
 
 
 
@@ -216,7 +155,7 @@ static void TIM1723_Write_Cmd(uint8_t cmd)
 	TM1723_Stop();
  
 }
-static void TM1723_Write_Display_Data(uint8_t addr,uint8_t dat)
+void TM1723_Write_Display_Data(uint8_t addr,uint8_t dat)
 {
   
    TM1723_CLK_SetHigh();
@@ -411,68 +350,7 @@ void lcd_donot_temp_value_fun(void)
 
 
 }
-/*****************************************************************************
- * 
- * Function Name:  void LCD_Disp_Humidity_value_Handler(void)
- * Function: read humidity of value from sensor of temperature
- * Input Ref:
- * Return Ref:
- * 
-*****************************************************************************/
-void LCD_Disp_Humidity_value_Handler(uint8_t hum_value)
-{
 
-    glcd_t.number3_high =  hum_value /10;
-    //glcd_t.number3_low  =   hum_value /10;
-    glcd_t.number3_low =  glcd_t.number3_high ;
-
-   glcd_t.number4_low =   hum_value %10;
-   //glcd_t.number4_high =  hum_value  %10;
-    glcd_t.number4_high =    glcd_t.number4_low;
-
-   if(gkey_t.key_mode != mode_set_timer){
-
-
-   TM1723_Write_Display_Data(0xC4,(0x01+lcdNumber2_Low[glcd_t.number2_low]+lcdNumber3_High[glcd_t.number3_high])&0xff);
-
-   if(wifi_link_net_state()==1){
-
-      TM1723_Write_Display_Data(0xC5,(WIFI_Symbol+lcdNumber3_Low[glcd_t.number3_low] + lcdNumber4_High[glcd_t.number4_high]) & 0xff); //Wifi
-   }
-   else{
-       TM1723_Write_Display_Data(0xC5,(WIFI_NO_Symbol+lcdNumber3_Low[glcd_t.number3_low] + lcdNumber4_High[glcd_t.number4_high]) & 0xff); //Wifi 
-
-   }
-   
-   if( gkey_t.key_mode == disp_works_timing){
-       
-     if((gpro_t.global_temporary_set_timer_flag == 1) &&   gpro_t.gTimer_set_timer_times <  11 ){
-          glcd_t.number5_high = 0;
-          TM1723_Write_Display_Data(0xC9,(HUM_T8+lcdNumber4_Low[glcd_t.number4_low]+lcdNumber5_High[glcd_t.number5_high]) & 0xff);
-
-       }
-       else{
-       glcd_t.number5_high = gpro_t.disp_works_hours_value /10;
-       TM1723_Write_Display_Data(0xC9,(HUM_T8+lcdNumber4_Low[glcd_t.number4_low]+lcdNumber5_High[glcd_t.number5_high]) & 0xff);
-
-       }
-    }
-   else if(gkey_t.key_mode  == disp_timer_timing){
-        
-        if(gkey_t.set_timer_timing_success ==0){
-            glcd_t.number5_high = 0;
-
-         }
-        else
-          glcd_t.number5_high =  gpro_t.set_timer_timing_hours /10;
-        
-        TM1723_Write_Display_Data(0xC9,(HUM_T8+lcdNumber4_Low[glcd_t.number4_low]+lcdNumber5_High[glcd_t.number5_high]) & 0xff);
-
-   }
-
-    }
-    
-}
 
 /*****************************************************************************
  * 
@@ -512,7 +390,7 @@ void LCD_Number_FiveSixSeveEight_Hours(uint8_t hours_n,uint8_t minutes_n)
 
 
           TM1723_Write_Display_Data(0xCA,(T15+lcdNumber5_Low[glcd_t.number5_low]+lcdNumber6_High[glcd_t.number6_high]) & 0xff);
-
+          TM1723_Write_Display_Data(0xCB,(T9+lcdNumber6_Low[glcd_t.number6_low]+lcdNumber7_High[glcd_t.number7_high]) & 0xff);
 
       }
 }
@@ -1629,23 +1507,6 @@ void Lcd_Display_Off(void)
 
 	 TIM1723_Write_Cmd(CloseDispTM1723);//(0x80);
 
-}
-
-/*************************************************************************************
-	*
-	*Function Name: void Lcd_Display_Off(void)
-	*Function : don't display any one
-	*Input Ref:NO
-	*Return Ref:NO
-	*
-*************************************************************************************/
-void Disp_HumidityTemp_Value(void)
-{
-
-
-    lcd_disp_ptc_value(gctl_t.dht11_temp_value);
-    LCD_Disp_Humidity_value_Handler(  gctl_t.dht11_humidity_value);
-   
 }
 
 

@@ -84,8 +84,8 @@ void power_on_run_handler(void)
 
             power_on_init_function();
             Update_DHT11_Value();
-            lcd_disp_ptc_value(gctl_t.dht11_temp_value);
-            LCD_Disp_Humidity_value_Handler(gctl_t.dht11_humidity_value);
+          
+            disp_temp_humidity_init();
              gctl_t.ai_flag = 1; // AI DISPLAY AI ICON
              
              gkey_t.key_mode  = disp_works_timing;
@@ -104,7 +104,7 @@ void power_on_run_handler(void)
 
            gpro_t.power_on_every_times = 1;
            
-           Disp_HumidityTemp_Value();
+     
 
            
             if(wifi_link_net_state() ==1){
@@ -123,24 +123,7 @@ void power_on_run_handler(void)
 
       case 1:   //run dht11 display 
 
-        if(gpro_t.gTimer_run_dht11 > 4 &&  gkey_t.set_temp_value_be_pressed !=1 && gkey_t.set_temp_value_be_pressed !=2){
-                gpro_t.gTimer_run_dht11=0;
-          
-                  Update_DHT11_Value();
-                  lcd_disp_ptc_value(gctl_t.dht11_temp_value);
-        }
-
-          if(gpro_t.gTimer_disp_humidity > 14  || disp_hum_times < 2){
-              
-              gpro_t.gTimer_disp_humidity =0;
-              
-              disp_hum_times ++ ;
-             
-              Update_DHT11_Value();
-              
-              LCD_Disp_Humidity_value_Handler(gctl_t.dht11_humidity_value);
-              
-           }
+      
 
 
          gctl_t.step_process=3;
@@ -670,7 +653,7 @@ static void power_on_init_function(void)
     
     LCD_Wind_Run_Icon(0);
  
-    Disp_HumidityTemp_Value();
+
 
     //fan on
     Mainboard_Action_Fun();
