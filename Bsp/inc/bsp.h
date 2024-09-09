@@ -143,6 +143,7 @@ typedef struct {
    uint8_t gTimer_fan_to_ptc_warning ;
    uint8_t gTimer_fan_waring_time ;
    uint8_t gTimer_mode_key_time ;
+   uint8_t gTimer_ptc_waring_time;
         
 }BSP_process_t;
 

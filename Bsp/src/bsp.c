@@ -746,6 +746,9 @@ void Detected_Ptc_Works_State(void)
 					
      }
 
+     ptc_fault_buzzer_sound_warning_fun(gctl_t.ptc_warning );
+	
+
 
 
 }

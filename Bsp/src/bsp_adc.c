@@ -144,6 +144,41 @@ void Get_PTC_Temperature_Voltage(uint32_t channel,uint8_t times)
    }
 }
 
+void ptc_fault_buzzer_sound_warning_fun(uint8_t data)
+{
+
+      if(data == 1){
+
+       if(gpro_t.gTimer_ptc_waring_time >7){
+        gpro_t.gTimer_ptc_waring_time=0;
+      
+            gctl_t.ptc_flag = 0; //turn off
+            Ptc_Off(); //turn off
+    
+            gctl_t.ptc_warning = 1;
+            gkey_t.key_mode = ptc_warning_item;
+            
+            Buzzer_Ptc_Error_Sound();
+    
+            if(wifi_link_net_state() ==1){
+    
+            Publish_Data_Warning(ptc_warning,warning);
+             HAL_Delay(200);//osDelay(300);//HAL_Delay(350);
+     
+     
+            MqttData_Publish_SetPtc(0);
+             HAL_Delay(100);//osDelay(300);//HAL_Delay(350);  
+    
+            }
+              
+       }
+
+
+      }
+
+
+}
+
 /*****************************************************************
 	*
 	*Function Name: void Get_Fan_Adc_Fun(uint8_t channel,uint8_t times)
