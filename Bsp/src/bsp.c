@@ -750,7 +750,7 @@ void mode_key_adjust_fun(void)
 void disp_fan_leaf_icon_handler(void)
 {
 
-
+   
     fan_run_state_handler();
 
 }

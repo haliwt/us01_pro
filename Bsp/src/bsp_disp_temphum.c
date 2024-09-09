@@ -32,6 +32,9 @@ void disp_temp_humidity_init(void)
 void LCD_Disp_Humidity_value_Handler(uint8_t hum_value)
 {
 
+
+    //humidity display value 
+
     glcd_t.number3_high =  hum_value /10;
     //glcd_t.number3_low  =   hum_value /10;
     glcd_t.number3_low =  glcd_t.number3_high ;
