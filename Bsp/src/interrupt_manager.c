@@ -151,6 +151,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
         gpro_t.gTimer_link_net_timer_time++;
         gpro_t.gTimer_fan_to_ptc_warning ++;
         gpro_t.gTimer_fan_waring_time ++;
+         gpro_t.gTimer_mode_key_time ++;
        
         //wifi
 		wifi_t.gTimer_wifi_pub_power_off++;

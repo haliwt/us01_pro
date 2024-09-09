@@ -164,7 +164,7 @@ void mode_key_fun(void)
 
         key_mode_be_pressed_send_data_wifi();
 
-
+         gpro_t.gTimer_mode_key_time = 0;
 }
 
 void  key_mode_be_pressed_send_data_wifi(void)

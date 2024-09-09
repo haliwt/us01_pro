@@ -120,7 +120,7 @@ void Get_PTC_Temperature_Voltage(uint32_t channel,uint8_t times)
 
 
 
-	if(ptc_temp_voltage < 373 || ptc_temp_voltage ==373){ //87 degree
+	if(ptc_temp_voltage < 624 || ptc_temp_voltage ==624){//?   //87 degree
   
 	    gctl_t.ptc_flag = 0; //turn off
 	    Ptc_Off(); //turn off
@@ -162,7 +162,8 @@ void Get_Fan_Adc_Fun(uint32_t channel,uint8_t times)
     fan_detect_voltage  =(uint16_t)((adc_fan_hex * 3300)/4096); //amplification 1000 ,3.111V -> 3111
 	
    
-   if(fan_detect_voltage >800 ){
+   //if(fan_detect_voltage >520 ){
+    if(fan_detect_voltage >400 ){
      
 		   #ifdef DEBUG
              printf("adc= %d",run_t.fan_detect_voltage);

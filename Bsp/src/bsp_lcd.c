@@ -1342,14 +1342,17 @@ void LCD_Wind_Run_Icon(uint8_t wind_speed)
 *****************************************************************************/
 void LCD_Timer_Colon_Flicker(void)
 {
-  if(gpro_t.power_on_every_times < 20 &&  gkey_t.key_mode != mode_set_timer ){
-       gpro_t.power_on_every_times++;
+//  if(gpro_t.power_on_every_times < 20 &&  gkey_t.key_mode != mode_set_timer ){
+//       gpro_t.power_on_every_times++;
+//
+//
+//       LCD_Number_FiveSixSeveEight_Hours(gpro_t.disp_works_hours_value,gpro_t.disp_works_minutes_value);
+//
+//  }
+//  else{
 
 
-       LCD_Number_FiveSixSeveEight_Hours(gpro_t.disp_works_hours_value,gpro_t.disp_works_minutes_value);
-
-  }
-  else{
+  
    if(gkey_t.key_mode != mode_set_timer || (gkey_t.key_mode != fan_warning  || gkey_t.key_mode != ptc_warning)){
 
    if(gctl_t.ptc_warning ==0 && gctl_t.fan_warning ==0){
@@ -1417,9 +1420,9 @@ void LCD_Timer_Colon_Flicker(void)
    TIM1723_Write_Cmd(LUM_VALUE);//(0x9B);
    }
     }
-   }
+ }
 
-}
+
 
 
 

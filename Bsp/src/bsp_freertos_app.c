@@ -211,8 +211,8 @@ static void vTaskMsgPro(void *pvParameters)
             }
              else{
                  power_key_long_conter=0;
-
-                power_long_key_fun();
+                  Disip_Wifi_Icon_State();
+                  //power_long_key_fun();
                  key_long_power_flag= 0;
 
                }
@@ -344,6 +344,8 @@ static void vTaskStart(void *pvParameters)
                    power_key_long_conter=0;
                    key_long_power_flag= 1;
                     buzzer_sound();
+                    power_long_key_fun();
+                    Disip_Wifi_Icon_State();
 
                 }
 
@@ -372,6 +374,7 @@ static void vTaskStart(void *pvParameters)
                gpro_t.key_long_mode_flag =1;
                gkey_t.gTimer_disp_set_timer=0;
                 buzzer_sound();
+              
                
             }
 

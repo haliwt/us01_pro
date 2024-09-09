@@ -277,11 +277,7 @@ void Display_WorksTimingr_Handler(uint8_t sel_item)
                  Display_Works_Timing();
             }
      
-//        else{
-//            
-//          LCD_Fault_Numbers_Code();
-//
-//        }
+
       
     break;
     
@@ -312,24 +308,26 @@ void Display_WorksTimingr_Handler(uint8_t sel_item)
             }
             else if(gkey_t.set_timer_timing_success == 0 ){ //&& gkey_t.gTimer_disp_switch_disp_mode > 3){
 
-               
+                if( gpro_t.gTimer_mode_key_time  < 10){
                 gctl_t.ai_flag =0;
                 //LCD_Disp_Timer_Timing_Init();
 
                 LCD_Number_FiveSixSeveEight_Hours(gpro_t.set_timer_timing_hours,gpro_t.set_timer_timing_minutes);
 
         
-                 gpro_t.disp_timer_switch_time_flag ++ ;
-                 gkey_t.key_mode = disp_works_timing;
+                
+
+                }
+                else{
+
+                    gpro_t.disp_timer_switch_time_flag ++ ;
+                    gkey_t.key_mode = disp_works_timing;
+
+                }
                   
             }
                
-      
-//         else{
-//
-//            LCD_Fault_Numbers_Code();
-//
-//        }
+
     break;
 
 
