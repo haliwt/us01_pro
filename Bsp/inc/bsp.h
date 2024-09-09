@@ -1,35 +1,36 @@
 #ifndef  	__BSP_H_
 #define 	__BSP_H_
+
+
+#ifdef __cplusplus
+        extern "C" {
+#endif
+
+
 #include "main.h"
-
-
+    
+    
 #include  <stdarg.h>
 #include  <stdio.h>
 #include  <stdlib.h>
 #include  <math.h>
 #include  <string.h>
-
+    
 #include "FreeRTOS.h"
 #include "task.h"
 #include "cmsis_os.h"
-
-
-
-
-
-
+    
+    
+    
 #include "interrupt_manager.h"
 #include "adc.h"
-
+    
 #include "tim.h"
 #include "adc.h"
 #include "usart.h"
 #include "gpio.h"
-
-
-
-
-//maiboard
+    
+ //maiboard
 #include "bsp_adc.h"
 #include "bsp_led.h"
 #include "bsp_lcd.h"
@@ -45,9 +46,10 @@
 #include "bsp_usart.h"
 #include "bsp_lcd_app.h"
 #include "bsp_fan_leaf.h"
+#include "bsp_disp_time.h"
 #include "bsp_freertos_app.h"
-
-//wifi
+    
+    //wifi
 #include "bsp_wifi.h"
 #include "bsp_wifi_fun.h"
 #include "bsp_esp8266.h"
@@ -175,5 +177,9 @@ void disp_fan_leaf_icon_handler(void);
 
 
 
-#endif 
+#ifdef __cplusplus
+    }
+#endif
+#endif /*__ GPIO_H__ */
+
 

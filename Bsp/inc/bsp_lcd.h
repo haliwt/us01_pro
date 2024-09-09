@@ -134,7 +134,7 @@ void Lcd_Display_Off(void);
 
 
 void Lcd_Display_Off(void);
-void LCD_Timer_Colon_Flicker(void);
+
 
 void Disp_HumidityTemp_Value(void);
 
@@ -185,6 +185,9 @@ void numbers_six_seven_init(void);
 
 void LCD_Disp_Temperature_Value_Handler(void);
 
+void LCD_Timer_Colon_Flicker(uint8_t sel);
+
+
 
 void LCD_disp_default_FiveSixSeveEight_Codes(void);
 
@@ -194,6 +197,10 @@ void fan_default_warning_fun(void);
 
 
 void ptc_high_temp_warning_fun(void);
+
+
+void set_timer_timing_blink_fun(uint8_t hours_n,uint8_t minutes_n);
+
 
 
 #endif 

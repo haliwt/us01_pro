@@ -1,5 +1,5 @@
 #include "bsp.h"
-#include "iwdg.h"
+//#include "iwdg.h"
 
 
 
@@ -292,12 +292,10 @@ static void vTaskMsgPro(void *pvParameters)
               mainboard_active_handler();
               disp_set_temperature_value_handler();
               backlight_on_off_state();
-              disp_works_or_timer_timing_fun();
-              fan_run_state_handler();
-            
-              LCD_Timer_Colon_Flicker();
+              disp_time_or_timer_handler();
 
               disp_fan_leaf_icon_handler();
+             
              
               Disip_Wifi_Icon_State();
 

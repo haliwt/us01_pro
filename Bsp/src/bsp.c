@@ -130,7 +130,7 @@ void power_on_run_handler(void)
                   lcd_disp_ptc_value(gctl_t.dht11_temp_value);
         }
 
-          if(gpro_t.gTimer_disp_humidity > 30  || disp_hum_times < 2){
+          if(gpro_t.gTimer_disp_humidity > 14  || disp_hum_times < 2){
               
               gpro_t.gTimer_disp_humidity =0;
               
@@ -343,10 +343,6 @@ static void interval_two_hours_stop_action(void)
   // Fan_Stop();
    Plasma_Off();
 
-   Display_Kill_Dry_Ster_Icon();
-
-  
- 
  }
 
 
@@ -772,6 +768,7 @@ void disp_fan_leaf_icon_handler(void)
 {
 
 
+    fan_run_state_handler();
 
 }
 

@@ -297,6 +297,7 @@ void Display_WorksTimingr_Handler(uint8_t sel_item)
                     switch_1_2  =2;
                      disp_ai_iocn();
                     LCD_Number_FiveSixSeveEight_Hours(gpro_t.set_timer_timing_hours,gpro_t.set_timer_timing_minutes);
+                    //set_timer_timing_blink_fun(gpro_t.set_timer_timing_hours,gpro_t.set_timer_timing_minutes);
                     osDelay(100);
                     
                      
@@ -312,7 +313,7 @@ void Display_WorksTimingr_Handler(uint8_t sel_item)
                 gctl_t.ai_flag =0;
                 //LCD_Disp_Timer_Timing_Init();
 
-                LCD_Number_FiveSixSeveEight_Hours(gpro_t.set_timer_timing_hours,gpro_t.set_timer_timing_minutes);
+                set_timer_timing_blink_fun(gpro_t.set_timer_timing_hours,gpro_t.set_timer_timing_minutes);
 
         
                 
