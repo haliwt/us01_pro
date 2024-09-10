@@ -1272,7 +1272,7 @@ void LCD_Wind_Run_Icon(uint8_t wind_speed)
                //odd number
                 TM1723_Write_Display_Data(0xC9,(HUM_T8+lcdNumber4_Low[glcd_t.number4_low]+lcdNumber5_High[glcd_t.number5_high]) & 0xff);
                 TM1723_Write_Display_Data(0xCA,(lcdNumber5_Low[glcd_t.number5_low]+lcdNumber6_High[glcd_t.number6_high]) & 0xff);
-                if(glcd_t.gTimer_disp_colon_icon > 4){
+                if(glcd_t.gTimer_disp_colon_icon > 5){
                     glcd_t.gTimer_disp_colon_icon=0;
                     TM1723_Write_Display_Data(0xCB,(COLON_SYMBOL+lcdNumber6_Low[glcd_t.number6_low]+lcdNumber7_High[glcd_t.number7_high]) & 0xff);
                 }
@@ -1317,7 +1317,7 @@ void LCD_Wind_Run_Icon(uint8_t wind_speed)
                disp_speical_time_number_fun();
                TM1723_Write_Display_Data(0xC9,(HUM_T8+lcdNumber4_Low[glcd_t.number4_low]+lcdNumber5_High[glcd_t.number5_high]) & 0xff);
                TM1723_Write_Display_Data(0xCA,(lcdNumber5_Low[glcd_t.number5_low]+lcdNumber6_High[glcd_t.number6_high]) & 0xff);
-                if(glcd_t.gTimer_disp_colon_icon > 4){
+                if(glcd_t.gTimer_disp_colon_icon > 5){
                     glcd_t.gTimer_disp_colon_icon=0;
                     TM1723_Write_Display_Data(0xCB,(COLON_SYMBOL+lcdNumber6_Low[glcd_t.number6_low]+lcdNumber7_High[glcd_t.number7_high]) & 0xff);
                 }
@@ -1364,7 +1364,7 @@ void LCD_Wind_Run_Icon(uint8_t wind_speed)
                TM1723_Write_Display_Data(0xC9,(HUM_T8+lcdNumber4_Low[glcd_t.number4_low]+lcdNumber5_High[glcd_t.number5_high]) & 0xff);
                TM1723_Write_Display_Data(0xCA,(lcdNumber5_Low[glcd_t.number5_low]+lcdNumber6_High[glcd_t.number6_high]) & 0xff);
 
-               if(glcd_t.gTimer_disp_colon_icon > 4){
+               if(glcd_t.gTimer_disp_colon_icon > 5){
                     glcd_t.gTimer_disp_colon_icon=0;
                     TM1723_Write_Display_Data(0xCB,(COLON_SYMBOL+lcdNumber6_Low[glcd_t.number6_low]+lcdNumber7_High[glcd_t.number7_high]) & 0xff);
                 }
