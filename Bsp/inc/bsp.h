@@ -89,14 +89,14 @@ typedef struct {
    uint8_t shut_Off_backlight_flag;
 
    uint8_t link_net_step;
-   uint8_t power_on_done_flag;
+
   
   
    uint8_t  set_timer_timing_key_flag ;
    //WIFI
    uint8_t run_process_step;
    uint8_t disp_dht11_value;
-   uint8_t power_on_every_times;
+  
    uint8_t long_key_mode_counter;
    uint8_t key_long_mode_flag ;
    uint8_t key_mode_be_pressed_flag;

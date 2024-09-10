@@ -1,58 +1,32 @@
 #include "bsp.h"
 
 
-static void LCD_Disp_Humidity_value_Handler(uint8_t hum_value);
+
 
 static void lcd_disp_ptc_value(uint8_t value);
+static void lcd_disp_humidity_value(uint8_t hum_value);
+
 
 
 void disp_temp_humidity_init(void)
 {
     Update_DHT11_Value();
     lcd_disp_ptc_value(gctl_t.dht11_temp_value);
-    LCD_Disp_Humidity_value_Handler(gctl_t.dht11_humidity_value);
+    lcd_disp_humidity_value(gctl_t.dht11_humidity_value);
 
 
 }
 
 
-
-
-
-
-
-/*****************************************************************************
- * 
- * Function Name:  void LCD_Disp_Humidity_value_Handler(void)
- * Function: read humidity of value from sensor of temperature
- * Input Ref:
- * Return Ref:
- * 
-*****************************************************************************/
-void LCD_Disp_Humidity_value_Handler(uint8_t hum_value)
+static void lcd_disp_humidity_value(uint8_t hum_value)
 {
-
-
-    //humidity display value 
-
-    glcd_t.number3_high =  hum_value /10;
+   glcd_t.number3_high =  hum_value /10;
     //glcd_t.number3_low  =   hum_value /10;
     glcd_t.number3_low =  glcd_t.number3_high ;
 
    glcd_t.number4_low =   hum_value %10;
    //glcd_t.number4_high =  hum_value  %10;
     glcd_t.number4_high =    glcd_t.number4_low;
-
-     if(gkey_t.key_mode==disp_works_timing){
-
-       glcd_t.number5_low = gpro_t.disp_works_hours_value  /10 ;   //gpro_t.disp_works_hours_value,gpro_t.disp_works_minutes_value
-       glcd_t.number5_high = glcd_t.number5_low ;//gpro_t.disp_works_hours_value /10 ;
-     }
-     else if (gkey_t.key_mode==disp_timer_timing){
-        glcd_t.number5_low = gpro_t.set_timer_timing_hours  /10 ;   //gpro_t.set_timer_timing_hours,gpro_t.set_timer_timing_minutes
-        glcd_t.number5_high = glcd_t.number5_low;//hours_n  /10 ;
-
-     }
 
    if(gkey_t.key_mode != mode_set_timer){
 
@@ -68,11 +42,57 @@ void LCD_Disp_Humidity_value_Handler(uint8_t hum_value)
 
    }
    
-     TM1723_Write_Display_Data(0xC9,(HUM_T8+lcdNumber4_Low[glcd_t.number4_low]+lcdNumber5_High[glcd_t.number5_high]) & 0xff);
+   if( gkey_t.key_mode == disp_works_timing){
+       
+     if((gpro_t.global_temporary_set_timer_flag == 1) &&   gpro_t.gTimer_set_timer_times <  11 ){
+          glcd_t.number5_high = 0;
+          TM1723_Write_Display_Data(0xC9,(HUM_T8+lcdNumber4_Low[glcd_t.number4_low]+lcdNumber5_High[glcd_t.number5_high]) & 0xff);
+
+       }
+       else{
+       glcd_t.number5_high = gpro_t.disp_works_hours_value /10;
+       TM1723_Write_Display_Data(0xC9,(HUM_T8+lcdNumber4_Low[glcd_t.number4_low]+lcdNumber5_High[glcd_t.number5_high]) & 0xff);
+
+       }
+    }
+   else if(gkey_t.key_mode  == disp_timer_timing){
+        
+        if(gkey_t.set_timer_timing_success ==0){
+            glcd_t.number5_high = 0;
+
+         }
+        else
+          glcd_t.number5_high =  gpro_t.set_timer_timing_hours /10;
+        
+        TM1723_Write_Display_Data(0xC9,(HUM_T8+lcdNumber4_Low[glcd_t.number4_low]+lcdNumber5_High[glcd_t.number5_high]) & 0xff);
 
    }
 
- }
+    }
+
+
+}
+
+
+
+
+/*****************************************************************************
+ * 
+ * Function Name:  void LCD_Disp_Humidity_value_Handler(void)
+ * Function: read humidity of value from sensor of temperature
+ * Input Ref:
+ * Return Ref:
+ * 
+*****************************************************************************/
+void lcd_disp_temperature_and_humidiy_handler(void)
+{
+      if(gpro_t.gTimer_run_dht11 > 5){
+            gpro_t.gTimer_run_dht11=0;  
+            disp_temp_humidity_init();
+               
+               
+      }
+}
     
 
 

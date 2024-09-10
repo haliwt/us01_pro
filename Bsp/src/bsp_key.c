@@ -102,7 +102,7 @@ void smartphone_power_on_handler(void)
 void mode_long_key_fun(void)
 {
     gkey_t.key_mode = mode_set_timer;
-    gpro_t.power_on_every_times =  100;
+ 
     gkey_t.key_add_dec_mode = mode_set_timer;
     gctl_t.ai_flag = 0; //timer tiiming model
     gkey_t.gTimer_disp_set_timer = 0;       //counter exit timing this "mode_set_timer"

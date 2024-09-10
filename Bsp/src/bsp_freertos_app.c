@@ -286,7 +286,9 @@ static void vTaskMsgPro(void *pvParameters)
              
                
                power_on_run_handler();
+              lcd_disp_temperature_and_humidiy_handler();
                disp_time_or_timer_handler();
+               Disip_Wifi_Icon_State();
 
               disp_fan_leaf_icon_handler();
               
@@ -297,18 +299,9 @@ static void vTaskMsgPro(void *pvParameters)
               mainboard_active_handler();
               disp_set_temperature_value_handler();
               backlight_on_off_state();
-            
-             
-             
-              Disip_Wifi_Icon_State();
-
               detected_fault_state();
               
-            
-
-             
-             
-             }
+            }
             else {
             
              power_off_run_handler();
