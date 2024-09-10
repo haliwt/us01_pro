@@ -248,24 +248,10 @@ void Display_WorksTimingr_Handler(uint8_t sel_item)
 
     case disp_works_timing :
    
-  
-
-            if(gpro_t.power_on_done_flag ==0  ){
-  
-                gpro_t.gTimer_disp_humidity=0;  //don't update humidity value that has "5" be display 
-                gkey_t.key_mode_switch_flag ++;
-                gctl_t.ai_flag = 0;
-                disp_ai_iocn();
-                disp_time_number_567_fun_init();//LCD_Number_FiveSixSeveEight_Hours(0,0);
-                osDelay(100);
-                gpro_t.power_on_done_flag=1;
-            }
-            else 
-            {
-                 gpro_t.global_temporary_set_timer_flag =3;
-                 gctl_t.ai_flag = 1; // AI DISPLAY AI ICON
-                 Display_Works_Timing();
-            }
+          
+          gctl_t.ai_flag = 1; // AI DISPLAY AI ICON
+           Display_Works_Timing();
+            
      
 
       

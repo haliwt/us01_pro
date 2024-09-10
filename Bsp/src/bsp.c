@@ -119,14 +119,19 @@ void power_on_run_handler(void)
              }
 
             gpro_t.power_on_done_flag =0;
-            disp_time_number_567_fun_init();
+          //  disp_time_number_567_fun_init();
 
 		  break;
 
 
       case 1:   //run dht11 display 
 
-      
+            if(gpro_t.gTimer_run_dht11 > 5){
+              gpro_t.gTimer_run_dht11=0;  
+            disp_temp_humidity_init();
+
+
+           }
 
 
          gctl_t.step_process=3;

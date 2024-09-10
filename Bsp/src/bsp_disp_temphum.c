@@ -43,6 +43,17 @@ void LCD_Disp_Humidity_value_Handler(uint8_t hum_value)
    //glcd_t.number4_high =  hum_value  %10;
     glcd_t.number4_high =    glcd_t.number4_low;
 
+     if(gkey_t.key_mode==disp_works_timing){
+
+       glcd_t.number5_low = gpro_t.disp_works_hours_value  /10 ;   //gpro_t.disp_works_hours_value,gpro_t.disp_works_minutes_value
+       glcd_t.number5_high = glcd_t.number5_low ;//gpro_t.disp_works_hours_value /10 ;
+     }
+     else if (gkey_t.key_mode==disp_timer_timing){
+        glcd_t.number5_low = gpro_t.set_timer_timing_hours  /10 ;   //gpro_t.set_timer_timing_hours,gpro_t.set_timer_timing_minutes
+        glcd_t.number5_high = glcd_t.number5_low;//hours_n  /10 ;
+
+     }
+
    if(gkey_t.key_mode != mode_set_timer){
 
 

@@ -83,7 +83,7 @@ void disp_speical_time_number_fun(void)
     
 	glcd_t.number8_high = glcd_t.number8_low ;
 
-    
+  //   glcd_t.number4_low =  gctl_t.dht11_humidity_value %10;
 
 
     break; 
@@ -109,6 +109,8 @@ void disp_speical_time_number_fun(void)
     	glcd_t.number8_low = gpro_t.set_timer_timing_minutes % 10 ;
         
     	glcd_t.number8_high = glcd_t.number8_low ;
+
+       // glcd_t.number4_low =  gctl_t.dht11_humidity_value %10;
 
 
     break;

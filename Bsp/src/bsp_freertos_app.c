@@ -285,7 +285,7 @@ static void vTaskMsgPro(void *pvParameters)
                 }
              
                
-              power_on_run_handler();
+               power_on_run_handler();
                disp_time_or_timer_handler();
 
               disp_fan_leaf_icon_handler();
