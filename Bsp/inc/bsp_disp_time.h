@@ -8,6 +8,10 @@ void disp_time_or_timer_handler(void);
 
 
 
+void disp_speical_time_number_fun(void);
+
+
+void disp_time_number_567_fun_init(void);
 
 #endif 
 

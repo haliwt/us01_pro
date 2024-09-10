@@ -118,6 +118,9 @@ void power_on_run_handler(void)
 
              }
 
+            gpro_t.power_on_done_flag =0;
+            disp_time_number_567_fun_init();
+
 		  break;
 
 
@@ -750,7 +753,7 @@ void mode_key_adjust_fun(void)
 void disp_fan_leaf_icon_handler(void)
 {
 
-   
+    disp_speical_time_number_fun();
     fan_run_state_handler();
 
 }

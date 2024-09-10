@@ -63,7 +63,7 @@ void Fan_Stop(void)
 
 void fan_run_state_handler(void)
 {
-   
+      
        if(gkey_t.key_mode  != mode_set_timer){
            LCD_Wind_Run_Icon(wifi_t.set_wind_speed_value);
 
@@ -71,6 +71,8 @@ void fan_run_state_handler(void)
 
       }
 
-}
+    }
+
+
 
 

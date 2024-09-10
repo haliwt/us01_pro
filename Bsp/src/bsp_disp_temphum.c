@@ -57,35 +57,13 @@ void LCD_Disp_Humidity_value_Handler(uint8_t hum_value)
 
    }
    
-   if( gkey_t.key_mode == disp_works_timing){
-       
-     if((gpro_t.global_temporary_set_timer_flag == 1) &&   gpro_t.gTimer_set_timer_times <  11 ){
-          glcd_t.number5_high = 0;
-          TM1723_Write_Display_Data(0xC9,(HUM_T8+lcdNumber4_Low[glcd_t.number4_low]+lcdNumber5_High[glcd_t.number5_high]) & 0xff);
-
-       }
-       else{
-       glcd_t.number5_high = gpro_t.disp_works_hours_value /10;
-       TM1723_Write_Display_Data(0xC9,(HUM_T8+lcdNumber4_Low[glcd_t.number4_low]+lcdNumber5_High[glcd_t.number5_high]) & 0xff);
-
-       }
-    }
-   else if(gkey_t.key_mode  == disp_timer_timing){
-        
-        if(gkey_t.set_timer_timing_success ==0){
-            glcd_t.number5_high = 0;
-
-         }
-        else
-          glcd_t.number5_high =  gpro_t.set_timer_timing_hours /10;
-        
-        TM1723_Write_Display_Data(0xC9,(HUM_T8+lcdNumber4_Low[glcd_t.number4_low]+lcdNumber5_High[glcd_t.number5_high]) & 0xff);
+     TM1723_Write_Display_Data(0xC9,(HUM_T8+lcdNumber4_Low[glcd_t.number4_low]+lcdNumber5_High[glcd_t.number5_high]) & 0xff);
 
    }
 
-    }
+ }
     
-}
+
 
 
 
