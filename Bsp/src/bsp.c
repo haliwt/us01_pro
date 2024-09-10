@@ -152,7 +152,7 @@ void power_on_run_handler(void)
 
              if(wifi_t.smartphone_app_power_on_flag==0){
                   main_fun_init();
-                  Mainboard_Action_Fun();
+                  //Mainboard_Action_Fun();
             
               }
 
