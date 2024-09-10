@@ -215,6 +215,7 @@ typedef struct _LCD_Ref{
 	 uint8_t gTimer_error_times;
 	 uint8_t gTimer_lcd_blink;
      uint8_t gTimer_wifi_fast_blink ;
+     uint8_t gTimer_disp_colon_icon;
 	
 	
 }lcd_ref;

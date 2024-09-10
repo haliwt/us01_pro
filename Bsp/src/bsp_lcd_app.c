@@ -113,7 +113,7 @@ void Display_Works_Timing(void)
 
      }
     
-      LCD_Number_FiveSixSeveEight_Hours(gpro_t.disp_works_hours_value,gpro_t.disp_works_minutes_value);
+    //  LCD_Number_FiveSixSeveEight_Hours(gpro_t.disp_works_hours_value,gpro_t.disp_works_minutes_value);
    
 
       

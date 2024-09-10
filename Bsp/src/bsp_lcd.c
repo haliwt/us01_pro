@@ -1255,6 +1255,7 @@ glcd_t.number7_high = 0;
 void LCD_Wind_Run_Icon(uint8_t wind_speed)
 {
 
+   
    //wind run icon
   if(gctl_t.fan_warning ==0  && gctl_t.ptc_warning ==0){
 
@@ -1267,11 +1268,18 @@ void LCD_Wind_Run_Icon(uint8_t wind_speed)
     case 0: //max wind speed.
          if(glcd_t.gTimer_fan_blink < 15){
                disp_speical_time_number_fun();
-               
+              
                //odd number
                 TM1723_Write_Display_Data(0xC9,(HUM_T8+lcdNumber4_Low[glcd_t.number4_low]+lcdNumber5_High[glcd_t.number5_high]) & 0xff);
                 TM1723_Write_Display_Data(0xCA,(lcdNumber5_Low[glcd_t.number5_low]+lcdNumber6_High[glcd_t.number6_high]) & 0xff);
-                TM1723_Write_Display_Data(0xCB,(COLON_SYMBOL+lcdNumber6_Low[glcd_t.number6_low]+lcdNumber7_High[glcd_t.number7_high]) & 0xff);
+                if(glcd_t.gTimer_disp_colon_icon > 2){
+                    glcd_t.gTimer_disp_colon_icon=0;
+                    TM1723_Write_Display_Data(0xCB,(COLON_SYMBOL+lcdNumber6_Low[glcd_t.number6_low]+lcdNumber7_High[glcd_t.number7_high]) & 0xff);
+                }
+                else{
+                    TM1723_Write_Display_Data(0xCB,(lcdNumber6_Low[glcd_t.number6_low]+lcdNumber7_High[glcd_t.number7_high]) & 0xff);
+                }
+
                 TM1723_Write_Display_Data(0xCC,(T14+lcdNumber7_Low[glcd_t.number7_low]+lcdNumber8_High[glcd_t.number8_high]) & 0xff);
                 TM1723_Write_Display_Data(0xCE,lcdNumber8_Low[glcd_t.number8_low]+WIND_SPEED_FULL);//display "t,c"
                 TM1723_Write_Display_Data(0xCF,((T16+T12+T10)& 0x0B));//
@@ -1282,7 +1290,8 @@ void LCD_Wind_Run_Icon(uint8_t wind_speed)
         }
         else if(glcd_t.gTimer_fan_blink > 14 && glcd_t.gTimer_fan_blink   < 30){ //close
              disp_speical_time_number_fun();
-
+            
+             
             //even number
             TM1723_Write_Display_Data(0xC9,(HUM_T8+lcdNumber4_Low[glcd_t.number4_low]+lcdNumber5_High[glcd_t.number5_high]) & 0xff);
             TM1723_Write_Display_Data(0xCA,(T15+lcdNumber5_Low[glcd_t.number5_low]+lcdNumber6_High[glcd_t.number6_high]) & 0xff);
@@ -1317,7 +1326,7 @@ void LCD_Wind_Run_Icon(uint8_t wind_speed)
         }
         else if(glcd_t.gTimer_fan_blink > 14 && glcd_t.gTimer_fan_blink   < 30){ //close
              
-                 disp_speical_time_number_fun();
+                disp_speical_time_number_fun();
                 TM1723_Write_Display_Data(0xC9,(HUM_T8+lcdNumber4_Low[glcd_t.number4_low]+lcdNumber5_High[glcd_t.number5_high]) & 0xff);
                 TM1723_Write_Display_Data(0xCA,(T15+lcdNumber5_Low[glcd_t.number5_low]+lcdNumber6_High[glcd_t.number6_high]) & 0xff);
                 TM1723_Write_Display_Data(0xCB,(T9+lcdNumber6_Low[glcd_t.number6_low]+lcdNumber7_High[glcd_t.number7_high]) & 0xff); 

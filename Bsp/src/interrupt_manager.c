@@ -125,6 +125,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
         gctl_t.gTimer_feed_dog_times ++;
         //led 
        glcd_t.gTimer_error_times++;
+        glcd_t.gTimer_disp_colon_icon++;
        
        //key timer
 	
