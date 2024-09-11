@@ -285,19 +285,19 @@ static void vTaskMsgPro(void *pvParameters)
                 }
              
                
-               power_on_run_handler();
+              power_on_run_handler();
               lcd_disp_temperature_and_humidiy_handler();
-               disp_time_or_timer_handler();
-               Disip_Wifi_Icon_State();
+              disp_time_or_timer_handler();
+              Disip_Wifi_Icon_State();
 
               disp_fan_leaf_icon_handler();
               
-              key_add_dec_set_temp_value_fun();
+             
               link_wifi_net_state(gkey_t.wifi_led_fast_blink_flag);
               once_again_link_net_fun();
               
               mainboard_active_handler();
-              disp_set_temperature_value_handler();
+        
               backlight_on_off_state();
               detected_fault_state();
               

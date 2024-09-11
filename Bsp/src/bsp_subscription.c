@@ -684,6 +684,7 @@ void Json_Parse_Command_Fun(void)
             gpro_t.set_temperature_value_success =1;
         
            gpro_t.gTimer_run_dht11=0; 
+           gkey_t.key_disp_temp_hum_mode = disp_set_temp; //WT.EDIT 2024.09.11
            
          
           // lcd_disp_ptc_value(gctl_t.gSet_temperature_value);

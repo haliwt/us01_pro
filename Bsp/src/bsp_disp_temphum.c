@@ -2,8 +2,9 @@
 
 
 
+static void disp_set_temperature_value_handler(void);
 
-static void lcd_disp_ptc_value(uint8_t value);
+
 static void lcd_disp_humidity_value(uint8_t hum_value);
 
 
@@ -86,19 +87,55 @@ static void lcd_disp_humidity_value(uint8_t hum_value)
 *****************************************************************************/
 void lcd_disp_temperature_and_humidiy_handler(void)
 {
-      if(gpro_t.gTimer_run_dht11 > 5){
-            gpro_t.gTimer_run_dht11=0;  
-            disp_temp_humidity_init();
-               
-               
-      }
+
+      switch(gkey_t.key_disp_temp_hum_mode){
+
+
+       case disp_normal_temp:
+
+          if(gpro_t.gTimer_run_dht11 > 5){
+             gpro_t.gTimer_run_dht11=0;  
+             disp_temp_humidity_init();
+                   
+                   
+          }
+
+           //display set temperature value 
+         if(gctl_t.gTimer_compare_ptc_value > 11 && gctl_t.interval_stop_run_flag  ==0 && gctl_t.ptc_warning == 0 && gctl_t.fan_warning ==0){
+
+            gctl_t.gTimer_compare_ptc_value=0;
+            SetTemp_Compare_SensoTemp();
+
+          }
+      break;
+
+
+      case disp_set_temp:
+
+     
+
+         LCD_Disp_Temperature_Value_Handler();
+         gkey_t.key_disp_temp_hum_mode = disp_set_temp_numbe;
+      
+     break;
+
+
+      case disp_set_temp_numbe:
+
+           disp_set_temperature_value_handler();
+
+      break;
+
+
+     }
+      
 }
     
 
 
 
 
-static void lcd_disp_ptc_value(uint8_t value)
+void lcd_disp_ptc_value(uint8_t value)
 {
      
    glcd_t.number1_low =  value   / 10 ;
@@ -111,5 +148,80 @@ static void lcd_disp_ptc_value(uint8_t value)
    glcd_t.number2_high = glcd_t.number2_low ;
   LCD_Disp_Temperature_Value_Handler();
 }
+/*****************************************************************************
+ * 
+ * Function Name:  static void disp_set_temperature_value_handler(void)
+ * Function: 
+ * Input Ref:
+ * Return Ref:
+ * 
+*****************************************************************************/
+static void disp_set_temperature_value_handler(void)
+{
 
+    
+    //set temperature value 
+     if(gctl_t.gTimer_set_temp_value  > 2 ){
+       
+       gctl_t.gTimer_compare_ptc_value =0;
+       gkey_t.key_disp_temp_hum_mode= disp_normal_temp; //WT.EIDT 2024.09.11
+
+   
+        set_ptc_value_conifrm_handler(gctl_t.gSet_temperature_value);
+        gpro_t.set_temperature_value_success=1;
+
+
+        if(gpro_t.set_temperature_value_success==1){
+
+         //compare with by read temperature of sensor value  
+         if(gctl_t.gSet_temperature_value > gctl_t.dht11_temp_value){
+
+            
+                
+                gctl_t.ptc_flag = 1;
+                Ptc_On();
+                if(wifi_link_net_state()==1){
+                         MqttData_Publish_SetPtc(gctl_t.ptc_flag);
+                         osDelay(100);
+                    }
+                
+
+            }
+            else if(gctl_t.gSet_temperature_value <   gctl_t.dht11_temp_value || gctl_t.gSet_temperature_value ==   gctl_t.dht11_temp_value){
+
+                gctl_t.ptc_flag = 0;
+                Ptc_Off();
+  
+                 if(wifi_link_net_state()==1){ //逻辑错误
+                 
+
+                    MqttData_Publish_SetPtc(gctl_t.ptc_flag);
+                    osDelay(100);
+                  }
+
+
+           }
+          
+          if(wifi_link_net_state()==1){
+        
+                MqttData_Publis_SetTemp(gctl_t.gSet_temperature_value);
+                osDelay(100);
+
+             
+        
+         }
+
+        // lcd_disp_ptc_value(gctl_t.gSet_temperature_value);
+
+        }
+        //   gkey_t.set_temp_value_be_pressed++ ;
+        gpro_t.gTimer_run_dht11 = 4;
+
+     }
+
+
+   
+
+
+}
 

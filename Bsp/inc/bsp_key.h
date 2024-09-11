@@ -20,6 +20,14 @@ typedef enum{
 
 }key_pressed_t;
 
+typedef enum{
+
+  disp_normal_temp,
+  disp_set_temp,
+  disp_set_temp_numbe
+
+}key_temp_mode;
+
 
 
 typedef enum{
@@ -56,16 +64,11 @@ typedef enum mode_key_t{
    uint8_t  key_mode;
 
    uint8_t  key_mode_be_pressed;
+   uint8_t key_disp_temp_hum_mode;
 
  
    uint8_t  key_add_dec_mode;
    uint8_t  set_timer_timing_success;
-
-
-
-   uint8_t set_temp_value_be_pressed;
-  
-
 
    uint8_t   key_mode_times;
    uint8_t   set_temp_value;
@@ -94,14 +97,9 @@ void power_long_key_fun(void);
 
 void mode_long_key_fun(void);
 
-
-
 void Dec_Key_Fun(uint8_t cmd);
 
 void Add_Key_Fun(uint8_t cmd);
-
-
-void key_add_dec_set_temp_value_fun(void);
 
 void  key_mode_be_pressed_send_data_wifi(void);
 
