@@ -370,7 +370,6 @@ void  backlight_on_off_handler(void (*backlight_state_handler)(void))
        backlight_on_off_state = backlight_state_handler;
 
 }
-
 /*****************************************************************************
  * 
  * Function Name:  void wake_up_backlight_on(void)
@@ -398,10 +397,6 @@ void  wake_up_backlight_on_handler(void (*backlight_on_handler)(void))
 
 
 }
-
-
-
-
 
 void link_wifi_net_state(uint8_t data)
 {

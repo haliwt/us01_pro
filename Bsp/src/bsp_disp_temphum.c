@@ -133,8 +133,14 @@ void lcd_disp_temperature_and_humidiy_handler(void)
     
 
 
-
-
+/*****************************************************************************
+ * 
+ * Function Name:  void lcd_disp_ptc_value(uint8_t value)
+ * Function: 
+ * Input Ref:
+ * Return Ref:
+ * 
+*****************************************************************************/
 void lcd_disp_ptc_value(uint8_t value)
 {
      
