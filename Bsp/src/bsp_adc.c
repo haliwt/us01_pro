@@ -78,7 +78,7 @@ static uint16_t Get_Fan_Adc_Average(uint32_t ch,uint8_t times)
 	for(t=0;t<times;t++)
 	{
 		temp_val+=Get_Fan_Adc_Channel_0(ch);
-		
+		HAL_Delay(10);
 	}
 	return temp_val/times;
 } 
@@ -90,7 +90,7 @@ static uint16_t Get_Ptc_Adc_Average(uint32_t ch,uint8_t times)
 	for(t=0;t<times;t++)
 	{
 		temp_val+=Get_Ptc_Adc_Channel_1(ch);
-		
+		HAL_Delay(10);
 	}
 	return temp_val/times;
 } 
@@ -120,7 +120,7 @@ void Get_PTC_Temperature_Voltage(uint32_t channel,uint8_t times)
 
 
 
-	if(ptc_temp_voltage < 624 || ptc_temp_voltage ==624){//?   //87 degree
+	if(ptc_temp_voltage < 603 || ptc_temp_voltage ==603){//70 degree
   
 	    gctl_t.ptc_flag = 0; //turn off
 	    Ptc_Off(); //turn off
