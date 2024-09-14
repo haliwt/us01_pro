@@ -577,14 +577,12 @@ void link_wifi_net_handler(void)
 
             case 3:
                  Disip_Wifi_Icon_State();
-            if(gpro_t.gTimer_link_net_timer_time  > 8){
+            if(gpro_t.gTimer_link_net_timer_time  > 3){
                  Disip_Wifi_Icon_State();
                       gpro_t.gTimer_link_net_timer_time = 0;
                    gpro_t.link_net_step = 4;
              WIFI_IC_ENABLE();
-			
-            sprintf((char *)device_massage, "AT+TCPRDINFOSET=1,\"%s\",\"%s\",\"UYIJIA01-%d\"\r\n", PRODUCT_ID, DEVICE_SECRET,gctl_t.randomName[0]);
-			at_send_data(device_massage, strlen((const char *)device_massage));
+		      HAL_UART_Transmit(&huart2, "AT+TCDEVREG\r\n", strlen("AT+TCDEVREG\r\n"), 0xffff); //动态注册 
 	  		//HAL_Delay(1000);
 	  		HAL_Delay(300);
     		Disip_Wifi_Icon_State();

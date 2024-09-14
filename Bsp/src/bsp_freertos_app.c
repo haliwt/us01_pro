@@ -86,7 +86,7 @@ static void vTaskMsgPro(void *pvParameters)
 	uint32_t ulValue;
     static uint8_t add_flag,dec_flag,smart_phone_sound;
     static uint8_t key_power_long_sound ,power_on_sound;
-    static uint8_t power_sound_flag;
+    static uint8_t power_sound_flag,dc_power_on_first;
 	
     while(1)
     {
@@ -195,6 +195,12 @@ static void vTaskMsgPro(void *pvParameters)
                 
        }
        else{ //超时，时间是50ms
+
+
+           if(dc_power_on_first == 0){
+                dc_power_on_first++;
+                buzzer_sound();
+            }
   
            if(gpro_t.key_power_flag == 1){
 
