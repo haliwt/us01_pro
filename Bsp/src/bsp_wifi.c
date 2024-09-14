@@ -472,13 +472,9 @@ void wifi_get_beijint_time_handler(void)
          }
 
        break;
-	
-
-	
-    }
+	}
 
 }
-
 /*****************************************************************************
     *
     *Function Name: static void AutoReconnect_Wifi_Neware_Function(void)
