@@ -241,7 +241,7 @@ void LCD_Disp_Set_Timer_Timing(void)
 void Display_WorksTimingr_Handler(uint8_t sel_item)
 {
 
-    static uint8_t default_timing = 0xff,default_timer = 0xff,switch_1_2;
+    static uint8_t default_timer = 0xff,switch_1_2;
 
  
     switch(sel_item){

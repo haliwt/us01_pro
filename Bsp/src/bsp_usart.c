@@ -10,7 +10,7 @@
 
 static void UartSend(UART_T *_pUart, uint8_t *_ucaBuf, uint16_t _usLen);
 static uint8_t UartGetChar(UART_T *_pUart, uint8_t *_pByte);
-static void UartIRQ(UART_T *_pUart);
+//static void UartIRQ(UART_T *_pUart);
 
 /* 定义每个串口结构体变量 */
 #if UART1_FIFO_EN == 1
@@ -504,6 +504,7 @@ uint8_t UartTxEmpty(COM_PORT_E _ucPort)
 *	返 回 值: 无
 *********************************************************************************************************
 */
+#if 0
 static void UartIRQ(UART_T *_pUart)
 {
 	uint32_t isrflags   = READ_REG(_pUart->uart->ISR);
@@ -626,7 +627,7 @@ static void UartIRQ(UART_T *_pUart)
 //  *            @arg.UART_CLEAR_WUF:  Wake Up from stop mode Clear Flag
 //  *            @arg UART_CLEAR_TXFECF: TXFIFO empty Clear Flag	
 }
-
+#endif 
 /*
 *********************************************************************************************************
 *	函 数 名: USART1_IRQHandler  USART2_IRQHandler USART3_IRQHandler UART4_IRQHandler UART5_IRQHandler等

@@ -84,9 +84,9 @@ static void vTaskMsgPro(void *pvParameters)
     BaseType_t xResult;
 	const TickType_t xMaxBlockTime = pdMS_TO_TICKS(30); /* 设置最大等待时间为50ms */
 	uint32_t ulValue;
-    static uint8_t add_flag,dec_flag,smart_phone_sound;
-    static uint8_t key_power_long_sound ,power_on_sound;
-    static uint8_t power_sound_flag,dc_power_on_first;
+    static uint8_t smart_phone_sound;
+   
+    static uint8_t dc_power_on_first;
 	
     while(1)
     {
@@ -128,7 +128,7 @@ static void vTaskMsgPro(void *pvParameters)
                 }
                 else{
             
-                    power_on_sound = 1;
+                   
                     power_key_long_conter=0;
                     gpro_t.long_key_mode_counter=0; //WT.EIDT 2024.08.20 add new statement
                     gpro_t.gTimer_shut_off_backlight =0;

@@ -296,7 +296,9 @@ void wifi_get_beijint_time_handler(void)
                   
                    wifi_t.get_rx_beijing_time_enable=0; //enable beijing times
                    if(wifi_link_net_state()==1){
-                       get_beijing_flag = 3;
+                       get_beijing_flag = 0;
+                       gpro_t.gTimer_get_data_from_tencent_data =0;
+                       wifi_t.gTimer_get_beijing_time = 70;
                        beijing_step =0;
 
                     }

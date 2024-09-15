@@ -128,10 +128,10 @@ static void Mqtt_power_off_Value(void)
 static void mqtt_smart_phone_power_on_ref(void)
 {
 		
-    static uint8_t wind_speed_grade;
-    if(wifi_t.set_wind_speed_value==0){
-        wind_speed_grade=100;
-     }
+//    static uint8_t wind_speed_grade;
+//    if(wifi_t.set_wind_speed_value==0){
+//        wind_speed_grade=100;
+//     }
 
        sg_info.open = 1;
 	   if(gctl_t.ai_flag==0)gctl_t.ai_flag =1;

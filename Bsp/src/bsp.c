@@ -7,7 +7,7 @@ static void Mainboard_Action_Fun(void);
 
 static void Process_Dynamical_Action(void);
 static void power_off_function(void);
-static void power_on_init_function(void);
+
 
 static void interval_continuce_works_fun(void);
 
@@ -76,7 +76,7 @@ void power_off_run_handler(void)
 void power_on_run_handler(void)
 {
 
-    static uint8_t disp_hum_times;
+ //   static uint8_t disp_hum_times;
      switch(gctl_t.step_process){
 
 
@@ -336,15 +336,15 @@ static uint8_t Works_Time_Out(void)
 *	形    参: 无
 *	返 回 值: 无
 **********************************************************************************************************/
-static void Mainboard_Action_Fun(void)
-{
-    Ptc_On();
-	Ultrasonic_Pwm_Output();
-	Fan_Run();
-	Plasma_On();
-	
-	
-}
+//static void Mainboard_Action_Fun(void)
+//{
+//    Ptc_On();
+//	Ultrasonic_Pwm_Output();
+//	Fan_Run();
+//	Plasma_On();
+//	
+//	
+//}
 
 /*
 *********************************************************************************************************
@@ -632,17 +632,7 @@ static void power_off_function(void)
 *Return Ref:NO
 *
 ************************************************************************/
-static void power_on_init_function(void)
-{
-     //led on 
 
-   
-  
-  
- 
-
-
-}
 /***********************************************************************
 *
 *Function Name:void detected_fault_state(void)

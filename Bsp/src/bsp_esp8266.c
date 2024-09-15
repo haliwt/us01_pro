@@ -4,7 +4,7 @@
 uint8_t *sub_buf;
 uint8_t usart2_flag;
 
-static uint32_t ic_id;
+
 
 
 /*********************************************************
