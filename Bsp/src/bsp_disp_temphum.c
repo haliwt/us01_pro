@@ -100,13 +100,7 @@ void lcd_disp_temperature_and_humidiy_handler(void)
                    
           }
 
-           //display set temperature value 
-         if(gctl_t.gTimer_compare_ptc_value > 11 && gctl_t.interval_stop_run_flag  ==0 && gctl_t.ptc_warning == 0 && gctl_t.fan_warning ==0){
-
-            gctl_t.gTimer_compare_ptc_value=0;
-            SetTemp_Compare_SensoTemp();
-
-          }
+       
       break;
 
 
@@ -116,6 +110,8 @@ void lcd_disp_temperature_and_humidiy_handler(void)
 
          LCD_Disp_Temperature_Value_Handler();
          gkey_t.key_disp_temp_hum_mode = disp_set_temp_numbe;
+
+         
       
      break;
 
@@ -128,6 +124,15 @@ void lcd_disp_temperature_and_humidiy_handler(void)
 
 
      }
+
+
+          //display set temperature value 
+     if(gctl_t.gTimer_compare_ptc_value > 11 && gctl_t.interval_stop_run_flag  ==0 && gctl_t.ptc_warning == 0 && gctl_t.fan_warning ==0){
+
+         gctl_t.gTimer_compare_ptc_value=0;
+         SetTemp_Compare_SensoTemp();
+
+       }
       
 }
     

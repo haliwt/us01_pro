@@ -151,7 +151,7 @@ typedef struct _WIFI_FUN{
 
 	//auto link net
 	
-	uint8_t link_tencent_thefirst_times;
+
 	uint8_t rx_setup_hardware_counter;
     uint8_t tencent_rx_data_flag;
 
@@ -162,13 +162,13 @@ typedef struct _WIFI_FUN{
 	
     uint8_t gTimer_beijing_time;
 	uint8_t gTimer_reconnect_wifi;
-	uint8_t gTimer_power_off_run_times;
+	uint8_t gTimer_power_off_fan_run_times;
 	uint8_t gTimer_subscriber_send ;
 	uint8_t gTimer_publish_dht11;
 	
 	uint8_t gTimer_login_tencent_times;
 	uint8_t gTimer_power_first_link_tencent ;
-	uint8_t gTimer_wifi_pub_power_off;
+
 	uint8_t gTimer_wifi_power_on_detect ;
 
 	uint8_t gTimer_main_gpro_times;
@@ -217,7 +217,7 @@ void wifiUpdate_SetTemperatureValue(uint8_t temp);
 
 void GetNTP_Times(void);
 
-void Wifi_Pro_Runing_Init(void);
+
 
 #endif 
 

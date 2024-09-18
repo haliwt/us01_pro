@@ -178,8 +178,6 @@ static void vTaskMsgPro(void *pvParameters)
                      gpro_t.gTimer_shut_off_backlight =0;
                      wake_up_backlight_on();
                      buzzer_sound();
-                    
-
                 }
                 else{
                      buzzer_sound();
@@ -187,13 +185,8 @@ static void vTaskMsgPro(void *pvParameters)
                      gctl_t.step_process=0;
                    
                 }
-               
             }
-           
-          
-          
-                
-       }
+        }
        else{ //超时，时间是50ms
 
 
@@ -266,9 +259,7 @@ static void vTaskMsgPro(void *pvParameters)
                     buzzer_sound();
                      Dec_Key_Fun(gkey_t.key_add_dec_mode);
                      
-
-
-                    }
+                   }
 
              }
              else if(smart_phone_sound == 1){
@@ -290,7 +281,6 @@ static void vTaskMsgPro(void *pvParameters)
 
                 }
              
-               
               power_on_run_handler();
               lcd_disp_temperature_and_humidiy_handler();
               disp_time_or_timer_handler();
@@ -305,12 +295,12 @@ static void vTaskMsgPro(void *pvParameters)
               mainboard_active_handler();
         
               backlight_on_off_state();
-              detected_fault_state();
+              
               
             }
-            else {
+            else{
             
-             power_off_run_handler();
+                power_off_run_handler();
 
             }
             if(gkey_t.wifi_led_fast_blink_flag==0){
@@ -338,51 +328,32 @@ static void vTaskStart(void *pvParameters)
  
      while(1)
     {
-   
+        if(KEY_POWER_VALUE()==KEY_DOWN){
 
-      if(KEY_POWER_VALUE()==KEY_DOWN){
-
-                power_key_long_conter++;
-               if(power_key_long_conter > 30 && gkey_t.key_power==power_on ){
+        power_key_long_conter++;
+        if(power_key_long_conter > 30 && gkey_t.key_power==power_on ){
                   
-                   power_key_long_conter=0;
-                   key_long_power_flag= 1;
-                    buzzer_sound();
-                    power_long_key_fun();
-                    Disip_Wifi_Icon_State();
+            power_key_long_conter=0;
+            key_long_power_flag= 1;
+            buzzer_sound();
+            power_long_key_fun();
+            Disip_Wifi_Icon_State();
 
-                }
-
-         
-
-       
-//        if(power_key_long_conter < 895000){
-//      
-//            xTaskNotify(xHandleTaskMsgPro,  /* 目标任务 */
-//            POWER_KEY_0,      /* 设置目标任务事件标志位bit0  */
-//            eSetBits);  /* 将目标任务的事件标志位与BIT_0进行或操作， 将结果赋值给事件标志位 */
-//        }
-
-          gpro_t.key_power_flag = 1;
+        }
+        gpro_t.key_power_flag = 1;
 
        }
        else if(KEY_MODE_VALUE() == KEY_DOWN){
-
-
-         
-
-          gpro_t.long_key_mode_counter ++ ;
+        gpro_t.long_key_mode_counter ++ ;
 
           if(gpro_t.long_key_mode_counter > 30 && gkey_t.key_power==power_on && gctl_t.fan_warning==0 && gctl_t.ptc_warning==0){
-             gpro_t.long_key_mode_counter=0;   
-               gpro_t.key_long_mode_flag =1;
-               gkey_t.gTimer_disp_set_timer=0;
-                buzzer_sound();
+            gpro_t.long_key_mode_counter=0;   
+            gpro_t.key_long_mode_flag =1;
+            gkey_t.gTimer_disp_set_timer=0;
+            buzzer_sound();
               
-               
-            }
-
-          gpro_t.key_mode_flag = 1;
+        }
+        gpro_t.key_mode_flag = 1;
         
 
       }

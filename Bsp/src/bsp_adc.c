@@ -120,7 +120,7 @@ void Get_PTC_Temperature_Voltage(uint32_t channel,uint8_t times)
 
 
 
-	if(ptc_temp_voltage < 603 || ptc_temp_voltage ==603){//70 degree
+	if(ptc_temp_voltage < 535 || ptc_temp_voltage ==535){//75 degree
   
 	    gctl_t.ptc_flag = 0; //turn off
 	    Ptc_Off(); //turn off
@@ -137,7 +137,7 @@ void Get_PTC_Temperature_Voltage(uint32_t channel,uint8_t times)
  
  
         MqttData_Publish_SetPtc(0);
-		 HAL_Delay(100);//osDelay(300);//HAL_Delay(350);  
+		HAL_Delay(100);//osDelay(300);//HAL_Delay(350);  
 
         }
    	      

@@ -839,7 +839,7 @@ static void smartphone_app_timer_power_on_handler(void)
 		wifi_t.smartphone_app_power_on_flag=1;
 		}
 
-		if(wifi_t.smartphone_app_power_on_flag==1){
+	
 
 		if(strstr((char *)TCMQTTRCVPUB,"ptc\":1")){
 
@@ -874,7 +874,7 @@ static void smartphone_app_timer_power_on_handler(void)
 
 
 
-		}
+		
     }
    
 
@@ -887,7 +887,7 @@ static void smartphone_app_timer_power_on_handler(void)
 		//Device_Action_Publish_Handler();
 		if(gkey_t.key_power == power_off ){
 			wifi_t.smartphone_app_power_on_flag=1;
-            wifi_t.link_tencent_thefirst_times=0;
+      
             wifi_t.set_wind_speed_value=0;
             smartphone_turn_on_handler();
 		}
@@ -929,7 +929,7 @@ void Wifi_Rx_Link_Net_InputInfo_Handler(void)
 				}
                else if(strstr((const char*)wifi_t.wifi_data,"+TCMQTTCONN:OK")){
 
-				     wifi_t.repeat_login_tencent_cloud_init_ref=0;
+				
 	                 wifi_t.link_tencent_cloud_success=1;
                      gkey_t.wifi_led_fast_blink_flag=0;
 				  
@@ -974,7 +974,7 @@ void Wifi_Rx_Link_Net_InputInfo_Handler(void)
 			 	
                  
 				  wifi_t.link_tencent_cloud_success=1;
-			      wifi_t.repeat_login_tencent_cloud_init_ref=0;
+			     
 				
 	              wifi_t.linking_tencent_cloud_doing=0;
 			      gkey_t.wifi_led_fast_blink_flag=0;

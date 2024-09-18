@@ -129,7 +129,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
        
        //key timer
 	
-        gkey_t.gTimer_power_off_run_times++;
+        gkey_t.gTimer_power_off_fan_run_times++;
         
         gkey_t.gTimer_disp_set_timer++;
   
@@ -156,7 +156,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
          gpro_t.gTimer_ptc_waring_time++ ;
        
         //wifi
-		wifi_t.gTimer_wifi_pub_power_off++;
+
 		wifi_t.gTimer_power_first_link_tencent++;
 		wifi_t.auto_link_tencent_step++;
 		wifi_t.gTimer_power_first_link_tencent++;
