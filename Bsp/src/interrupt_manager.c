@@ -132,12 +132,12 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
         gpro_t.gTimer_ptc_detected++;
         gpro_t.gTimer_works_counter_sencods ++;
         gpro_t.gTimer_timer_Counter++;
-		gpro_t.gTimer_run_adc++ ;
+		gpro_t.gTimer_fan_detected_adc++ ;
 		gpro_t.gTimer_run_dht11++;
-        gpro_t.gTimer_run_one_mintue ++;
-        gpro_t.gTimer_pro_action_publis++;
-        gpro_t.gTimer_run_main_fun++;
-        gpro_t.gTimer_publish_tencent_dht11++;
+        gpro_t.gTimer_fan_run_one_minute ++;
+      
+        gpro_t.gTimer_mainboard_run_fun++;
+       
         gpro_t.gTimer_compare_temp++;
         gpro_t.gTimer_get_data_from_tencent_data++;
    

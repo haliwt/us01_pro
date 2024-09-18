@@ -240,7 +240,7 @@ void Dec_Key_Fun(uint8_t cmd)
 
          case set_temp_value_item: //set temperature 
 
-             gpro_t.gTimer_run_main_fun =0;
+             gpro_t.gTimer_mainboard_run_fun =0;
              gpro_t.gTimer_run_dht11=0; //不显示，实际的温度值，显示设置的温度
              gctl_t.gTimer_compare_ptc_value=0;
          
@@ -335,7 +335,7 @@ void Add_Key_Fun(uint8_t cmd)
         
     case set_temp_value_item:  //set temperature value 
 
-         gpro_t.gTimer_run_main_fun=0;
+         gpro_t.gTimer_mainboard_run_fun=0;
          gpro_t.gTimer_run_dht11=0;
         gctl_t.gTimer_compare_ptc_value=0;
        

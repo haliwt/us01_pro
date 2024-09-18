@@ -36,7 +36,7 @@ uint8_t get_beijing_flag;
 	if(wifi_t.auto_link_tencent_step!=0xff && wifi_link_net_state()==0 && power_on_dc_power ==0){
 	
        gpro_t.gTimer_get_data_from_tencent_data=0;
-       gpro_t.gTimer_publish_tencent_dht11 =0;
+
       auto_link_tencent_cloud_fun();
       wifi_t.linking_tencent_cloud_doing = 1;
 
@@ -45,7 +45,7 @@ uint8_t get_beijing_flag;
               power_on_dc_power++;
    
            gpro_t.gTimer_get_data_from_tencent_data=0; //don't send dato to tencent .waiting .
-           gpro_t.gTimer_publish_tencent_dht11 =0;
+       
              
            wifi_t.linking_tencent_cloud_doing = 0;
 
@@ -122,7 +122,7 @@ void wifi_get_beijint_time_handler(void)
        
        if(flag_switch > 1 && gpro_t.gPower_On == power_off){
             flag_switch=0;
-            Update_Dht11_Totencent_Value();
+            Update_Dht11_Totencent_Value(); // Update_Dht11_Totencent_Value();
             osDelay(100);//HAL_Delay(200)
             get_beijing_flag =1;
 
@@ -231,7 +231,7 @@ void wifi_get_beijint_time_handler(void)
 
             //disable publish data to tencent cloud.
             gpro_t.gTimer_get_data_from_tencent_data=0;
-            gpro_t.gTimer_publish_tencent_dht11 =0;
+         
         
     		
     		Get_BeiJing_Time_Cmd();
@@ -319,7 +319,7 @@ void wifi_get_beijint_time_handler(void)
 
     case 6:
 
-       gpro_t.gTimer_publish_tencent_dht11 =0;
+    
      
        Wifi_Link_Tencent_Net_State();
     
@@ -503,7 +503,7 @@ void link_wifi_net_handler(void)
             wifi_again_link_step=0;
             wifi_t.get_rx_beijing_time_enable=0;
             wifi_t.gTimer_get_beijing_time =0;
-            gpro_t.gTimer_publish_tencent_dht11=0; //WT.EDIT don't data to tencent .
+           
         }
        }
 

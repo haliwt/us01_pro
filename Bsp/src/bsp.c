@@ -168,7 +168,7 @@ void power_on_run_handler(void)
 	  
 	   if(wifi_link_net_state()==1 && wifi_t.smartphone_app_power_on_flag==0 && wifi_t.link_net_tencent_data_flag ==1){ //after send publish datat to tencent .){
              wifi_t.link_net_tencent_data_flag ++;
-		     gpro_t.gTimer_pro_action_publis =0;
+		 
 		     MqttData_Publish_SetOpen(0x01);
 		     HAL_Delay(200);
             
@@ -176,21 +176,21 @@ void power_on_run_handler(void)
 		}
 		if(wifi_link_net_state()==1 && wifi_t.smartphone_app_power_on_flag==0 && wifi_t.link_net_tencent_data_flag ==2 ){
              wifi_t.link_net_tencent_data_flag ++;
-		    gpro_t.gTimer_pro_action_publis =0;
-           gpro_t.gTimer_publish_tencent_dht11 =20;
+		  
+       
 		    MqttData_Publish_Update_Data();
 		     HAL_Delay(200);
 
 		}
 
-        if(wifi_link_net_state()==1 && wifi_t.link_net_tencent_data_flag ==3 &&   gpro_t.gTimer_publish_tencent_dht11 > 12){
-             
-            gpro_t.gTimer_publish_tencent_dht11=0;
-            Update_Dht11_Totencent_Value();
-		    
-
-        }
-	 
+//        if(wifi_link_net_state()==1 && wifi_t.link_net_tencent_data_flag ==3 &&   gpro_t.gTimer_publish_tencent_dht11 > 12){
+//             
+//            gpro_t.gTimer_publish_tencent_dht11=0;
+//            Update_Dht11_Totencent_Value();
+//		    
+//
+//        }
+//	 
 	   
 	      gctl_t.step_process=5;
 
@@ -200,7 +200,7 @@ void power_on_run_handler(void)
 		if(gpro_t.gTimer_run_total > 4){//119 //120 minutes
 			       gpro_t.gTimer_run_total =0;
 				   gpro_t.gTimer_run_time_out=0;  //time out recoder start 10 minutes
-				   gpro_t.gTimer_run_one_mintue =0;
+				   gpro_t.gTimer_fan_run_one_minute =0;
 				   fan_continue_flag=0;
                    gctl_t.step_process=7;
 			       gctl_t.interval_stop_run_flag  =1 ;
@@ -220,9 +220,10 @@ void power_on_run_handler(void)
         if(gctl_t.interval_stop_run_flag  ==1){
 
 		          Works_Time_Out();
+              gpro_t.gTimer_fan_detected_adc=0;
               gctl_t.step_process=1;
 
-			   }
+		  }
         else 
             gctl_t.step_process=1;
                    
@@ -244,8 +245,8 @@ void mainboard_active_handler(void)
 {
    static uint8_t flag_stop,stop_default= 0xff,flag_run,run_default=0xff;
 
-  if(gpro_t.gTimer_run_main_fun > 2){
-    gpro_t.gTimer_run_main_fun =0;
+  if(gpro_t.gTimer_mainboard_run_fun > 2){
+    gpro_t.gTimer_mainboard_run_fun =0;
     if(gctl_t.interval_stop_run_flag  ==0){
         if(run_default != flag_run){
             run_default = flag_run;
@@ -300,13 +301,13 @@ static uint8_t Works_Time_Out(void)
 		 
     }
 
-	if(gpro_t.gTimer_run_one_mintue < 60 && ( fan_continue_flag ==0)){
+	if(gpro_t.gTimer_fan_run_one_minute < 60 && ( fan_continue_flag ==0)){
 
 		Fan_Run();
 
 	}
 
-	if(gpro_t.gTimer_run_one_mintue > 60){
+	if(gpro_t.gTimer_fan_run_one_minute > 60){
 
 	     fan_continue_flag=1;
 
@@ -645,8 +646,8 @@ void detected_fault_state(void)
 ***********************************************************************************/
 void Detected_Fan_Works_State(void)
 {
-    if(gpro_t.gTimer_run_adc > 60 && gctl_t.interval_stop_run_flag==0 && gctl_t.fan_warning ==0 &&  gctl_t.interval_stop_run_flag==0){ //2 minute 180s
-		gpro_t.gTimer_run_adc=0;
+    if(gpro_t.gTimer_fan_detected_adc > 60 && gctl_t.interval_stop_run_flag==0 && gctl_t.fan_warning ==0 &&  gctl_t.interval_stop_run_flag==0){ //2 minute 180s
+		gpro_t.gTimer_fan_detected_adc=0;
       // fan_max_run();
       disp_fan_leaf_icon_handler();
       // osDelay(200);
@@ -666,7 +667,7 @@ void Detected_Fan_Works_State(void)
 void Detected_Ptc_Works_State(void)
 {
 
-   if(gpro_t.gTimer_ptc_detected > 6 && gctl_t.ptc_warning == 0 ){ //3 minutes 120s
+   if(gpro_t.gTimer_ptc_detected > 7 && gctl_t.ptc_warning == 0 ){ //3 minutes 120s
 	   gpro_t.gTimer_ptc_detected =0;	
       disp_fan_leaf_icon_handler();
 	   Get_PTC_Temperature_Voltage(ADC_CHANNEL_1,10);

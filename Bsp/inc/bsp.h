@@ -105,7 +105,7 @@ typedef struct {
   
    uint8_t disp_works_hours_value;
    uint8_t disp_works_minutes_value;
-   uint8_t gTimer_run_main_fun;
+   uint8_t gTimer_mainboard_run_fun;
    uint8_t set_temperature_value_success;
 
    uint8_t disp_timer_switch_time_flag;
@@ -118,10 +118,10 @@ typedef struct {
    int8_t set_timer_timing_minutes;
 
 
-   uint8_t gTimer_run_adc;
+   uint8_t gTimer_fan_detected_adc;
    uint8_t gTimer_run_dht11;
 
-   uint8_t gTimer_run_one_mintue ;
+   uint8_t gTimer_fan_run_one_minute ;
    
    uint8_t gTimer_run_total;
    uint16_t gTimer_run_time_out;
@@ -132,8 +132,8 @@ typedef struct {
   
    uint8_t gTimer_disp_set_timer_blink ;
 
-   uint8_t gTimer_pro_action_publis;
-   uint8_t gTimer_publish_tencent_dht11;
+  
+
    uint8_t gTimer_compare_temp;
    uint8_t gTimer_ptc_detected;
    uint8_t gTimer_shut_off_backlight;

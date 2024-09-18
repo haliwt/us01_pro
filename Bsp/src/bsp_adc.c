@@ -197,7 +197,7 @@ void Get_Fan_Adc_Fun(uint32_t channel,uint8_t times)
     fan_detect_voltage  =(uint16_t)((adc_fan_hex * 3300)/4096); //amplification 1000 ,3.111V -> 3111
 	
    
-   if(fan_detect_voltage >520){
+   if(fan_detect_voltage >350){
     
      
 		   #ifdef DEBUG
