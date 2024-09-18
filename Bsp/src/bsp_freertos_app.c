@@ -204,7 +204,7 @@ static void vTaskMsgPro(void *pvParameters)
                 
                 power_key_long_conter=0;
                 buzzer_sound();
-
+                HAL_Delay(20);
                 power_on_key_handler();
 
             }

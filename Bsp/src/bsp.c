@@ -132,16 +132,12 @@ void power_on_run_handler(void)
 
             if(wifi_link_net_state() ==1){
 
-            MqttData_Publish_SetOpen(1);  
-            osDelay(50);//300
-            Publish_Data_Warning(fan_warning,no_warning);
-            osDelay(50);//HAL_Delay(100);//osDelay(350);//HAL_Delay(350);
-            Publish_Data_Warning(ptc_warning,no_warning);
-            osDelay(50);//HAL_Delay(100);//osDelay(350);//HAL_Delay(350);
-
-
-
-
+                MqttData_Publish_SetOpen(1);  
+                osDelay(50);//300
+                Publish_Data_Warning(fan_warning,no_warning);
+                osDelay(50);//HAL_Delay(100);//osDelay(350);//HAL_Delay(350);
+                Publish_Data_Warning(ptc_warning,no_warning);
+                osDelay(50);//HAL_Delay(100);//osDelay(350);//HAL_Delay(350);
             }
 
             if(wifi_t.smartphone_app_power_on_flag==0){
