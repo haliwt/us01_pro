@@ -117,8 +117,11 @@ void power_on_run_handler(void)
                gpro_t.disp_works_minutes_value = 0;
 
                gpro_t.gTimer_works_counter_sencods =  0;
+              
             }
+            glcd_t.gTimer_fan_blink =0;
 
+            disp_fan_leaf_icon_handler();
 
 
             //fan on
@@ -197,7 +200,7 @@ void power_on_run_handler(void)
 	 break;
 
   case 5: //check works times 
-		if(gpro_t.gTimer_run_total > 4){//119 //120 minutes
+		if(gpro_t.gTimer_run_total > 119){//119 //120 minutes 
 			       gpro_t.gTimer_run_total =0;
 				   gpro_t.gTimer_run_time_out=0;  //time out recoder start 10 minutes
 				   gpro_t.gTimer_fan_run_one_minute =0;
@@ -314,7 +317,8 @@ static uint8_t Works_Time_Out(void)
          Fan_Stop();
 	 }
 
-	if(gpro_t.gTimer_run_time_out > 2){// //10 minutes
+
+	if(gpro_t.gTimer_run_time_out > 10){// //10 minutes
 		gpro_t.gTimer_run_time_out=0;
 		gpro_t.gTimer_run_total=0;
 
