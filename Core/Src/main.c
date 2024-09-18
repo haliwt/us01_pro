@@ -103,7 +103,7 @@ int main(void)
    HAL_TIM_Base_Start_IT(&htim17);
    UART_Start_Receive_IT(&huart2,wifi_t.usart2_dataBuf,1);
    
-   freeRTOS_Handler();
+   freeRTOS_Habsndler();
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in cmsis_os2.c) */

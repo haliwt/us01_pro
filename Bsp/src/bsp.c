@@ -155,11 +155,11 @@ void power_on_run_handler(void)
 
       case 1:   //run dht11 display 
 
-           
+          
 
-         gctl_t.step_process=3;
+     //    gctl_t.step_process=3;
 		  
-      break;
+     // break;
 
         
 
@@ -279,22 +279,22 @@ void mainboard_active_handler(void)
 void disp_works_or_timer_timing_fun(void)
 {
 
-   
-    Display_WorksTimingr_Handler(gkey_t.key_mode);
-    Record_WorksOr_Timer_Timing_DonotDisp_Handler();
+  Display_WorksTimingr_Handler(gkey_t.key_mode);
+  Record_WorksOr_Timer_Timing_DonotDisp_Handler();
    
 
 }
 /**********************************************************************************************************
+*
 *	函 数 名: static uint8_t Works_Time_Out(void)
-*	功能说明: 主板工作2小时，停止工作10分钟
-*			 
+*	功能说明: 主板工作2小时，停止工作10分钟			 
 *	形    参: 无
 *	返 回 值: 无
+*
 **********************************************************************************************************/
 static uint8_t Works_Time_Out(void)
 {
-	if(gpro_t.gTimer_run_time_out < 11){
+	if(gpro_t.gTimer_run_time_out < 11){  
 		
 		interval_two_hours_stop_action();//Mainboard_Fun_Stop();
 		 
@@ -313,13 +313,11 @@ static uint8_t Works_Time_Out(void)
          Fan_Stop();
 	 }
 
-	if(gpro_t.gTimer_run_time_out > 10){ //10 minutes
+	if(gpro_t.gTimer_run_time_out > 2){// //10 minutes
 		gpro_t.gTimer_run_time_out=0;
 		gpro_t.gTimer_run_total=0;
 
         gctl_t.interval_stop_run_flag= 0;
-
-		//Continuce_main_action_Fun();
 		
         interval_continuce_works_fun();
 		
@@ -336,32 +334,13 @@ static uint8_t Works_Time_Out(void)
 
 }
 /**********************************************************************************************************
-*	函 数 名: static void Mainboard_Action_Fun(void)
-*	功能说明: 主板工作：功能动作输出
-*			 
-*	形    参: 无
-*	返 回 值: 无
-**********************************************************************************************************/
-//static void Mainboard_Action_Fun(void)
-//{
-//    Ptc_On();
-//	Ultrasonic_Pwm_Output();
-//	Fan_Run();
-//	Plasma_On();
-//	
-//	
-//}
-
-/*
-*********************************************************************************************************
 *
 *	函 数 名: static void interval_two_hours_stop_action(void)
 *	功能说明: 主板工作：功能动作输出			 
 *	形    参: 无
 *	返 回 值: 无
 *
-*********************************************************************************************************
-*/
+**********************************************************************************************************/
 static void interval_two_hours_stop_action(void)
 {
    Ptc_Off();
@@ -370,19 +349,15 @@ static void interval_two_hours_stop_action(void)
   // Fan_Stop();
    Plasma_Off();
 
- }
-
-
-/*
-*********************************************************************************************************
+}
+/**********************************************************************************************************
 *
 *	函 数 名: void Process_Dynamical_Action(void)
 *	功能说明: 主板工作：功能动作输出			 
 *	形    参: 无
 *	返 回 值: 无
 *
-*********************************************************************************************************
-*/
+**********************************************************************************************************/
 static void Process_Dynamical_Action(void)
 {
 
@@ -556,7 +531,6 @@ static void interval_continuce_works_fun(void)
 
 }
 
-
 /***********************************************************************
 *
 *Function Name:static void power_off_function(void)
@@ -659,7 +633,7 @@ static void power_off_function(void)
 ************************************************************************/
 void detected_fault_state(void)
 {
-
+    fan_run_state_handler();
     Detected_Fan_Works_State();
     Detected_Ptc_Works_State();
 
@@ -671,23 +645,21 @@ void detected_fault_state(void)
 ***********************************************************************************/
 void Detected_Fan_Works_State(void)
 {
-    if(gpro_t.gTimer_run_adc > 120 && gctl_t.interval_stop_run_flag==0 && gctl_t.fan_warning ==0 &&  gctl_t.interval_stop_run_flag==0){ //2 minute 180s
+    if(gpro_t.gTimer_run_adc > 60 && gctl_t.interval_stop_run_flag==0 && gctl_t.fan_warning ==0 &&  gctl_t.interval_stop_run_flag==0){ //2 minute 180s
 		gpro_t.gTimer_run_adc=0;
-       fan_max_run();
-       osDelay(200);
+      // fan_max_run();
+      disp_fan_leaf_icon_handler();
+      // osDelay(200);
 
         if( gctl_t.interval_stop_run_flag  ==0){
-		   Get_Fan_Adc_Fun(ADC_CHANNEL_0,30);
+		   Get_Fan_Adc_Fun(ADC_CHANNEL_0,10);
         }
 		
-	               
+	    disp_fan_leaf_icon_handler();
 
    }
 
    fan_fault_buzzer_sound_warning_fun(gctl_t.fan_warning);
-
-    
-
 
 }
 
@@ -696,8 +668,9 @@ void Detected_Ptc_Works_State(void)
 
    if(gpro_t.gTimer_ptc_detected > 6 && gctl_t.ptc_warning == 0 ){ //3 minutes 120s
 	   gpro_t.gTimer_ptc_detected =0;	
-	    Get_PTC_Temperature_Voltage(ADC_CHANNEL_1,30);
-
+      disp_fan_leaf_icon_handler();
+	   Get_PTC_Temperature_Voltage(ADC_CHANNEL_1,10);
+       fan_run_state_handler();
               
 					
      }
@@ -727,8 +700,7 @@ void mode_key_adjust_fun(void)
 void disp_fan_leaf_icon_handler(void)
 {
 
-    //disp_speical_time_number_fun();
-    fan_run_state_handler();
+  fan_run_state_handler();
 
 }
 

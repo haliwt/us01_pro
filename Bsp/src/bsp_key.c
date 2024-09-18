@@ -202,6 +202,7 @@ void  key_mode_be_pressed_send_data_wifi(void)
             gpro_t.global_temporary_set_timer_flag = 1;
             gpro_t.gTimer_set_timer_times=0;
             LCD_Number_FiveSixSeveEight_Hours(0,0);
+         
 
          }
          else{

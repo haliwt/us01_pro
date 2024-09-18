@@ -365,182 +365,37 @@ void LCD_Number_FiveSixSeveEight_Hours(uint8_t hours_n,uint8_t minutes_n)
 
   
 
-    glcd_t.number5_low = hours_n  /10 ;
-  
-	glcd_t.number5_high = glcd_t.number5_low;
-
-
-	glcd_t.number6_low = hours_n  %10 ;
-   
-	glcd_t.number6_high = glcd_t.number6_low ;
-
-    //display minutes
-    glcd_t.number7_low = minutes_n / 10 ;
-   
-	glcd_t.number7_high =  glcd_t.number7_low ;
-
-
-	glcd_t.number8_low = minutes_n % 10 ;
-    
-	glcd_t.number8_high = glcd_t.number8_low ;
-
-     glcd_t.number4_low =  gctl_t.dht11_humidity_value %10;
-   
-    //FAN LEAF T14
-
-    if(gctl_t.ptc_warning ==1 &&  gctl_t.fan_warning ==1){
-
-         TM1723_Write_Display_Data(0xC9,(HUM_T8+lcdNumber4_Low[glcd_t.number4_low]+lcdNumber5_High[glcd_t.number5_high]) & 0xff);
-         TM1723_Write_Display_Data(0xCA,(T15+lcdNumber5_Low[glcd_t.number5_low]+lcdNumber6_High[glcd_t.number6_high]) & 0xff);
-         TM1723_Write_Display_Data(0xCB,(T9+lcdNumber6_Low[glcd_t.number6_low]+lcdNumber7_High[glcd_t.number7_high]) & 0xff);
-
-      }
+//    glcd_t.number5_low = hours_n  /10 ;
+//  
+//	glcd_t.number5_high = glcd_t.number5_low;
+//
+//
+//	glcd_t.number6_low = hours_n  %10 ;
+//   
+//	glcd_t.number6_high = glcd_t.number6_low ;
+//
+//    //display minutes
+//    glcd_t.number7_low = minutes_n / 10 ;
+//   
+//	glcd_t.number7_high =  glcd_t.number7_low ;
+//
+//
+//	glcd_t.number8_low = minutes_n % 10 ;
+//    
+//	glcd_t.number8_high = glcd_t.number8_low ;
+//
+//     glcd_t.number4_low =  gctl_t.dht11_humidity_value %10;
+//   
+//   // FAN LEAF T14
+//
+//    if(gctl_t.ptc_warning ==1 &&  gctl_t.fan_warning ==1){
+//
+//         TM1723_Write_Display_Data(0xC9,(HUM_T8+lcdNumber4_Low[glcd_t.number4_low]+lcdNumber5_High[glcd_t.number5_high]) & 0xff);
+//         TM1723_Write_Display_Data(0xCA,(T15+lcdNumber5_Low[glcd_t.number5_low]+lcdNumber6_High[glcd_t.number6_high]) & 0xff);
+//         TM1723_Write_Display_Data(0xCB,(T9+lcdNumber6_Low[glcd_t.number6_low]+lcdNumber7_High[glcd_t.number7_high]) & 0xff);
+//
+//      }
 }
-
-
-
-
-
-
-   #if 0
-
-    if(gctl_t.ptc_warning ==1 || gctl_t.fan_warning ==1){
-
-
-              if(gctl_t.ptc_warning ==1 &&  gctl_t.fan_warning ==0){
-        		
-        	       TM1723_Write_Display_Data(0xCE,lcdNumber8_Low[1]+WIND_SPEED_ONE);//
-              }
-              else if(gctl_t.fan_warning ==1 && gctl_t.ptc_warning ==0){
-
-                   TM1723_Write_Display_Data(0xCE,lcdNumber8_Low[2]+WIND_SPEED_ONE);//display "t,c"
-
-
-              }
-              else if(gctl_t.ptc_warning ==1 && gctl_t.fan_warning ==1){
-
-                  if(glcd_t.gTimer_fan_blink < 50){
-                      if(alternate_flag==0){
-                        alternate_flag++;
-                        TM1723_Write_Display_Data(0xCE,lcdNumber8_Low[1]+WIND_SPEED_ONE);//display "t,c"
-
-                      }
-                  }
-                  else if(glcd_t.gTimer_fan_blink >50 && glcd_t.gTimer_fan_blink < 100){
-
-                     if(alternate_flag > 0){
-                         alternate_flag=0;
-                         TM1723_Write_Display_Data(0xCE,lcdNumber8_Low[2]+WIND_SPEED_ONE);//display "t,c"
-                     }
-
-
-                  }
-                  else if(glcd_t.gTimer_fan_blink > 100){
-                      glcd_t.gTimer_fan_blink =0;
-
-
-                  }
-
-                  
-
-
-              }
-
-     }
-     else if(wifi_t.set_wind_speed_value == 0){
-        if(glcd_t.gTimer_fan_blink < 15){
-
-            
-
-                  
-              TM1723_Write_Display_Data(0xC9,(HUM_T8+lcdNumber4_Low[glcd_t.number4_low]+lcdNumber5_High[glcd_t.number5_high]) & 0xff);//display digital '4,5'
-               TM1723_Write_Display_Data(0xCA,(lcdNumber5_Low[glcd_t.number5_low]+lcdNumber6_High[glcd_t.number6_high]) & 0xff);
-              TM1723_Write_Display_Data(0xCB,(T9+lcdNumber6_Low[glcd_t.number6_low]+lcdNumber7_High[glcd_t.number7_high]) & 0xff);
-                  
-
-               TM1723_Write_Display_Data(0xCC,(T14+lcdNumber7_Low[glcd_t.number7_low]+lcdNumber8_High[glcd_t.number8_high]) & 0xff);
-              // TM1723_Write_Display_Data(0xCA,(lcdNumber5_Low[glcd_t.number5_low]+lcdNumber6_High[glcd_t.number6_high]) & 0xff);
-               TM1723_Write_Display_Data(0xCE,lcdNumber8_Low[glcd_t.number8_low]+WIND_SPEED_FULL);//display "t,c"
-               TM1723_Write_Display_Data(0xCF,((T16+T12+T10)& 0x0B));//
-
-                
-        }
-        else if(glcd_t.gTimer_fan_blink > 14 && glcd_t.gTimer_fan_blink   < 30){ //close
-
-                 /*******************************/
-
-                
-              
-                  TM1723_Write_Display_Data(0xC9,(HUM_T8+lcdNumber4_Low[glcd_t.number4_low]+lcdNumber5_High[glcd_t.number5_high]) & 0xff);//display digital '4,5'
-                  TM1723_Write_Display_Data(0xCA,(T15+lcdNumber5_Low[glcd_t.number5_low]+lcdNumber6_High[glcd_t.number6_high]) & 0xff);  
-                  TM1723_Write_Display_Data(0xCB,(T9+lcdNumber6_Low[glcd_t.number6_low]+lcdNumber7_High[glcd_t.number7_high]) & 0xff);
-
-        
-        		  TM1723_Write_Display_Data(0xCC,(lcdNumber7_Low[glcd_t.number7_low]+lcdNumber8_High[glcd_t.number8_high]) & 0xff);
-        	     TM1723_Write_Display_Data(0xCE,T13+lcdNumber8_Low[glcd_t.number8_low]+WIND_SPEED_FULL);//display "close"
-                
-        	      TM1723_Write_Display_Data(0xCF,((T11+T16) & 0x05));//
-                
-
-        }
-        else if(glcd_t.gTimer_fan_blink > 29){
-        	glcd_t.gTimer_fan_blink=0;
-        }
-         
-        
-    }
-    else if(wifi_t.set_wind_speed_value== 1){
-         if(glcd_t.gTimer_fan_blink < 15){
-
-
-               
-               TM1723_Write_Display_Data(0xCA,(lcdNumber5_Low[glcd_t.number5_low]+lcdNumber6_High[glcd_t.number6_high]) & 0xff);
-
-               TM1723_Write_Display_Data(0xCC,(T14+lcdNumber7_Low[glcd_t.number7_low]+lcdNumber8_High[glcd_t.number8_high]) & 0xff);
-      
-               TM1723_Write_Display_Data(0xCE,lcdNumber8_Low[glcd_t.number8_low]+WIND_SPEED_TWO);//display "t,c"
-               TM1723_Write_Display_Data(0xCF,((T16+T12+T10)& 0x0B));//
-        }
-        else if(glcd_t.gTimer_fan_blink > 14 && glcd_t.gTimer_fan_blink   < 30){ //close
-
-                TM1723_Write_Display_Data(0xCA,(T15+lcdNumber5_Low[glcd_t.number5_low]+lcdNumber6_High[glcd_t.number6_high]) & 0xff);
-                 TM1723_Write_Display_Data(0xCC,(lcdNumber7_Low[glcd_t.number7_low]+lcdNumber8_High[glcd_t.number8_high]) & 0xff);
-        	     TM1723_Write_Display_Data(0xCE,T13+lcdNumber8_Low[glcd_t.number8_low]+WIND_SPEED_TWO);//display "close"
-                 TM1723_Write_Display_Data(0xCF,((T11+T16) & 0x05));//
-
-        }
-        else if(glcd_t.gTimer_fan_blink > 29){
-        	glcd_t.gTimer_fan_blink=0;
-        }
-        
-    }
-    else if(wifi_t.set_wind_speed_value==2){
-         if(glcd_t.gTimer_fan_blink < 15){
-
-
-                TM1723_Write_Display_Data(0xCA,(lcdNumber5_Low[glcd_t.number5_low]+lcdNumber6_High[glcd_t.number6_high]) & 0xff);
-               TM1723_Write_Display_Data(0xCC,(T14+lcdNumber7_Low[glcd_t.number7_low]+lcdNumber8_High[glcd_t.number8_high]) & 0xff);
-              
-               TM1723_Write_Display_Data(0xCE,lcdNumber8_Low[glcd_t.number8_low]+WIND_SPEED_ONE);//display "t,c"
-               TM1723_Write_Display_Data(0xCF,((T16+T12+T10)& 0x0B));//
-        }
-        else if(glcd_t.gTimer_fan_blink > 14 && glcd_t.gTimer_fan_blink   < 30){ //close
-
-                   TM1723_Write_Display_Data(0xCA,(T15+lcdNumber5_Low[glcd_t.number5_low]+lcdNumber6_High[glcd_t.number6_high]) & 0xff);
-        		  TM1723_Write_Display_Data(0xCC,(lcdNumber7_Low[glcd_t.number7_low]+lcdNumber8_High[glcd_t.number8_high]) & 0xff);
-        	     TM1723_Write_Display_Data(0xCE,T13+lcdNumber8_Low[glcd_t.number8_low]+WIND_SPEED_ONE);//display "close"
-                
-        	      TM1723_Write_Display_Data(0xCF,((T11+T16) & 0x05));//
-
-        }
-        else if(glcd_t.gTimer_fan_blink > 29){
-        	glcd_t.gTimer_fan_blink=0;
-        }
-        
-    }
-    #endif 
-
-
 
 /*****************************************************************************
  * 
@@ -618,9 +473,9 @@ void set_timer_timing_blink_fun(uint8_t hours_n,uint8_t minutes_n)
                 
 
         }
-        else if(glcd_t.gTimer_fan_blink > 29){
-        	glcd_t.gTimer_fan_blink=0;
-        }
+       // else if(glcd_t.gTimer_fan_blink > 29){
+        	///glcd_t.gTimer_fan_blink=0;
+       /// }
          
         
     }
@@ -1255,29 +1110,32 @@ glcd_t.number7_high = 0;
 void LCD_Wind_Run_Icon(uint8_t wind_speed)
 {
 
-   
+   static uint8_t fan_icon_off_flag,fan_icon_on_flag,fan_icon_on_default= 0xff,fan_icon_off_default = 0xff;
+   static uint8_t colon_flag_toggle;
    //wind run icon
   if(gctl_t.fan_warning ==0  && gctl_t.ptc_warning ==0){
 
-    
-
-
-   switch(wind_speed){
+    switch(wind_speed){
 
 
     case 0: //max wind speed.
-         if(glcd_t.gTimer_fan_blink < 15){
+         if(glcd_t.gTimer_fan_blink < 15){//15
+          
+               if(fan_icon_on_default != fan_icon_on_flag){
+                   fan_icon_on_default = fan_icon_on_flag;
+                   fan_icon_off_flag ++;
                disp_speical_time_number_fun();
               
                //odd number
                 TM1723_Write_Display_Data(0xC9,(HUM_T8+lcdNumber4_Low[glcd_t.number4_low]+lcdNumber5_High[glcd_t.number5_high]) & 0xff);
                 TM1723_Write_Display_Data(0xCA,(lcdNumber5_Low[glcd_t.number5_low]+lcdNumber6_High[glcd_t.number6_high]) & 0xff);
-                if(glcd_t.gTimer_disp_colon_icon > 5){
-                    glcd_t.gTimer_disp_colon_icon=0;
-                    TM1723_Write_Display_Data(0xCB,(COLON_SYMBOL+lcdNumber6_Low[glcd_t.number6_low]+lcdNumber7_High[glcd_t.number7_high]) & 0xff);
+                if(colon_flag_toggle ==0){
+                    colon_flag_toggle ++;
+                   TM1723_Write_Display_Data(0xCB,(COLON_SYMBOL+lcdNumber6_Low[glcd_t.number6_low]+lcdNumber7_High[glcd_t.number7_high]) & 0xff);
                 }
                 else{
-                    TM1723_Write_Display_Data(0xCB,(lcdNumber6_Low[glcd_t.number6_low]+lcdNumber7_High[glcd_t.number7_high]) & 0xff);
+                     colon_flag_toggle = 0;
+                     TM1723_Write_Display_Data(0xCB,(lcdNumber6_Low[glcd_t.number6_low]+lcdNumber7_High[glcd_t.number7_high]) & 0xff);
                 }
 
                 TM1723_Write_Display_Data(0xCC,(T14+lcdNumber7_Low[glcd_t.number7_low]+lcdNumber8_High[glcd_t.number8_high]) & 0xff);
@@ -1285,28 +1143,48 @@ void LCD_Wind_Run_Icon(uint8_t wind_speed)
                 TM1723_Write_Display_Data(0xCF,((T16+T12+T10)& 0x0B));//
 
             
-           
-
-        }
-        else if(glcd_t.gTimer_fan_blink > 14 && glcd_t.gTimer_fan_blink   < 30){ //close
-             disp_speical_time_number_fun();
-            
-             
-            //even number
-            TM1723_Write_Display_Data(0xC9,(HUM_T8+lcdNumber4_Low[glcd_t.number4_low]+lcdNumber5_High[glcd_t.number5_high]) & 0xff);
-            TM1723_Write_Display_Data(0xCA,(T15+lcdNumber5_Low[glcd_t.number5_low]+lcdNumber6_High[glcd_t.number6_high]) & 0xff);
-            TM1723_Write_Display_Data(0xCB,(T9+lcdNumber6_Low[glcd_t.number6_low]+lcdNumber7_High[glcd_t.number7_high]) & 0xff); 
-            TM1723_Write_Display_Data(0xCC,(lcdNumber7_Low[glcd_t.number7_low]+lcdNumber8_High[glcd_t.number8_high]) & 0xff);
-            TM1723_Write_Display_Data(0xCE,T13+lcdNumber8_Low[glcd_t.number8_low]+WIND_SPEED_FULL);//display "close"
-            TM1723_Write_Display_Data(0xCF,((T11+T16) & 0x05));//
-          
+                }
               
 
         }
-        else if(glcd_t.gTimer_fan_blink > 29){
-        	glcd_t.gTimer_fan_blink=0;
-            
+       else if(glcd_t.gTimer_fan_blink > 14 && glcd_t.gTimer_fan_blink   < 30){ //30//close
+
+             if(fan_icon_off_default != fan_icon_off_flag){
+                       fan_icon_off_default = fan_icon_off_flag;
+                       fan_icon_on_flag ++;
+                 disp_speical_time_number_fun();
+                
+                 
+                //even number
+                TM1723_Write_Display_Data(0xC9,(HUM_T8+lcdNumber4_Low[glcd_t.number4_low]+lcdNumber5_High[glcd_t.number5_high]) & 0xff);
+                TM1723_Write_Display_Data(0xCA,(T15+lcdNumber5_Low[glcd_t.number5_low]+lcdNumber6_High[glcd_t.number6_high]) & 0xff);
+                
+                if(colon_flag_toggle ==1){
+                    
+                    TM1723_Write_Display_Data(0xCB,(COLON_SYMBOL+lcdNumber6_Low[glcd_t.number6_low]+lcdNumber7_High[glcd_t.number7_high]) & 0xff);
+                }
+                else{
+                   
+                   TM1723_Write_Display_Data(0xCB,(lcdNumber6_Low[glcd_t.number6_low]+lcdNumber7_High[glcd_t.number7_high]) & 0xff);
+               }
+
+                
+                TM1723_Write_Display_Data(0xCC,(lcdNumber7_Low[glcd_t.number7_low]+lcdNumber8_High[glcd_t.number8_high]) & 0xff);
+                TM1723_Write_Display_Data(0xCE,T13+lcdNumber8_Low[glcd_t.number8_low]+WIND_SPEED_FULL);//display "close"
+                TM1723_Write_Display_Data(0xCF,((T11+T16) ));//
+              
+                  
+
+            }
+           
+
              
+        }
+      else if(glcd_t.gTimer_fan_blink   > 29){ //29*10ms = 290ms
+         
+        	glcd_t.gTimer_fan_blink=0;
+             fan_icon_on_flag ++;
+             fan_icon_off_flag ++;
         }
          
     break;

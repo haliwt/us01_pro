@@ -91,14 +91,9 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
         tm1=0;
         
     gctl_t.gTimer_wifi_fast_blink++;
-  
-    
-	glcd_t.gTimer_fan_blink++;
+    glcd_t.gTimer_fan_blink++;
 
-   
-       
-    	
-    }
+     }
 	
     if(tm3>99){ //1*100 = 100ms 
        tm3=0;

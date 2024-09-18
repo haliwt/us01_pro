@@ -272,9 +272,9 @@ void Display_WorksTimingr_Handler(uint8_t sel_item)
 
                     switch_1_2  =2;
                      disp_ai_iocn();
-                    LCD_Number_FiveSixSeveEight_Hours(gpro_t.set_timer_timing_hours,gpro_t.set_timer_timing_minutes);
+                   // LCD_Number_FiveSixSeveEight_Hours(gpro_t.set_timer_timing_hours,gpro_t.set_timer_timing_minutes);
                     //set_timer_timing_blink_fun(gpro_t.set_timer_timing_hours,gpro_t.set_timer_timing_minutes);
-                    osDelay(100);
+                   // osDelay(100);
                     
                      
                }
@@ -283,7 +283,7 @@ void Display_WorksTimingr_Handler(uint8_t sel_item)
              
 
             }
-            else if(gkey_t.set_timer_timing_success == 0 ){ //&& gkey_t.gTimer_disp_switch_disp_mode > 3){
+            else if(gkey_t.set_timer_timing_success == 0){ //&& gkey_t.gTimer_disp_switch_disp_mode > 3){
 
                 if( gpro_t.gTimer_mode_key_time  < 10){
                 gctl_t.ai_flag =0;
@@ -342,8 +342,8 @@ void Display_WorksTimingr_Handler(uint8_t sel_item)
                 gkey_t.key_add_dec_mode = set_temp_value_item;
 
             
-                 LCD_Number_FiveSixSeveEight_Hours(gpro_t.set_timer_timing_hours,gpro_t.set_timer_timing_minutes);
-                 osDelay(50);
+                /// LCD_Number_FiveSixSeveEight_Hours(gpro_t.set_timer_timing_hours,gpro_t.set_timer_timing_minutes);
+                 //osDelay(50);
 
                 if(wifi_link_net_state()==1){
                     MqttData_Publish_SetState(2); //ai-mode = 2 is ->timer model  = 2, 

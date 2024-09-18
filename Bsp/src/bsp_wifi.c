@@ -38,9 +38,7 @@ uint8_t get_beijing_flag;
        gpro_t.gTimer_get_data_from_tencent_data=0;
        gpro_t.gTimer_publish_tencent_dht11 =0;
       auto_link_tencent_cloud_fun();
-    //  auto_link_smartphone_tencent_handler();
-		
-	  wifi_t.linking_tencent_cloud_doing = 1;
+      wifi_t.linking_tencent_cloud_doing = 1;
 
     }
     if(wifi_link_net_state()==1    && power_on_dc_power ==0){
@@ -139,8 +137,10 @@ void wifi_get_beijint_time_handler(void)
 
        }
        
+       
     }
     else{
+       
         get_beijing_flag =1;
 
     }
@@ -341,19 +341,11 @@ void wifi_get_beijint_time_handler(void)
         if(wifi_t.gTimer_get_beijing_time > 100){
 		
             wifi_t.gTimer_get_beijing_time  =0;
-
-    
-
-         if(wifi_link_net_state()==0){
+            if(wifi_link_net_state()==0){
               get_beijing_flag = 11;
-           
-          
            
             wifi_t.linking_tencent_cloud_doing  =1; //receive from tencent command state .
             wifi_t.wifi_uart_counter=0;
-           
-      
-           
           }
           else{
 
@@ -382,10 +374,14 @@ void wifi_get_beijint_time_handler(void)
             WIFI_IC_ENABLE();
        
     		at_send_data("AT+RST\r\n", strlen("AT+RST\r\n"));
-            osDelay(1000);//HAL_Delay(1000);
             
-          
-
+            osDelay(1000);//HAL_Delay(1000);
+           
+            
+           
+           
+            
+            
            
             auto_link_net_flag =1;
 
@@ -415,9 +411,10 @@ void wifi_get_beijint_time_handler(void)
       
 	        HAL_UART_Transmit(&huart2, "AT+TCMQTTCONN=1,5000,240,0,1\r\n", strlen("AT+TCMQTTCONN=1,5000,240,0,1\r\n"), 0xffff);//开始连接
             //HAL_Delay(1000);
-            osDelay(1000);
+            
             //HAL_Delay(1000);
-          
+             osDelay(100);//HAL_Delay(1000);
+            
           
            
 		
