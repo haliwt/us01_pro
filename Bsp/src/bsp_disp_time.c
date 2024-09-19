@@ -49,6 +49,28 @@ void disp_speical_time_number_fun(void)
 
     case mode_set_timer :
 
+       
+          glcd_t.number5_low = gpro_t.set_timer_timing_hours  /10 ;   //gpro_t.set_timer_timing_hours,gpro_t.set_timer_timing_minutes
+         
+           glcd_t.number5_high = glcd_t.number5_low;//hours_n  /10 ;
+    
+    
+           glcd_t.number6_low = gpro_t.set_timer_timing_hours %10 ;
+          
+           glcd_t.number6_high = glcd_t.number6_low ;
+    
+           //display minutes
+           glcd_t.number7_low = 0;
+          
+           glcd_t.number7_high = 0;
+    
+    
+           glcd_t.number8_low = 0;
+           
+           glcd_t.number8_high =0;
+
+    break;
+
 
     case disp_timer_timing:
 

@@ -83,7 +83,7 @@ void power_on_run_handler(void)
 
 		  case 0:
 
-          
+            gctl_t.gSet_temperature_value =40;
             gpro_t.power_off_flag=1;
 
             gkey_t.set_timer_timing_success =0;

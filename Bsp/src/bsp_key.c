@@ -290,18 +290,18 @@ void Dec_Key_Fun(uint8_t cmd)
 				}
             
 
-             //display hours
-                  glcd_t.number5_low =  gpro_t.set_timer_timing_hours / 10 ;
-                  glcd_t.number5_high =  gpro_t.set_timer_timing_hours / 10 ;
-
-                  glcd_t.number6_low  = gpro_t.set_timer_timing_hours % 10; //
-                  glcd_t.number6_high =  gpro_t.set_timer_timing_hours % 10; //
-                   //dispaly minutes 
-                  glcd_t.number7_low =  0;
-                  glcd_t.number7_high =   0;
-
-                  glcd_t.number8_low = 0;
-                  glcd_t.number8_high =   0;
+//             //display hours
+//                  glcd_t.number5_low =  gpro_t.set_timer_timing_hours / 10 ;
+//                  glcd_t.number5_high =  gpro_t.set_timer_timing_hours / 10 ;
+//
+//                  glcd_t.number6_low  = gpro_t.set_timer_timing_hours % 10; //
+//                  glcd_t.number6_high =  gpro_t.set_timer_timing_hours % 10; //
+//                   //dispaly minutes 
+//                  glcd_t.number7_low =  0;
+//                  glcd_t.number7_high =   0;
+//
+//                  glcd_t.number8_low = 0;
+//                  glcd_t.number8_high =   0;
 
                 
                 gpro_t.gTimer_timer_led_blink =2;
@@ -371,7 +371,7 @@ void Add_Key_Fun(uint8_t cmd)
 
          if(add_dec_key_set_timer_flag==0){
             add_dec_key_set_timer_flag++;
-           gpro_t.set_timer_timing_hours =24;
+           gpro_t.set_timer_timing_hours =1;
 
 
         }
@@ -383,20 +383,20 @@ void Add_Key_Fun(uint8_t cmd)
 		          gpro_t.set_timer_timing_hours=0;//run_t.dispTime_hours =0;
 		                
              }
-	    //display hours
-        glcd_t.number5_low =  gpro_t.set_timer_timing_hours / 10 ;
-        //glcd_t.number5_high =  gpro_t.set_timer_timing_hours / 10 ;
-        glcd_t.number5_high = glcd_t.number5_low ;
-
-        glcd_t.number6_low  = gpro_t.set_timer_timing_hours% 10; //
-        //glcd_t.number6_high =  gpro_t.set_timer_timing_hours % 10; //
-        glcd_t.number6_high =  glcd_t.number6_low;
-        //dispaly minutes 
-        glcd_t.number7_low =  0;
-        glcd_t.number7_high = 0;
-
-        glcd_t.number8_low = 0;
-        glcd_t.number8_high =  0;
+//	    //display hours
+//        glcd_t.number5_low =  gpro_t.set_timer_timing_hours / 10 ;
+//        //glcd_t.number5_high =  gpro_t.set_timer_timing_hours / 10 ;
+//        glcd_t.number5_high = glcd_t.number5_low ;
+//
+//        glcd_t.number6_low  = gpro_t.set_timer_timing_hours% 10; //
+//        //glcd_t.number6_high =  gpro_t.set_timer_timing_hours % 10; //
+//        glcd_t.number6_high =  glcd_t.number6_low;
+//        //dispaly minutes 
+//        glcd_t.number7_low =  0;
+//        glcd_t.number7_high = 0;
+//
+//        glcd_t.number8_low = 0;
+//        glcd_t.number8_high =  0;
 
         gpro_t.gTimer_timer_led_blink =2;
 

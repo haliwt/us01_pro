@@ -84,7 +84,7 @@ uint8_t get_beijing_flag;
 void wifi_get_beijint_time_handler(void)
 {
 
-    static uint8_t alternate_flag,flag_switch,auto_link_net_flag;
+   static uint8_t alternate_flag,flag_switch,auto_link_net_flag;
 
    if(wifi_t.get_rx_beijing_time_enable==0){
     

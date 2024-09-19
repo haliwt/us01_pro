@@ -286,7 +286,7 @@ static void vTaskMsgPro(void *pvParameters)
               disp_time_or_timer_handler();
               Disip_Wifi_Icon_State();
 
-              disp_fan_leaf_icon_handler();
+              fan_run_state_handler();//disp_fan_leaf_icon_handler();
               
              
               link_wifi_net_state(gkey_t.wifi_led_fast_blink_flag);
