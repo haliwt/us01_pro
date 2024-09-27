@@ -1296,8 +1296,10 @@ void LCD_Wind_Run_Icon(uint8_t wind_speed)
                    
                    TM1723_Write_Display_Data(0xCB,(lcdNumber6_Low[glcd_t.number6_low]+lcdNumber7_High[glcd_t.number7_high]) & 0xff);
                }
-                TM1723_Write_Display_Data(0xCC,(lcdNumber7_Low[glcd_t.number7_low]+lcdNumber8_High[glcd_t.number8_high]) & 0xff);
-        	    TM1723_Write_Display_Data(0xCE,T13+lcdNumber8_Low[glcd_t.number8_low]+WIND_SPEED_ONE);//display "close"
+              TM1723_Write_Display_Data(0xCC,(lcdNumber7_Low[glcd_t.number7_low]+lcdNumber8_High[glcd_t.number8_high]) & 0xff);
+        	  
+               
+              TM1723_Write_Display_Data(0xCE,T13+lcdNumber8_Low[glcd_t.number8_low]+WIND_SPEED_ONE);//display "close"
               
         	    TM1723_Write_Display_Data(0xCF,((T11+T16) & 0x05));
                 }

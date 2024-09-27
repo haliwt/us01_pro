@@ -112,34 +112,12 @@ void Display_Works_Timing(void)
           }
 
      }
-    
+    if(gkey_t.key_mode==disp_works_timing){
+
+       LCD_Wind_Run_Icon(wifi_t.set_wind_speed_value);
+
+    }
       
-     glcd_t.number4_low = gctl_t.dht11_humidity_value %10;
-   
-
-     glcd_t.number5_low = gpro_t.disp_works_hours_value  /10 ;   //gpro_t.disp_works_hours_value,gpro_t.disp_works_minutes_value
-  
-	glcd_t.number5_high = glcd_t.number5_low ;//gpro_t.disp_works_hours_value /10 ;
-
-
-	glcd_t.number6_low = gpro_t.disp_works_hours_value  %10 ;
-   
-	glcd_t.number6_high = glcd_t.number6_low ;
-
-    //display minutes
-    glcd_t.number7_low = gpro_t.disp_works_minutes_value / 10 ;
-   
-	glcd_t.number7_high =  glcd_t.number7_low ;
-
-
-	glcd_t.number8_low = gpro_t.disp_works_minutes_value% 10 ;
-    
-	glcd_t.number8_high = glcd_t.number8_low ;
-
-    disp_time_or_timer_numbers(wifi_t.set_wind_speed_value);
-
-      
-
    }
     
 }
