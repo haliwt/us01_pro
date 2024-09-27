@@ -305,6 +305,7 @@ void ptc_high_temp_warning_fun(void);
 void set_timer_timing_blink_fun(uint8_t hours_n,uint8_t minutes_n);
 
 
+void disp_time_or_timer_numbers(uint8_t wind_speed);
 
 #endif 
 

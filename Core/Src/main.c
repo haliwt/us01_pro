@@ -9,6 +9,9 @@
   * version :1.0     data:2024.05.31  
   * modify update buzzer of sound .DATA:2024.07.04
   * version : 1.3
+  * for mass 
+  * version:2.3  DATA:2024.09.27
+  * modify disp timer less pen .
   *
   ******************************************************************************
   */
