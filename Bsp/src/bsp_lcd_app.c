@@ -112,12 +112,12 @@ void Display_Works_Timing(void)
           }
 
      }
-    if(gkey_t.key_mode==disp_works_timing){
+    
+    //  LCD_Number_FiveSixSeveEight_Hours(gpro_t.disp_works_hours_value,gpro_t.disp_works_minutes_value);
+   
 
-       LCD_Wind_Run_Icon(wifi_t.set_wind_speed_value);
-
-    }
       
+
    }
     
 }

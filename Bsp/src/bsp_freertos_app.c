@@ -361,20 +361,14 @@ static void vTaskStart(void *pvParameters)
 //         xTaskNotify(xHandleTaskMsgPro,  /* 目标任务 */
 //                ADD_KEY_3,     /* 设置目标任务事件标志位bit0  */
 //                eSetBits);  /* 将目标任务的事件标志位与BIT_0进行或操作， 将结果赋值给事件标志位 */
-        if(gkey_t.key_power==power_on){
-            gpro_t.key_add_flag = 1;
-
-         }
+          gpro_t.key_add_flag = 1;
                
      }
      else if(KEY_DEC_VALUE() == KEY_DOWN){
 //        xTaskNotify(xHandleTaskMsgPro,  /* 目标任务 */
 //                DEC_KEY_2,     /* 设置目标任务事件标志位bit0  */
 //                eSetBits);  /* 将目标任务的事件标志位与BIT_0进行或操作， 将结果赋值给事件标志位 */
-       if(gkey_t.key_power==power_on){
-           gpro_t.key_dec_flag = 1;
-
-        }
+          gpro_t.key_dec_flag = 1;     
   
      }
         

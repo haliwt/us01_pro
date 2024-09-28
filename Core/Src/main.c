@@ -9,10 +9,7 @@
   * version :1.0     data:2024.05.31  
   * modify update buzzer of sound .DATA:2024.07.04
   * version : 1.3
-  * for mass 
-  * version:2.3  DATA:2024.09.27
-  * modify disp timer less pen .
-  *
+  * version:2.2  for mass DATA:2024.09.19
   ******************************************************************************
   */
 /* USER CODE END Header */
@@ -106,7 +103,7 @@ int main(void)
    HAL_TIM_Base_Start_IT(&htim17);
    UART_Start_Receive_IT(&huart2,wifi_t.usart2_dataBuf,1);
    
-   freeRTOS_Habsndler();
+   freeRTOS_Handler();
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in cmsis_os2.c) */

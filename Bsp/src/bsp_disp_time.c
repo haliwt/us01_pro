@@ -23,9 +23,6 @@ void disp_speical_time_number_fun(void)
 
    case disp_works_timing :
 
-      glcd_t.number4_low = gctl_t.dht11_humidity_value %10;
-   
-
      glcd_t.number5_low = gpro_t.disp_works_hours_value  /10 ;   //gpro_t.disp_works_hours_value,gpro_t.disp_works_minutes_value
   
 	glcd_t.number5_high = glcd_t.number5_low ;//gpro_t.disp_works_hours_value /10 ;
@@ -52,8 +49,7 @@ void disp_speical_time_number_fun(void)
 
     case mode_set_timer :
 
-           glcd_t.number4_low = gctl_t.dht11_humidity_value %10;
-           
+       
           glcd_t.number5_low = gpro_t.set_timer_timing_hours  /10 ;   //gpro_t.set_timer_timing_hours,gpro_t.set_timer_timing_minutes
          
            glcd_t.number5_high = glcd_t.number5_low;//hours_n  /10 ;
@@ -77,9 +73,6 @@ void disp_speical_time_number_fun(void)
 
 
     case disp_timer_timing:
-
-
-        glcd_t.number4_low = gctl_t.dht11_humidity_value %10;
 
          glcd_t.number5_low = gpro_t.set_timer_timing_hours  /10 ;   //gpro_t.set_timer_timing_hours,gpro_t.set_timer_timing_minutes
       
