@@ -270,8 +270,6 @@ static void vTaskMsgPro(void *pvParameters)
                   smartphone_power_on_handler();
 
              }
- 
-
             if(gkey_t.key_power==power_on){
 
              
@@ -303,7 +301,7 @@ static void vTaskMsgPro(void *pvParameters)
                 power_off_run_handler();
 
             }
-          if(gkey_t.wifi_led_fast_blink_flag==0){
+            if(gkey_t.wifi_led_fast_blink_flag==0){
                 wifi_get_beijint_time_handler();
                 MainBoard_Self_Inspection_PowerOn_Fun();
             }

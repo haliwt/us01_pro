@@ -1147,7 +1147,7 @@ void LCD_Wind_Run_Icon(uint8_t wind_speed)
               
 
         }
-       else if(glcd_t.gTimer_fan_blink > 14 && glcd_t.gTimer_fan_blink   < 30){ //30//close
+       else if(glcd_t.gTimer_fan_blink > 14 && glcd_t.gTimer_fan_blink < 30){ //30//close
 
              if(fan_icon_off_default != fan_icon_off_flag){
                        fan_icon_off_default = fan_icon_off_flag;

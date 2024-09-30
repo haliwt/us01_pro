@@ -10,6 +10,8 @@
   * modify update buzzer of sound .DATA:2024.07.04
   * version : 1.3
   * version:2.2  for mass DATA:2024.09.19
+  * version: 2.3 for display don't synchronization signal
+  *          modify 
   ******************************************************************************
   */
 /* USER CODE END Header */
