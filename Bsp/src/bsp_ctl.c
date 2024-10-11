@@ -416,6 +416,8 @@ void link_wifi_net_state(uint8_t data)
 
 
    }
+
+   once_again_link_net_fun(); //at once link wifi net .
   
 }
 

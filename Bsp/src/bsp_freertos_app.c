@@ -288,7 +288,7 @@ static void vTaskMsgPro(void *pvParameters)
               
              
               link_wifi_net_state(gkey_t.wifi_led_fast_blink_flag);
-              once_again_link_net_fun();
+              
               
               mainboard_active_handler();
         
@@ -323,7 +323,9 @@ static void vTaskMsgPro(void *pvParameters)
 **********************************************************************************************************/
 static void vTaskStart(void *pvParameters)
 {
- 
+
+     /* Block for 500ms. */
+    //const TickType_t xDelay = 500 / portTICK_PERIOD_MS;
      while(1)
     {
         if(KEY_POWER_VALUE()==KEY_DOWN){

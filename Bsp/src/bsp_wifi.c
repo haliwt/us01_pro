@@ -33,7 +33,7 @@ uint8_t get_beijing_flag;
 {
    
      static uint8_t power_on_dc_power;
-	if(wifi_t.auto_link_tencent_step!=0xff && wifi_link_net_state()==0 && power_on_dc_power ==0){
+	if(wifi_t.auto_link_tencent_step !=0xff && wifi_link_net_state()==0 && power_on_dc_power ==0){
 	
        gpro_t.gTimer_get_data_from_tencent_data=0;
 
