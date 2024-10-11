@@ -175,7 +175,7 @@ void mode_key_adjust_fun(void);
 
 void detected_fault_state(void);
 
-void disp_fan_leaf_icon_handler(void);
+
 
 
 

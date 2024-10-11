@@ -121,7 +121,7 @@ void power_on_run_handler(void)
             }
             glcd_t.gTimer_fan_blink =0;
 
-            disp_fan_leaf_icon_handler();
+            fan_run_state_handler();//disp_fan_leaf_icon_handler();
 
 
             //fan on
@@ -617,15 +617,6 @@ static void power_off_function(void)
 
 /***********************************************************************
 *
-*Function Name:static void power_off_function(void)
-*Function: by key be pressed power off run process
-*Input Ref:NO
-*Return Ref:NO
-*
-************************************************************************/
-
-/***********************************************************************
-*
 *Function Name:void detected_fault_state(void)
 *Function: 
 *Input Ref:NO
@@ -649,14 +640,14 @@ void Detected_Fan_Works_State(void)
     if(gpro_t.gTimer_fan_detected_adc > 60 && gctl_t.interval_stop_run_flag==0 && gctl_t.fan_warning ==0 &&  gctl_t.interval_stop_run_flag==0){ //2 minute 180s
 		gpro_t.gTimer_fan_detected_adc=0;
       // fan_max_run();
-      disp_fan_leaf_icon_handler();
+      fan_run_state_handler();//disp_fan_leaf_icon_handler();
       // osDelay(200);
 
         if( gctl_t.interval_stop_run_flag  ==0){
 		   Get_Fan_Adc_Fun(ADC_CHANNEL_0,10);
         }
 		
-	    disp_fan_leaf_icon_handler();
+	    fan_run_state_handler();//disp_fan_leaf_icon_handler();
 
    }
 
@@ -669,7 +660,7 @@ void Detected_Ptc_Works_State(void)
 
    if(gpro_t.gTimer_ptc_detected > 7 && gctl_t.ptc_warning == 0 ){ //3 minutes 120s
 	   gpro_t.gTimer_ptc_detected =0;	
-      disp_fan_leaf_icon_handler();
+       fan_run_state_handler();//disp_fan_leaf_icon_handler();
 	   Get_PTC_Temperature_Voltage(ADC_CHANNEL_1,10);
        fan_run_state_handler();
               
@@ -698,12 +689,12 @@ void mode_key_adjust_fun(void)
 
 /***********************************************************************
 ************************************************************************/
-void disp_fan_leaf_icon_handler(void)
-{
-
-  fan_run_state_handler();
-
-}
+//void disp_fan_leaf_icon_handler(void)
+//{
+//
+//  fan_run_state_handler();
+//
+//}
 
 
 
