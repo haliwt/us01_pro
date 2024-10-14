@@ -182,14 +182,8 @@ void power_on_run_handler(void)
 
 		}
 
-//        if(wifi_link_net_state()==1 && wifi_t.link_net_tencent_data_flag ==3 &&   gpro_t.gTimer_publish_tencent_dht11 > 12){
-//             
-//            gpro_t.gTimer_publish_tencent_dht11=0;
-//            Update_Dht11_Totencent_Value();
-//		    
-//
-//        }
-//	 
+
+	 
 	   
 	      gctl_t.step_process=5;
 

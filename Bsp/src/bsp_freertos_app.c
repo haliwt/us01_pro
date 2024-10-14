@@ -124,15 +124,13 @@ static void vTaskMsgPro(void *pvParameters)
                      gpro_t.gTimer_shut_off_backlight =0;
                      wake_up_backlight_on();
                      buzzer_sound();
-
-                }
-                else{
+              }
+              else{
             
-                   
-                    power_key_long_conter=0;
-                    gpro_t.long_key_mode_counter=0; //WT.EIDT 2024.08.20 add new statement
-                    gpro_t.gTimer_shut_off_backlight =0;
-                }
+                  power_key_long_conter=0;
+                  gpro_t.long_key_mode_counter=0; //WT.EIDT 2024.08.20 add new statement
+                  gpro_t.gTimer_shut_off_backlight =0;
+             }
                      
                 
 				                                    
@@ -270,7 +268,7 @@ static void vTaskMsgPro(void *pvParameters)
                   smartphone_power_on_handler();
 
              }
-            if(gkey_t.key_power==power_on){
+             else if(gkey_t.key_power==power_on){ //EDIT add "else "
 
              
                if(gpro_t.set_timer_timing_key_flag ==1){
@@ -307,7 +305,7 @@ static void vTaskMsgPro(void *pvParameters)
             }
             
        
-        //  iwdg_feed();
+       
           clear_rx_copy_data();
         }
         
