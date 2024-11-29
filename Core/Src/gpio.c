@@ -44,7 +44,7 @@ void MX_GPIO_Init(void)
   __HAL_RCC_GPIOD_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, PLASMA_Pin|FAN_COMM_Pin|FAN_OUT_Pin|WIFI_EN_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, PLASMA_Pin|FAN_COMM_Pin|FAN_OUT_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, RELAY_Pin|TEMP_Pin|LED_CTL_Pin|LCD_LIGHT_Pin
@@ -54,7 +54,7 @@ void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(POWER_LED_GPIO_Port, POWER_LED_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : PAPin PAPin */
-  GPIO_InitStruct.Pin = PLASMA_Pin|FAN_COMM_Pin|FAN_OUT_Pin|WIFI_EN_Pin;
+  GPIO_InitStruct.Pin = PLASMA_Pin|FAN_COMM_Pin|FAN_OUT_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -82,6 +82,12 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Pin = KEY_UP_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;//GPIO_MODE_IT_FALLING;//RISING;
   GPIO_InitStruct.Pull = GPIO_PULLDOWN; //GPIO_PULLUP;//GPIO_PULLDOWN;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+    /*Configure GPIO pin : PtPin  interrupt GPIO*/
+  GPIO_InitStruct.Pin =  WIFI_EN_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;//GPIO_MODE_IT_FALLING;//RISING;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;//GPIO_PULLDOWN;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pins : PDPin PDPin PDPin */

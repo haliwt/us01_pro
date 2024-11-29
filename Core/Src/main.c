@@ -12,6 +12,9 @@
   * version:2.2  for mass DATA:2024.09.19
   * version: 2.3 for display don't synchronization signal
   *          modify 
+  * version: 2.4 for midify deteeded fan voltage value ,
+  *             with 355 be changed 550 .
+  *              DATA:2024.11.29
   ******************************************************************************
   */
 /* USER CODE END Header */

@@ -43,7 +43,7 @@ void auto_link_tencent_cloud_fun(void)
 
    case 0:
 
-	WIFI_IC_ENABLE();
+	//WIFI_IC_ENABLE();
    
 	  // at_send_data("AT+RESTORE\r\n", strlen("AT+RESTORE\r\n"));
 	   at_send_data("AT+RST\r\n", strlen("AT+RST\r\n"));
@@ -183,7 +183,7 @@ void PowerOn_Self_Auto_Link_Tencent_Cloud(void)
 
 
 	 case wifi_set_cwmode:
-    	    WIFI_IC_ENABLE();
+    	    //WIFI_IC_ENABLE();
          	HAL_UART_Transmit(&huart2, "AT+CWMODE=3\r\n", strlen("AT+CWMODE=3\r\n"), 5000);
      
             HAL_Delay(1000);

@@ -371,7 +371,7 @@ void wifi_get_beijint_time_handler(void)
             wifi_t.linking_tencent_cloud_doing =1;
             get_beijing_flag = 12;
 
-            WIFI_IC_ENABLE();
+           // WIFI_IC_ENABLE();
        
     		at_send_data("AT+RST\r\n", strlen("AT+RST\r\n"));
             
@@ -513,15 +513,15 @@ void link_wifi_net_handler(void)
 
             case 0: //one step
 
-                WIFI_IC_DISABLE();
-        		HAL_Delay(300);
+               // WIFI_IC_DISABLE();
+        		//HAL_Delay(300);
         		Disip_Wifi_Icon_State();
                 HAL_Delay(300);
                 Disip_Wifi_Icon_State();
                 HAL_Delay(300);
                 Disip_Wifi_Icon_State();
                 
-        		WIFI_IC_ENABLE();
+        		//WIFI_IC_ENABLE();
         		//at_send_data("AT+RESTORE\r\n", strlen("AT+RESTORE\r\n"));
         		at_send_data("AT+RST\r\n", strlen("AT+RST\r\n"));
         		HAL_Delay(300);
@@ -537,7 +537,7 @@ void link_wifi_net_handler(void)
 
             case 1:
                 Disip_Wifi_Icon_State();
-                WIFI_IC_ENABLE();
+               // WIFI_IC_ENABLE();
                 HAL_UART_Transmit(&huart2, "AT+CWMODE=3\r\n", strlen("AT+CWMODE=3\r\n"), 5000);
 
                 gctl_t.randomName[0]=HAL_GetUIDw0();
@@ -551,7 +551,7 @@ void link_wifi_net_handler(void)
                  if(gpro_t.gTimer_link_net_timer_time  > 3){
                      gpro_t.gTimer_link_net_timer_time = 0;
 
-                         WIFI_IC_ENABLE();
+                      ///   WIFI_IC_ENABLE();
             			
                         sprintf((char *)device_massage, "AT+TCPRDINFOSET=1,\"%s\",\"%s\",\"UYIJIA01-%d\"\r\n", PRODUCT_ID, DEVICE_SECRET,gctl_t.randomName[0]);
             			at_send_data(device_massage, strlen((const char *)device_massage));
@@ -576,7 +576,7 @@ void link_wifi_net_handler(void)
                  Disip_Wifi_Icon_State();
                       gpro_t.gTimer_link_net_timer_time = 0;
                    gpro_t.link_net_step = 4;
-             WIFI_IC_ENABLE();
+             //WIFI_IC_ENABLE();
 		      HAL_UART_Transmit(&huart2, "AT+TCDEVREG\r\n", strlen("AT+TCDEVREG\r\n"), 0xffff); //动态注册 
 	  		//HAL_Delay(1000);
 	  		HAL_Delay(300);
@@ -720,7 +720,7 @@ void once_again_link_net_fun(void)
             wifi_t.linking_tencent_cloud_doing =1;
         
 
-            WIFI_IC_ENABLE();
+          //  WIFI_IC_ENABLE();
        
     		at_send_data("AT+RST\r\n", strlen("AT+RST\r\n"));
             osDelay(1000);//HAL_Delay(1000);
