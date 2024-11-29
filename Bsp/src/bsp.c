@@ -238,7 +238,7 @@ void mainboard_active_handler(void)
 {
    static uint8_t flag_stop,stop_default= 0xff,flag_run,run_default=0xff;
 
-  if(gpro_t.gTimer_mainboard_run_fun > 2){
+  if(gpro_t.gTimer_mainboard_run_fun > 5){
     gpro_t.gTimer_mainboard_run_fun =0;
     if(gctl_t.interval_stop_run_flag  ==0){
         if(run_default != flag_run){
