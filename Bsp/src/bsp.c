@@ -620,9 +620,9 @@ static void power_off_function(void)
 void detected_fault_state(void)
 {
     fan_run_state_handler();
-    if(wifi_t.set_wind_speed_value==0){
-       Detected_Fan_Works_State();
-     }
+
+    Detected_Fan_Works_State();
+     
     Detected_Ptc_Works_State();
 
 

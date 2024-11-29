@@ -10,10 +10,13 @@
 ********************************************************/
 static void SetLevel_Fan_PWMA(uint8_t levelval)
 {
-     gctl_t.gFan_pwm_duty_level = levelval;
-     FAN_COM_SetLow(); //PA6
-	 MX_TIM16_Init();
-	 HAL_TIM_PWM_Start(&htim16,TIM_CHANNEL_1);
+//     gctl_t.gFan_pwm_duty_level = levelval;
+//     FAN_COM_SetLow(); //PA6
+//	 MX_TIM16_Init();
+//	 HAL_TIM_PWM_Start(&htim16,TIM_CHANNEL_1);
+
+     FAN_COM_SetLow();
+     FAN_CCW_SetHigh();
 }
 
 
@@ -23,13 +26,18 @@ static void SetLevel_Fan_PWMA(uint8_t levelval)
 void Fan_Run(void)
 {
   
-	 SetLevel_Fan_PWMA(10);
+	// SetLevel_Fan_PWMA(10);
+	FAN_COM_SetLow();
+    FAN_CCW_SetHigh();
 
 }
 
 void fan_max_run(void)
 {
-   SetLevel_Fan_PWMA(10);
+  // SetLevel_Fan_PWMA(10);
+
+  FAN_COM_SetLow();
+  FAN_CCW_SetHigh();
   
 }
 
@@ -40,7 +48,9 @@ void Fan_Run_Middle(void)
 {
 
   
-    SetLevel_Fan_PWMA(9);
+    //SetLevel_Fan_PWMA(9);
+    FAN_COM_SetLow();
+     FAN_CCW_SetHigh();
 
 
 }
@@ -49,15 +59,19 @@ void Fan_Run_Lower(void)
 {
    
     
-    SetLevel_Fan_PWMA(8);
+    //SetLevel_Fan_PWMA(8);
+    FAN_COM_SetLow();
+     FAN_CCW_SetHigh();
 
 }
 
  
 void Fan_Stop(void)
 {
-   FAN_COM_SetLow(); //PA6
-   SetLevel_Fan_PWMA(0);//SetLevel_Fan_PWMA(16);
+   //FAN_COM_SetLow(); //PA6
+  // SetLevel_Fan_PWMA(0);//SetLevel_Fan_PWMA(16);
+  FAN_COM_SetLow();
+  FAN_CCW_SetLow();
 }
 
 
