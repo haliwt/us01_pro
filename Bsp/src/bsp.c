@@ -633,15 +633,15 @@ void detected_fault_state(void)
 ***********************************************************************************/
 void Detected_Fan_Works_State(void)
 {
-    if(gpro_t.gTimer_fan_detected_adc > 60 && gctl_t.interval_stop_run_flag==0 && gctl_t.fan_warning ==0 &&  gctl_t.interval_stop_run_flag==0){ //2 minute 180s
+    if(gpro_t.gTimer_fan_detected_adc > 20 && gctl_t.interval_stop_run_flag==0 && gctl_t.fan_warning ==0 &&  gctl_t.interval_stop_run_flag==0){ //2 minute 180s
 		gpro_t.gTimer_fan_detected_adc=0;
       // fan_max_run();
       fan_run_state_handler();//disp_fan_leaf_icon_handler();
       // osDelay(200);
 
-        if( gctl_t.interval_stop_run_flag  ==0){
-		   Get_Fan_Adc_Fun(ADC_CHANNEL_0,10);
-        }
+       
+		Get_Fan_Adc_Fun(ADC_CHANNEL_0,10);
+        
 		
 	    fan_run_state_handler();//disp_fan_leaf_icon_handler();
 

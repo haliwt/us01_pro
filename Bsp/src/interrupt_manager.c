@@ -149,6 +149,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
         gpro_t.gTimer_fan_waring_time ++;
          gpro_t.gTimer_mode_key_time ++;
          gpro_t.gTimer_ptc_waring_time++ ;
+         gpro_t.gTime_det_err_time++;
        
         //wifi
 

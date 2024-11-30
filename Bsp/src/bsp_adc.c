@@ -12,6 +12,7 @@ static uint16_t Get_Ptc_Adc_Average(uint32_t ch,uint8_t times);
 
 uint16_t fan_detect_voltage;
 uint16_t ptc_temp_voltage;
+
 /*****************************************************************
 *
 	*Function Name: static uint16_t Get_Adc(uint32_t ch)  
@@ -190,16 +191,18 @@ void ptc_fault_buzzer_sound_warning_fun(uint8_t data)
 *****************************************************************/
 void Get_Fan_Adc_Fun(uint32_t channel,uint8_t times)
 {
-	uint16_t adc_fan_hex;//,fan_detect_voltage;
+
+    static uint8_t det_err_times;
+    uint16_t adc_fan_hex;//,fan_detect_voltage;
 
     adc_fan_hex = Get_Fan_Adc_Average(channel,times);
 
     fan_detect_voltage  =(uint16_t)((adc_fan_hex * 3300)/4096); //amplification 1000 ,3.111V -> 3111
 	
    
-   if(fan_detect_voltage >550){
+   if(fan_detect_voltage >450){
     
-     
+           det_err_times=0;
 		   #ifdef DEBUG
              printf("adc= %d",run_t.fan_detect_voltage);
 		   #endif 
@@ -207,9 +210,40 @@ void Get_Fan_Adc_Fun(uint32_t channel,uint8_t times)
     }
     else{
 
-	     
-		 gctl_t.fan_warning = 1;
-         gkey_t.key_mode = fan_warning_item;
+    
+	    if(det_err_times == 0){
+
+              det_err_times ++;
+              gpro_t.gTime_det_err_time =0 ;
+
+
+         }
+
+         if(gpro_t.gTime_det_err_time <  70){
+              det_err_times ++;
+
+              if(det_err_times > 2){
+                 det_err_times=0;
+
+                 gctl_t.fan_warning = 1;
+                  gkey_t.key_mode = fan_warning_item;
+
+              }
+
+         }
+         else if(gpro_t.gTime_det_err_time > 69){
+
+            det_err_times =0;
+            gctl_t.fan_warning = 0;
+
+
+         }
+
+
+
+         
+		// gctl_t.fan_warning = 1;
+        // gkey_t.key_mode = fan_warning_item;
 
          #if 0
 
@@ -232,10 +266,9 @@ void Get_Fan_Adc_Fun(uint32_t channel,uint8_t times)
 	        HAL_Delay(100);//osDelay(350);//HAL_Delay(350);
       #endif 
 
-            }
+      }
           
 }
-
 
 void fan_fault_buzzer_sound_warning_fun(uint8_t idata)
 {
