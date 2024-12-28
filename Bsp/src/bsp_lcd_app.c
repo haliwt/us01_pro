@@ -134,7 +134,7 @@ void Display_LCD_Works_Timing(void)
 {
 
 
-     LCD_Number_FiveSixSeveEight_Hours(gpro_t.disp_works_hours_value,gpro_t.disp_works_minutes_value);
+   //  LCD_Number_FiveSixSeveEight_Hours(gpro_t.disp_works_hours_value,gpro_t.disp_works_minutes_value);
 
 
 
@@ -205,7 +205,7 @@ void Display_Timer_Timing(void)
 		}
 
 
-         LCD_Number_FiveSixSeveEight_Hours(gpro_t.set_timer_timing_hours,gpro_t.set_timer_timing_minutes);
+       //  LCD_Number_FiveSixSeveEight_Hours(gpro_t.set_timer_timing_hours,gpro_t.set_timer_timing_minutes);
 		    
      }
 
@@ -227,7 +227,7 @@ void LCD_Disp_Set_Timer_Timing(void)
 {
 
    //LCD_Number_FiveSixSeveEight_Hours();
-   LCD_Number_FiveSixSeveEight_Hours(gpro_t.set_timer_timing_hours,gpro_t.set_timer_timing_minutes);
+  // LCD_Number_FiveSixSeveEight_Hours(gpro_t.set_timer_timing_hours,gpro_t.set_timer_timing_minutes);
    
 }
 /*********************************************************************************

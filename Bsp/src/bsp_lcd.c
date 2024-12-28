@@ -350,62 +350,14 @@ void lcd_donot_temp_value_fun(void)
 
 
 }
-
-
 /*****************************************************************************
  * 
- * Function Name:  void LCD_Number_FiveSixSeveEight_Hours(void)
+ * Function Name:  
  * Function:
  * Input Ref:
  * Return Ref:
  * 
 *****************************************************************************/
-void LCD_Number_FiveSixSeveEight_Hours(uint8_t hours_n,uint8_t minutes_n)
-{
-
-  
-
-//    glcd_t.number5_low = hours_n  /10 ;
-//  
-//	glcd_t.number5_high = glcd_t.number5_low;
-//
-//
-//	glcd_t.number6_low = hours_n  %10 ;
-//   
-//	glcd_t.number6_high = glcd_t.number6_low ;
-//
-//    //display minutes
-//    glcd_t.number7_low = minutes_n / 10 ;
-//   
-//	glcd_t.number7_high =  glcd_t.number7_low ;
-//
-//
-//	glcd_t.number8_low = minutes_n % 10 ;
-//    
-//	glcd_t.number8_high = glcd_t.number8_low ;
-//
-//     glcd_t.number4_low =  gctl_t.dht11_humidity_value %10;
-//   
-//   // FAN LEAF T14
-//
-//    if(gctl_t.ptc_warning ==1 &&  gctl_t.fan_warning ==1){
-//
-//         TM1723_Write_Display_Data(0xC9,(HUM_T8+lcdNumber4_Low[glcd_t.number4_low]+lcdNumber5_High[glcd_t.number5_high]) & 0xff);
-//         TM1723_Write_Display_Data(0xCA,(T15+lcdNumber5_Low[glcd_t.number5_low]+lcdNumber6_High[glcd_t.number6_high]) & 0xff);
-//         TM1723_Write_Display_Data(0xCB,(T9+lcdNumber6_Low[glcd_t.number6_low]+lcdNumber7_High[glcd_t.number7_high]) & 0xff);
-//
-//      }
-}
-
-/*****************************************************************************
- * 
- * Function Name:  void LCD_Number_FiveSixSeveEight_Hours(void)
- * Function:
- * Input Ref:
- * Return Ref:
- * 
-*****************************************************************************/
-
 void set_timer_timing_blink_fun(uint8_t hours_n,uint8_t minutes_n)
 {
 
@@ -1145,7 +1097,7 @@ void LCD_Wind_Run_Icon(uint8_t wind_speed)
             
                 }
               
-
+             TIM1723_Write_Cmd(LUM_VALUE);//(0x9B);
         }
        else if(glcd_t.gTimer_fan_blink > 14 && glcd_t.gTimer_fan_blink < 30){ //30//close
 
@@ -1177,7 +1129,7 @@ void LCD_Wind_Run_Icon(uint8_t wind_speed)
 
             }
            
-
+            TIM1723_Write_Cmd(LUM_VALUE);//(0x9B);
              
         }
       else if(glcd_t.gTimer_fan_blink   > 29){ //29*10ms = 290ms
@@ -1207,7 +1159,7 @@ void LCD_Wind_Run_Icon(uint8_t wind_speed)
                
                TM1723_Write_Display_Data(0xCE,lcdNumber8_Low[glcd_t.number8_low]+WIND_SPEED_TWO);//display "t,c"
                TM1723_Write_Display_Data(0xCF,((T16+T12+T10)& 0x0B));//
-               
+              TIM1723_Write_Cmd(LUM_VALUE);//(0x9B);  
         }
         else if(glcd_t.gTimer_fan_blink > 14 && glcd_t.gTimer_fan_blink   < 30){ //close
              
@@ -1220,12 +1172,13 @@ void LCD_Wind_Run_Icon(uint8_t wind_speed)
               
         	    TM1723_Write_Display_Data(0xCF,((T11+T16) & 0x05));//
 
-              
+               TIM1723_Write_Cmd(LUM_VALUE);//(0x9B);
 
         }
         else if(glcd_t.gTimer_fan_blink > 29){
             
         	glcd_t.gTimer_fan_blink=0;
+             TIM1723_Write_Cmd(LUM_VALUE);//(0x9B);
         }
         
         
@@ -1253,6 +1206,7 @@ void LCD_Wind_Run_Icon(uint8_t wind_speed)
                
                TM1723_Write_Display_Data(0xCE,lcdNumber8_Low[glcd_t.number8_low]+WIND_SPEED_ONE);//display "t,c"
                TM1723_Write_Display_Data(0xCF,((T16+T12+T10)& 0x0B));//
+                TIM1723_Write_Cmd(LUM_VALUE);//(0x9B);
                
         }
         else if(glcd_t.gTimer_fan_blink > 14 && glcd_t.gTimer_fan_blink   < 30){ //close
@@ -1265,10 +1219,12 @@ void LCD_Wind_Run_Icon(uint8_t wind_speed)
         	    TM1723_Write_Display_Data(0xCE,T13+lcdNumber8_Low[glcd_t.number8_low]+WIND_SPEED_ONE);//display "close"
               
         	    TM1723_Write_Display_Data(0xCF,((T11+T16) & 0x05));
+                 TIM1723_Write_Cmd(LUM_VALUE);//(0x9B);
 
         }
         else if(glcd_t.gTimer_fan_blink > 29){
         	glcd_t.gTimer_fan_blink=0;
+             TIM1723_Write_Cmd(LUM_VALUE);//(0x9B);
         }
         
     break;
@@ -1398,6 +1354,50 @@ void Lcd_Display_Off(void)
 }
 
 
+/*****************************************************************************
+ * 
+ * Function Name:  void LCD_Number_FiveSixSeveEight_Hours(void)
+ * Function:
+ * Input Ref:
+ * Return Ref:
+ * 
+*****************************************************************************/
+void LCD_Number_FiveSixSeveEight_Hours(uint8_t hours_n,uint8_t minutes_n)
+{
+
+  
+
+//    glcd_t.number5_low = hours_n  /10 ;
+//  
+//	glcd_t.number5_high = glcd_t.number5_low;
+//
+//
+//	glcd_t.number6_low = hours_n  %10 ;
+//   
+//	glcd_t.number6_high = glcd_t.number6_low ;
+//
+//    //display minutes
+//    glcd_t.number7_low = minutes_n / 10 ;
+//   
+//	glcd_t.number7_high =  glcd_t.number7_low ;
+//
+//
+//	glcd_t.number8_low = minutes_n % 10 ;
+//    
+//	glcd_t.number8_high = glcd_t.number8_low ;
+//
+//     glcd_t.number4_low =  gctl_t.dht11_humidity_value %10;
+//   
+//   // FAN LEAF T14
+//
+//    if(gctl_t.ptc_warning ==1 &&  gctl_t.fan_warning ==1){
+//
+//         TM1723_Write_Display_Data(0xC9,(HUM_T8+lcdNumber4_Low[glcd_t.number4_low]+lcdNumber5_High[glcd_t.number5_high]) & 0xff);
+//         TM1723_Write_Display_Data(0xCA,(T15+lcdNumber5_Low[glcd_t.number5_low]+lcdNumber6_High[glcd_t.number6_high]) & 0xff);
+//         TM1723_Write_Display_Data(0xCB,(T9+lcdNumber6_Low[glcd_t.number6_low]+lcdNumber7_High[glcd_t.number7_high]) & 0xff);
+//
+//      }
+}
 
 
 

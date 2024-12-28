@@ -186,8 +186,7 @@ static void vTaskMsgPro(void *pvParameters)
             }
         }
        else{ //超时，时间是50ms
-
-
+       
            if(dc_power_on_first == 0){
                 dc_power_on_first++;
                 buzzer_sound();
@@ -202,11 +201,11 @@ static void vTaskMsgPro(void *pvParameters)
                 
                 power_key_long_conter=0;
                 buzzer_sound();
-                HAL_Delay(20);
+                //HAL_Delay(20);
                 power_on_key_handler();
 
             }
-             else{
+            else{
                  power_key_long_conter=0;
                   Disip_Wifi_Icon_State();
                   //power_long_key_fun();

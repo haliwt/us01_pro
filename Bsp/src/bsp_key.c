@@ -45,6 +45,7 @@ void power_on_key_handler(void)
       
            if(gkey_t.key_power==power_off){
               gkey_t.key_power=power_on;
+               Backlight_On(); //WT.EDIT 2024.12.27
               gkey_t.key_mode = disp_timer_timing;
                gctl_t.ai_flag = 1;
                gctl_t.ptc_warning =0;
@@ -179,7 +180,7 @@ void  key_mode_be_pressed_send_data_wifi(void)
          disp_ai_iocn();
 
        
-        LCD_Number_FiveSixSeveEight_Hours(gpro_t.disp_works_hours_value,gpro_t.disp_works_minutes_value);
+       // LCD_Number_FiveSixSeveEight_Hours(gpro_t.disp_works_hours_value,gpro_t.disp_works_minutes_value);
 
        
           
@@ -201,13 +202,13 @@ void  key_mode_be_pressed_send_data_wifi(void)
             gpro_t.set_timer_timing_minutes=0;
             gpro_t.global_temporary_set_timer_flag = 1;
             gpro_t.gTimer_set_timer_times=0;
-            LCD_Number_FiveSixSeveEight_Hours(0,0);
+         //   LCD_Number_FiveSixSeveEight_Hours(0,0);
          
 
          }
          else{
             gpro_t.global_temporary_set_timer_flag = 2;
-            LCD_Number_FiveSixSeveEight_Hours(gpro_t.set_timer_timing_hours,gpro_t.set_timer_timing_minutes);
+           // LCD_Number_FiveSixSeveEight_Hours(gpro_t.set_timer_timing_hours,gpro_t.set_timer_timing_minutes);
           }
      
             

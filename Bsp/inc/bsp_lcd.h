@@ -243,7 +243,7 @@ void TM1723_Write_Display_Data(uint8_t addr,uint8_t dat);
 
 
 
-void LCD_Number_FiveSixSeveEight_Hours(uint8_t numbers,uint8_t number2);
+//void LCD_Number_FiveSixSeveEight_Hours(uint8_t numbers,uint8_t number2);
 
 
 void LCD_Wind_Run_Icon(uint8_t speed_valu);

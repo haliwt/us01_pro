@@ -94,8 +94,14 @@ void power_on_run_handler(void)
 
             //timig init
             gpro_t.gTimer_run_total=0;
+            
+            Backlight_On(); //WT.EDIT 2024.12.27
+            //TIM1723_Write_Cmd(LUM_VALUE);//(0x9B);
 
-
+            LED_Mode_On();
+            LED_Power_On();
+           
+            
             LCD_Wind_Run_Icon(0);
             disp_temp_humidity_init();
             gctl_t.ai_flag = 1; // AI DISPLAY AI ICON
@@ -126,9 +132,8 @@ void power_on_run_handler(void)
 
             //fan on
 
-            LED_Mode_On();
-            LED_Power_On();
-            Backlight_On();
+            
+           // Backlight_On();
 
             if(wifi_link_net_state() ==1){
 
