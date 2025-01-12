@@ -206,7 +206,7 @@ static void vTaskMsgPro(void *pvParameters)
               }
               else if(key_long_power_flag==0){
                 
-                power_key_long_conter=0;
+               power_key_long_conter=0;
                 buzzer_sound();
                 
                 power_on_key_handler();
