@@ -270,38 +270,8 @@ static void vTaskMsgPro(void *pvParameters)
 
 
             //WT.EDIT 2025.01.12
-
-            if(gkey_t.key_power==power_on){ //EDIT add "else "
-
-             
-               if(gpro_t.set_timer_timing_key_flag ==1){
-                    gpro_t.set_timer_timing_key_flag ++;
-                    Set_Timer_Timing_Lcd_Blink();
-
-                }
-             
-              power_on_run_handler();
-              lcd_disp_temperature_and_humidiy_handler();
-              disp_time_or_timer_handler();
-              Disip_Wifi_Icon_State();
-
-              fan_run_state_handler();//disp_fan_leaf_icon_handler();
-              
-             
-              link_wifi_net_state(gkey_t.wifi_led_fast_blink_flag);
-              
-              
-              mainboard_active_handler();
         
-              backlight_on_off_state();
-              
-              
-            }
-            else if(gkey_t.key_power==power_off){
-            
-                power_off_run_handler();
-
-            }
+            power_handler();
             if(gkey_t.wifi_led_fast_blink_flag==0){
                 wifi_get_beijint_time_handler();
                 MainBoard_Self_Inspection_PowerOn_Fun();

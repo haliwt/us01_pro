@@ -48,6 +48,7 @@
 #include "bsp_fan_leaf.h"
 #include "bsp_disp_time.h"
 #include "bsp_disp_temphum.h"
+#include "bsp_power.h"
 #include "bsp_freertos_app.h"
     
     //wifi
