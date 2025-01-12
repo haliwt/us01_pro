@@ -267,7 +267,11 @@ static void vTaskMsgPro(void *pvParameters)
                   smartphone_power_on_handler();
 
              }
-             else if(gkey_t.key_power==power_on){ //EDIT add "else "
+
+
+            //WT.EDIT 2025.01.12
+
+            if(gkey_t.key_power==power_on){ //EDIT add "else "
 
              
                if(gpro_t.set_timer_timing_key_flag ==1){
@@ -293,7 +297,7 @@ static void vTaskMsgPro(void *pvParameters)
               
               
             }
-            else{
+            else if(gkey_t.key_power==power_off){
             
                 power_off_run_handler();
 
@@ -341,6 +345,7 @@ static void vTaskStart(void *pvParameters)
 
        }
        else if(KEY_MODE_VALUE() == KEY_DOWN){
+        
         gpro_t.long_key_mode_counter ++ ;
 
           if(gpro_t.long_key_mode_counter > 30 && gkey_t.key_power==power_on && gctl_t.fan_warning==0 && gctl_t.ptc_warning==0){
@@ -358,14 +363,19 @@ static void vTaskStart(void *pvParameters)
 //         xTaskNotify(xHandleTaskMsgPro,  /* 目标任务 */
 //                ADD_KEY_3,     /* 设置目标任务事件标志位bit0  */
 //                eSetBits);  /* 将目标任务的事件标志位与BIT_0进行或操作， 将结果赋值给事件标志位 */
-          gpro_t.key_add_flag = 1;
+          if(gkey_t.key_power==power_on){
+             gpro_t.key_add_flag = 1;
+
+           }
                
      }
      else if(KEY_DEC_VALUE() == KEY_DOWN){
 //        xTaskNotify(xHandleTaskMsgPro,  /* 目标任务 */
 //                DEC_KEY_2,     /* 设置目标任务事件标志位bit0  */
 //                eSetBits);  /* 将目标任务的事件标志位与BIT_0进行或操作， 将结果赋值给事件标志位 */
-          gpro_t.key_dec_flag = 1;     
+         if(gkey_t.key_power==power_on){
+          gpro_t.key_dec_flag = 1; 
+          }
   
      }
         
