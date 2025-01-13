@@ -95,7 +95,7 @@ void Fan_Stop(void)
 void fan_run_state_handler(void)
 {
       
-
+    if(gkey_t.key_mode != mode_set_timer ){
        switch(gkey_t.key_mode){
 
 
@@ -122,6 +122,8 @@ void fan_run_state_handler(void)
 
         break;
 
+
+        }
 
         }
 
