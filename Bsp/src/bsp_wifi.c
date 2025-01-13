@@ -744,7 +744,21 @@ void once_again_link_net_fun(void)
           //  WIFI_IC_ENABLE();
        
     		at_send_data("AT+RST\r\n", strlen("AT+RST\r\n"));
-            osDelay(1000);//HAL_Delay(1000);
+            fan_run_state_handler();
+            LCD_Disp_Wifi_Icon_State();
+            osDelay(200);//HAL_Delay(1000);
+            fan_run_state_handler();
+            LCD_Disp_Wifi_Icon_State();
+            osDelay(200);//HAL_Delay(1000);
+            fan_run_state_handler();
+            LCD_Disp_Wifi_Icon_State();
+            osDelay(200);//HAL_Delay(1000);
+            fan_run_state_handler();
+            LCD_Disp_Wifi_Icon_State();
+            osDelay(200);//HAL_Delay(1000);
+            fan_run_state_handler();
+            LCD_Disp_Wifi_Icon_State();
+            
             
           
 
@@ -776,9 +790,20 @@ void once_again_link_net_fun(void)
 	        wifi_t.soft_ap_config_flag =0;
       
 	        HAL_UART_Transmit(&huart2, "AT+TCMQTTCONN=1,5000,240,0,1\r\n", strlen("AT+TCMQTTCONN=1,5000,240,0,1\r\n"), 0xffff);//开始连接
-            //HAL_Delay(1000);
-            osDelay(1000);
-            //HAL_Delay(1000);
+            fan_run_state_handler();
+            LCD_Disp_Wifi_Icon_State();
+            osDelay(200);//HAL_Delay(1000);
+            fan_run_state_handler();
+            LCD_Disp_Wifi_Icon_State();
+            osDelay(200);//HAL_Delay(1000);
+            fan_run_state_handler();
+            LCD_Disp_Wifi_Icon_State();
+            osDelay(200);//HAL_Delay(1000);
+            fan_run_state_handler();
+            LCD_Disp_Wifi_Icon_State();
+            osDelay(200);//HAL_Delay(1000);
+            fan_run_state_handler();
+            LCD_Disp_Wifi_Icon_State();
           
           
            wifi_again_link_step =2;

@@ -199,23 +199,28 @@ extern WIFI_FUN   wifi_t;
 extern uint8_t (*wifi_link_net_state)(void); //函数指针
 
 
+
+
+
 void Wifi_Init(void);
 
-void PowerOn_Host(void (*poweronHandler)(void));
-void PowerOff_Host(void (*poweroffHandler)(void));
+
+
+//void wifiDisplayTemperature_Humidity(void);
+
+
+
+//void wifiUpdate_SetTimeValue(uint8_t tv);
+//void wifiUpdate_SetTemperatureValue(uint8_t temp);
 
 
 
 
-void wifiDisplayTemperature_Humidity(void);
-
-void Wifi_Link_Net_Handler(uint8_t (*wifi_link_handler)(void));
-
-void wifiUpdate_SetTimeValue(uint8_t tv);
-void wifiUpdate_SetTemperatureValue(uint8_t temp);
 
 
-void GetNTP_Times(void);
+void wifi_handler(void);
+
+
 
 
 

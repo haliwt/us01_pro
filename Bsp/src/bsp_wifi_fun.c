@@ -10,6 +10,8 @@ uint8_t (*wifi_link_net_state)(void); //函数指针
 
 
 static uint8_t wifi_link_default_fun(void);
+void Wifi_Link_Net_Handler(uint8_t (*wifi_link_handler)(void));
+
 
 
 
@@ -38,10 +40,17 @@ void Wifi_Init(void)
 ***************************************************************************************/
 void Wifi_Link_Net_Handler(uint8_t (*wifi_link_handler)(void))
 {
-    wifi_link_net_state = wifi_link_handler;
+   wifi_link_net_state = wifi_link_handler;
 }
 
-
+/***************************************************************************************
+     * 
+     * Function Name:void Wifi_Link_Net_Handler(uint8_t (*wifi_link_handler)(void))
+     * Function: 
+     * Input Ref: NO
+     * Return Ref:NO
+     * 
+***************************************************************************************/
 static uint8_t wifi_link_default_fun(void)
 {
 
@@ -51,6 +60,21 @@ static uint8_t wifi_link_default_fun(void)
 
 }
 
+/***************************************************************************************
+     * 
+     * Function Name:void wifi_handler(void)
+     * Function: 
+     * Input Ref: NO
+     * Return Ref:NO
+     * 
+***************************************************************************************/
+void wifi_handler(void)
+{
+    if(gkey_t.wifi_led_fast_blink_flag==0){
+          wifi_get_beijint_time_handler();
+          MainBoard_Self_Inspection_PowerOn_Fun();
+     }
 
+}
 
 

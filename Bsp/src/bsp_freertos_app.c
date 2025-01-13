@@ -272,14 +272,9 @@ static void vTaskMsgPro(void *pvParameters)
             //WT.EDIT 2025.01.12
         
             power_handler();
-            if(gkey_t.wifi_led_fast_blink_flag==0){
-                wifi_get_beijint_time_handler();
-                MainBoard_Self_Inspection_PowerOn_Fun();
-            }
+            wifi_handler();
             
-       
-       
-          clear_rx_copy_data();
+            clear_rx_copy_data();
         }
         
     }

@@ -226,7 +226,7 @@ extern lcd_ref glcd_t;
 
 void LcdDisp_Init(void);
 
-
+extern void (*lcd_disp_wifi_icon_handler)(void);
 
 
 void LCD_Display_Wind_Icon_Handler(void);
@@ -304,6 +304,10 @@ void ptc_high_temp_warning_fun(void);
 
 void set_timer_timing_blink_fun(uint8_t hours_n,uint8_t minutes_n);
 
+
+void LCD_Disp_PtcPlasmaUltra_Icon_handler(void);
+
+void LCD_Number_FiveSixSeveEight_Hours(uint8_t hours_n,uint8_t minutes_n);
 
 
 #endif 
