@@ -263,7 +263,7 @@ void Dec_Key_Fun(uint8_t cmd)
            gctl_t.smart_phone_manual_on_off=0; //unfreeze maybe turn on PTC heat 
            gkey_t.key_disp_temp_hum_mode= disp_set_temp;
       
-         //   LCD_Disp_Temperature_Value_Handler();
+         //   LCD_Disp_Temperature_Value_handler();
          break;
 
          case mode_set_timer: //set timer timing value 
@@ -417,7 +417,7 @@ void Add_Key_Fun(uint8_t cmd)
 //
 //        gpro_t.gTimer_run_dht11=0; 
 //        gctl_t.gTimer_compare_ptc_value=0;
-//       LCD_Disp_Temperature_Value_Handler();
+//       LCD_Disp_Temperature_Value_handler();
 //    }
 //}
 //    

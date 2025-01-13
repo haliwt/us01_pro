@@ -286,7 +286,7 @@ void power_off_disp_fan_run_handler(void);
 void numbers_six_seven_init(void);
 
 
-void LCD_Disp_Temperature_Value_Handler(void);
+void LCD_Disp_Temperature_Value_handler(void);
 
 void LCD_Timer_Colon_Flicker(uint8_t sel);
 

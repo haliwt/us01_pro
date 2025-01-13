@@ -511,13 +511,14 @@ void Json_Parse_Command_Fun(void)
 			
 		 buzzer_sound()	;
          gctl_t.smart_phone_manual_on_off = 0;
-     
+          gctl_t.ptc_flag=1;
 		 Ptc_On();
+         LCD_Disp_PtcPlasmaUltra_Icon_handler();
 	    // LED_PTC_ICON_ON();
          MqttData_Publish_SetPtc(0x01);
 	  	 osDelay(100);//HAL_Delay(100);//350ms
 	  	 
-	     gctl_t.ptc_flag=1;
+	    
 		
 		}
 		
@@ -534,12 +535,14 @@ void Json_Parse_Command_Fun(void)
        
      
          gctl_t.smart_phone_manual_on_off = 1;
+         gctl_t.ptc_flag=0;
 		 Ptc_Off();
-	  //   LED_PTC_ICON_OFF();
+         LCD_Disp_PtcPlasmaUltra_Icon_handler();
+	
 		 
          MqttData_Publish_SetPtc(0);
 		 osDelay(100);//HAL_Delay(100);
-	     gctl_t.ptc_flag=0;
+	    
 
 		wifi_t.response_wifi_signal_label = 0xff;
 		// wifi_t.gTimer_auto_detected_net_state_times=0;
@@ -553,13 +556,15 @@ void Json_Parse_Command_Fun(void)
 	  case ANION_OFF_ITEM: //"杀菌" //5
 	  	if(power_on_state() ==power_on && ptc_error_state()==0 && fan_error_state()==0){
 			buzzer_sound();
+            gctl_t.plasma_flag=0;
 		    Plasma_Off();
+             LCD_Disp_PtcPlasmaUltra_Icon_handler();
 
 			
             MqttData_Publish_SetPlasma(0);
 			osDelay(100);//HAL_Delay(100);
-           gctl_t.plasma_flag=0;
-		//   wifi_t.gTimer_auto_detected_net_state_times=0;
+          
+	
 		   	wifi_t.linking_tencent_cloud_doing =0;
 		}
        wifi_t.response_wifi_signal_label = 0xff;
@@ -569,11 +574,13 @@ void Json_Parse_Command_Fun(void)
 	  case ANION_ON_ITEM: //plasma 
 	  	if(power_on_state() ==power_on && ptc_error_state()==0 && fan_error_state()==0){
 			buzzer_sound();
+            gctl_t.plasma_flag=1;
 			Plasma_On();
+            LCD_Disp_PtcPlasmaUltra_Icon_handler();
 	     
             MqttData_Publish_SetPlasma(1);
 		    osDelay(100);//HAL_Delay(50);//350
-           gctl_t.plasma_flag=1;
+           
 		 
 			wifi_t.linking_tencent_cloud_doing =0;
 		   
@@ -585,11 +592,13 @@ void Json_Parse_Command_Fun(void)
 	  case SONIC_OFF_ITEM://ultransonic off
         if(power_on_state() ==power_on && ptc_error_state()==0 && fan_error_state()==0){
             buzzer_sound();
-			Ultrasonic_Pwm_Stop();
+           gctl_t.ultrasonic_flag=0;
+		   Ultrasonic_Pwm_Stop();
+            LCD_Disp_PtcPlasmaUltra_Icon_handler();
 	      //  LED_RAT_ICON_OFF();
             MqttData_Publish_SetUltrasonic(0);
 			HAL_Delay(50);//
-            gctl_t.ultrasonic_flag=0;
+            
 			
 	
 		
@@ -604,11 +613,14 @@ void Json_Parse_Command_Fun(void)
 	  case SONIC_ON_ITEM://ultransonic on
 	    if(power_on_state() ==power_on && ptc_error_state()==0 && fan_error_state()==0){
 			buzzer_sound();
-			//LED_RAT_ICON_ON();
+			 gctl_t.ultrasonic_flag=1;
 			Ultrasonic_Pwm_Output();
+            LCD_Disp_PtcPlasmaUltra_Icon_handler();
+
+            
             MqttData_Publish_SetUltrasonic(1);
 			osDelay(100);//HAL_Delay(50);
-            gctl_t.ultrasonic_flag=1;
+           
 		}
       
 	   wifi_t.response_wifi_signal_label=0xff;
@@ -625,6 +637,7 @@ void Json_Parse_Command_Fun(void)
                
               gctl_t.ai_flag = 0 ; //timer model
               disp_ai_iocn();
+             
    
 
               Display_Timer_Timing();
@@ -652,6 +665,7 @@ void Json_Parse_Command_Fun(void)
               gctl_t.ai_flag = 1;//AI mode
          
               disp_ai_iocn();
+             
               Display_Works_Timing();
               MqttData_Publish_SetState(1); //beijing timing = 1
               osDelay(200);//HAL_Delay(50);
@@ -696,7 +710,7 @@ void Json_Parse_Command_Fun(void)
 		    	
 					gctl_t.ptc_flag =1;
 					Ptc_On();
-				   // Disp_Dry_Icon();
+				    LCD_Disp_PtcPlasmaUltra_Icon_handler();
                     
                      MqttData_Publish_SetPtc(1);
                      osDelay(20);//HAL_Delay(200);
@@ -709,7 +723,7 @@ void Json_Parse_Command_Fun(void)
 		   		
                     gctl_t.ptc_flag = 0;
 			   		Ptc_Off();
-                   // Disp_Dry_Icon();
+                    LCD_Disp_PtcPlasmaUltra_Icon_handler();
                     
                      MqttData_Publish_SetPtc(0);
                       osDelay(20);//HAL_Delay(200);

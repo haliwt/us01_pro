@@ -96,7 +96,7 @@ static void TIM1723_Write_Cmd(uint8_t cmd);
 
 
 
-//static void LCD_Disp_Temperature_Value_Handler(void);
+//static void LCD_Disp_Temperature_Value_handler(void);
 
 /*****************************************************
  * 
@@ -267,13 +267,13 @@ void Disip_Wifi_Icon_State(void)
 }
 /*****************************************************************************
  * 
- * Function Name:  void LCD_Disp_Temperature_Value_Handler(void)
+ * Function Name:  void LCD_Disp_Temperature_Value_handler(void)
  * Function:
  * Input Ref:
  * Return Ref:
  * 
 *****************************************************************************/
-void LCD_Disp_Temperature_Value_Handler(void)
+void LCD_Disp_Temperature_Value_handler(void)
 {
   //number '3' 
    if(gctl_t.ptc_flag==1 && gctl_t.plasma_flag==1 && gctl_t.ultrasonic_flag==1){
@@ -1446,7 +1446,7 @@ void donot_disp_ai_symbol(void)
 	*Return Ref:NO
 	*
 *************************************************************************************/
-void Disp_Dry_Icon(void)
+void LCD_Disp_PtcPlasmaUltra_Icon_handler(void)
 {
   
    Display_Kill_Dry_Ster_Icon();

@@ -108,7 +108,7 @@ void lcd_disp_temperature_and_humidiy_handler(void)
 
      
 
-         LCD_Disp_Temperature_Value_Handler();
+         LCD_Disp_Temperature_Value_handler();
          gkey_t.key_disp_temp_hum_mode = disp_set_temp_numbe;
 
          
@@ -157,7 +157,7 @@ void lcd_disp_ptc_value(uint8_t value)
    glcd_t.number2_low  =  value   % 10; //
    //glcd_t.number2_high =  value   % 10; //
    glcd_t.number2_high = glcd_t.number2_low ;
-  LCD_Disp_Temperature_Value_Handler();
+  LCD_Disp_Temperature_Value_handler();
 }
 /*****************************************************************************
  * 

@@ -379,7 +379,7 @@ static void Process_Dynamical_Action(void)
 
 
        Ptc_On();
-      // Disp_Dry_Icon();
+      // LCD_Disp_PtcPlasmaUltra_Icon_handler();
 
 
      }
@@ -387,7 +387,7 @@ static void Process_Dynamical_Action(void)
 
            
      Ptc_Off();
-     //Disp_Dry_Icon();
+     //LCD_Disp_PtcPlasmaUltra_Icon_handler();
     }
        
 
