@@ -25,6 +25,15 @@ uint8_t  fan_continue_flag;
 uint8_t fan_high_flag,fan_low_flag,fan_middle_flag;
 
 
+void bsp_init(void)
+{
+   fan_init();
+
+
+
+}
+
+
 /*
 *********************************************************************************************************
 *	函 数 名: bsp_Idle

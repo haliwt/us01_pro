@@ -4,8 +4,6 @@
 
 
 
-void FAN_GPIO_Iint(void);
-
 
 
 
@@ -14,6 +12,14 @@ void FAN_GPIO_Iint(void);
 
 #define FAN_COM_SetHigh()            HAL_GPIO_WritePin(FAN_COMM_GPIO_Port,FAN_COMM_Pin,GPIO_PIN_SET)    // output high level
 #define FAN_COM_SetLow()             HAL_GPIO_WritePin(FAN_COMM_GPIO_Port,FAN_COMM_Pin,GPIO_PIN_RESET)    // output low level
+
+
+
+void fan_init(void);
+
+extern void (*fan_leaf_icon_run_handler) (void);
+
+
 
 
 void Fan_Run(void);
@@ -30,6 +36,8 @@ void fan_max_run(void);
 
 
 void fan_run_state_handler(void);
+
+
 
 
 #endif

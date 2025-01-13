@@ -156,6 +156,10 @@ typedef struct {
 
 extern BSP_process_t gpro_t;
 
+
+void bsp_init(void);
+
+
 void bsp_Idle(void);
 
 

@@ -250,7 +250,7 @@ void LCD_Wind_Run_Icon(uint8_t speed_valu);
 
 
 
-void Disip_Wifi_Icon_State(void  );
+void LCD_Disp_Wifi_Icon_State(void  );
 
 
 

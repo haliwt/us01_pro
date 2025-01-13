@@ -1,6 +1,21 @@
 #include "bsp_fan.h"
 #include "bsp.h"
 
+
+void (*fan_leaf_icon_run_handler) (void);
+void fan_leaf_icon_run_state_handler(void(* fan_leaf_hanlder)(void));
+
+
+
+void fan_init(void)
+{
+
+    fan_leaf_icon_run_state_handler(fan_run_state_handler);
+
+}
+
+
+
 /********************************************************
 *
 *Function Name:void SetLevel_Fan_PWMA(uint8_t levelval)
@@ -114,5 +129,11 @@ void fan_run_state_handler(void)
   }
 
 
+void fan_leaf_icon_run_state_handler(void(* fan_leaf_hanlder)(void))
+{
+
+    fan_leaf_icon_run_handler = fan_leaf_hanlder;
+
+}
 
 

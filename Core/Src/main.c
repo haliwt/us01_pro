@@ -102,7 +102,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
   //MX_TIM16_Init();
   bsp_ctl_init();
-  
+  bsp_init();
 
    HAL_TIM_Base_Start_IT(&htim17);
    UART_Start_Receive_IT(&huart2,wifi_t.usart2_dataBuf,1);

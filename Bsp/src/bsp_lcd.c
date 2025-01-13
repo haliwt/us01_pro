@@ -199,71 +199,69 @@ void lcd_disp_ai_icon(void)
 
 /********************************************************************
  * 
- * Function Name: void Disip_Wifi_Icon_State(void)
+ * Function Name: void LCD_Disp_Wifi_Icon_State(void)
  * Function:
  * Input Ref:
  * Return Ref:
  * 
 ************************************************************************/
-void Disip_Wifi_Icon_State(void)
+void LCD_Disp_Wifi_Icon_State(void)
 {
-   static uint8_t disp_wifi_icon_flag;
+   static uint8_t disp_wifi_fast_blink,disp_wifi_blink;
 
-   if(gkey_t.wifi_led_fast_blink_flag==0){
+   switch(gkey_t.wifi_led_fast_blink_flag){
+
+   case 0:
+
+   
    if(wifi_link_net_state() ==0){
 
-      if(gctl_t.gTimer_wifi_blink < 1  ){
+      if(gctl_t.gTimer_wifi_blink > 1  ){
+          gctl_t.gTimer_wifi_blink =0;
+
+          disp_wifi_blink ++ ;
+
+          if(disp_wifi_blink  == 1){
          
-          TM1723_Write_Display_Data(0xC5,(WIFI_Symbol+lcdNumber3_Low[glcd_t.number3_low] + lcdNumber4_High[glcd_t.number4_high]) & 0xff); //Wifi
-      }
-      else if(gctl_t.gTimer_wifi_blink  > 0 && gctl_t.gTimer_wifi_blink  < 2){
-        
-          TM1723_Write_Display_Data(0xC5,(WIFI_NO_Symbol+lcdNumber3_Low[glcd_t.number3_low] + lcdNumber4_High[glcd_t.number4_high]) & 0xff); //Wifi 
-      }
-      else if(gctl_t.gTimer_wifi_blink  > 1){
-
-        gctl_t.gTimer_wifi_blink =0;
-
-      }
+              TM1723_Write_Display_Data(0xC5,(WIFI_Symbol+lcdNumber3_Low[glcd_t.number3_low] + lcdNumber4_High[glcd_t.number4_high]) & 0xff); //Wifi
+          }
+          else{
+               disp_wifi_blink =0;
+               TM1723_Write_Display_Data(0xC5,(WIFI_NO_Symbol+lcdNumber3_Low[glcd_t.number3_low] + lcdNumber4_High[glcd_t.number4_high]) & 0xff); //Wifi
+          }
+     
       
 
      }
-     else if(wifi_link_net_state() ==1){
+    }
+    
+ 
+  break;
 
-         
-         TM1723_Write_Display_Data(0xC5,(WIFI_Symbol+lcdNumber3_Low[glcd_t.number3_low] + lcdNumber4_High[glcd_t.number4_high]) & 0xff); //Wifi
-      }
-  }
-  else{
+  case 1:
     if(wifi_link_net_state() ==0){
     
-          if(gctl_t.gTimer_wifi_fast_blink < 19  ){ //9 * 10ms
+          if(gctl_t.gTimer_wifi_fast_blink > 18  ){ //9 * 10ms
+              gctl_t.gTimer_wifi_fast_blink=0;
+
+              disp_wifi_fast_blink++;
+
+              if(disp_wifi_fast_blink==1){
              
-              TM1723_Write_Display_Data(0xC5,(WIFI_Symbol+lcdNumber3_Low[glcd_t.number3_low] + lcdNumber4_High[glcd_t.number4_high]) & 0xff); //Wifi
+                TM1723_Write_Display_Data(0xC5,(WIFI_Symbol+lcdNumber3_Low[glcd_t.number3_low] + lcdNumber4_High[glcd_t.number4_high]) & 0xff); //Wifi
       
-          }
-          else if(gctl_t.gTimer_wifi_fast_blink  > 18 && gctl_t.gTimer_wifi_fast_blink < 28){
-              
-                TM1723_Write_Display_Data(0xC5,(WIFI_NO_Symbol+lcdNumber3_Low[glcd_t.number3_low] + lcdNumber4_High[glcd_t.number4_high]) & 0xff); //Wifi 
-          }
-          else if(gctl_t.gTimer_wifi_fast_blink > 27){
-    
-           gctl_t.gTimer_wifi_fast_blink =0;
-           disp_wifi_icon_flag=0;
-    
-          }
-          
+               }
+               else {
+                 disp_wifi_fast_blink=0;
+                 TM1723_Write_Display_Data(0xC5,(WIFI_NO_Symbol+lcdNumber3_Low[glcd_t.number3_low] + lcdNumber4_High[glcd_t.number4_high]) & 0xff); //Wifi 
+               }
+         
+        }
     
        }
-       else if(wifi_link_net_state() ==1 && disp_wifi_icon_flag==0){
-
-            disp_wifi_icon_flag ++;
-            TM1723_Write_Display_Data(0xC5,(WIFI_Symbol+lcdNumber3_Low[glcd_t.number3_low] + lcdNumber4_High[glcd_t.number4_high]) & 0xff); //Wifi
-
-       }
+     
+     break;
     }
-
-
 }
 /*****************************************************************************
  * 
@@ -1062,8 +1060,9 @@ glcd_t.number7_high = 0;
 void LCD_Wind_Run_Icon(uint8_t wind_speed)
 {
 
-   static uint8_t fan_icon_off_flag,fan_icon_on_flag,fan_icon_on_default= 0xff,fan_icon_off_default = 0xff;
+  // static uint8_t fan_icon_off_flag,fan_icon_on_flag,fan_icon_on_default= 0xff,fan_icon_off_default = 0xff;
    static uint8_t colon_flag_toggle;
+   static uint8_t fan_blink_full;
    //wind run icon
   if(gctl_t.fan_warning ==0  && gctl_t.ptc_warning ==0){
 
@@ -1071,12 +1070,15 @@ void LCD_Wind_Run_Icon(uint8_t wind_speed)
 
 
     case 0: //max wind speed.
-         if(glcd_t.gTimer_fan_blink < 15){//15
-          
-               if(fan_icon_on_default != fan_icon_on_flag){
-                   fan_icon_on_default = fan_icon_on_flag;
-                   fan_icon_off_flag ++;
+         if(glcd_t.gTimer_fan_blink > 15){//15
+               glcd_t.gTimer_fan_blink =0;
+
+               fan_blink_full ++;
                disp_speical_time_number_fun();
+
+               if(fan_blink_full ==1){
+              
+               
               
                //odd number
                 TM1723_Write_Display_Data(0xC9,(HUM_T8+lcdNumber4_Low[glcd_t.number4_low]+lcdNumber5_High[glcd_t.number5_high]) & 0xff);
@@ -1095,15 +1097,11 @@ void LCD_Wind_Run_Icon(uint8_t wind_speed)
                 TM1723_Write_Display_Data(0xCF,((T16+T12+T10)& 0x0B));//
 
             
-                }
-              
-             TIM1723_Write_Cmd(LUM_VALUE);//(0x9B);
-        }
-       else if(glcd_t.gTimer_fan_blink > 14 && glcd_t.gTimer_fan_blink < 30){ //30//close
+                    
+               }
+               else{ //30//close
 
-             if(fan_icon_off_default != fan_icon_off_flag){
-                       fan_icon_off_default = fan_icon_off_flag;
-                       fan_icon_on_flag ++;
+                  fan_blink_full =0;
                  disp_speical_time_number_fun();
                 
                  
@@ -1131,12 +1129,6 @@ void LCD_Wind_Run_Icon(uint8_t wind_speed)
            
             TIM1723_Write_Cmd(LUM_VALUE);//(0x9B);
              
-        }
-      else if(glcd_t.gTimer_fan_blink   > 29){ //29*10ms = 290ms
-         
-        	glcd_t.gTimer_fan_blink=0;
-             fan_icon_on_flag ++;
-             fan_icon_off_flag ++;
         }
          
     break;
