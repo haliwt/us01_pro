@@ -635,7 +635,7 @@ void Json_Parse_Command_Fun(void)
               buzzer_sound();
                gkey_t.key_mode=disp_timer_timing;
                
-              gctl_t.ai_flag = 0 ; //timer model
+              gctl_t.ai_flag = 2 ; //timer model
               disp_ai_iocn();
              
    

@@ -94,7 +94,7 @@ void mode_long_key_fun(void)
     gkey_t.key_mode = mode_set_timer;
  
     gkey_t.key_add_dec_mode = mode_set_timer;
-    gctl_t.ai_flag = 0; //timer tiiming model
+    gctl_t.ai_flag = 2; //timer tiiming model
     gkey_t.gTimer_disp_set_timer = 0;       //counter exit timing this "mode_set_timer"
     
 
@@ -113,30 +113,41 @@ void mode_long_key_fun(void)
 *********************************************************************************/
 void mode_key_fun(void)
 {
-        if(gkey_t.key_mode  == disp_works_timing && gpro_t.global_temporary_set_timer_flag !=1){
+
+      if(gkey_t.key_mode  == disp_works_timing){ //&& gpro_t.global_temporary_set_timer_flag !=1){
              gkey_t.key_mode  = disp_timer_timing;
            
-          //   gctl_t.ai_flag = 0; // DON'T DISP AI ICON
-               //counter exit timing this "mode_set_timer"
+            gctl_t.ai_flag = 2; //WT.EDIT 2025.01.15
+            disp_ai_iocn();
             gpro_t.gTimer_disp_humidity =0;
             gkey_t.key_mode_switch_flag++;
             gkey_t.key_add_dec_mode = set_temp_value_item;
+             
+             if(wifi_link_net_state()==1){
+                MqttData_Publish_SetState(2); //timer model  = 2, works model = 1
+                osDelay(20);
 
-         
-            gkey_t.key_mode_be_pressed = 2;
+             }
+            //gkey_t.key_mode_be_pressed = 2;
 
-        }
-        else if( gkey_t.key_mode  == disp_timer_timing){ //定时 时间
+      }
+      else if(gkey_t.key_mode  == disp_timer_timing){ //定时 时间
        
             gkey_t.key_mode  = disp_works_timing;
             gkey_t.key_mode_switch_flag++;
+            gctl_t.ai_flag = 1;
+            disp_ai_iocn();
             gkey_t.key_add_dec_mode = set_temp_value_item;
             gpro_t.gTimer_disp_humidity =0;
 
             gpro_t.global_temporary_set_timer_flag =0;  //timer timing 定时时间
              
             gpro_t.gTimer_set_timer_times = 30;
-            gkey_t.key_mode_be_pressed = 1;
+           // gkey_t.key_mode_be_pressed = 1;
+          if(wifi_link_net_state()==1){
+            MqttData_Publish_SetState(1); //timer model  = 2, works model = 1
+            osDelay(20);
+           }
              
         }
         else if(gpro_t.global_temporary_set_timer_flag ==1){
@@ -149,20 +160,20 @@ void mode_key_fun(void)
             gpro_t.global_temporary_set_timer_flag =0;
              
             gpro_t.gTimer_set_timer_times = 30;
-            gkey_t.key_mode_be_pressed = 1;
+            //gkey_t.key_mode_be_pressed = 1;
         }
 
-        key_mode_be_pressed_send_data_wifi();
+     //   key_mode_be_pressed_send_data_wifi();
 
          gpro_t.gTimer_mode_key_time = 0;
 }
-
+#if 0
 void  key_mode_be_pressed_send_data_wifi(void)
 {
    
-   if(gkey_t.key_mode_be_pressed == 1){ //display works_timing 
+  // if(gkey_t.key_mode_be_pressed == 1){ //display works_timing 
 
-         gkey_t.key_mode_be_pressed= 0xfe;
+         //gkey_t.key_mode_be_pressed= 0xfe;
          gkey_t.key_mode_switch_flag++;
    
          gctl_t.ai_flag = 1;
@@ -179,11 +190,11 @@ void  key_mode_be_pressed_send_data_wifi(void)
             osDelay(20);
         }
      }
-     else if(gkey_t.key_mode_be_pressed == 2  ){  // display timer timing 
+    // else if(gkey_t.key_mode_be_pressed == 2  ){  // display timer timing 
             gkey_t.key_mode_be_pressed= 0xff;
             gkey_t.key_mode_switch_flag++;
 
-            gctl_t.ai_flag = 0;
+            gctl_t.ai_flag = 2;
             disp_ai_iocn();
 
          if(gkey_t.set_timer_timing_success ==0){
@@ -211,7 +222,7 @@ void  key_mode_be_pressed_send_data_wifi(void)
 
 
 }
-
+#endif 
 
 /***************************************************************************
     *

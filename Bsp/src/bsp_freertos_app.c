@@ -314,17 +314,18 @@ static void vTaskStart(void *pvParameters)
         
         gpro_t.long_key_mode_counter ++ ;
         power_key_long_conter=0;
+        if(gkey_t.key_power==power_on){
 
-          if(gpro_t.long_key_mode_counter > 60 && gkey_t.key_power==power_on && gctl_t.fan_warning==0 && gctl_t.ptc_warning==0){
-            gpro_t.long_key_mode_counter=0;   
-            gpro_t.key_long_mode_flag =1;
-            gkey_t.gTimer_disp_set_timer=0;
-            buzzer_sound();
-              
-        }
-        gpro_t.key_mode_flag = 1;
+              if(gpro_t.long_key_mode_counter > 60 && gkey_t.key_power==power_on && gctl_t.fan_warning==0 && gctl_t.ptc_warning==0){
+                gpro_t.long_key_mode_counter=0;   
+                gpro_t.key_long_mode_flag =1;
+                gkey_t.gTimer_disp_set_timer=0;
+                buzzer_sound();
+                  
+            }
+            gpro_t.key_mode_flag = 1;
         
-
+        }
       }
       else if(KEY_ADD_VALUE() == KEY_DOWN){
 //         xTaskNotify(xHandleTaskMsgPro,  /* 目标任务 */

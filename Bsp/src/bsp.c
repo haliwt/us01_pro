@@ -109,10 +109,14 @@ void power_on_run_handler(void)
 
             LED_Mode_On();
             LED_Power_On();
-           
             
+            LCD_disp_FiveSixSeveEight_Init(); //WT.EDIT 2025.01.15
             LCD_Wind_Run_Icon(0);
+            if(wifi_t.smartphone_app_power_on_flag==0){ //WT.EDIT 2025.01.15
+                lcd_disp_PtcKillMouse_Icon_Init();
+            }
             disp_temp_humidity_init();
+           
             gctl_t.ai_flag = 1; // AI DISPLAY AI ICON
 
             gkey_t.key_mode  = disp_works_timing;
@@ -166,17 +170,9 @@ void power_on_run_handler(void)
 		  break;
 
 
-      case 1:   //run dht11 display 
+    
 
-          
-
-     //    gctl_t.step_process=3;
-		  
-     // break;
-
-        
-
-	  case 3: //7
+      case 1: //7
 
 	  
 	   if(wifi_link_net_state()==1 && wifi_t.smartphone_app_power_on_flag==0 && wifi_t.link_net_tencent_data_flag ==1){ //after send publish datat to tencent .){

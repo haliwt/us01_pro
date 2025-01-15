@@ -262,7 +262,7 @@ void Display_WorksTimingr_Handler(uint8_t sel_item)
 
  
             if(gkey_t.set_timer_timing_success ==1){
-               gctl_t.ai_flag = 0; // don't  DISPLAY AI ICON
+               gctl_t.ai_flag = 2; // don't  DISPLAY AI ICON
               
               
 
@@ -286,7 +286,7 @@ void Display_WorksTimingr_Handler(uint8_t sel_item)
             else if(gkey_t.set_timer_timing_success == 0){ //&& gkey_t.gTimer_disp_switch_disp_mode > 3){
 
                 if( gpro_t.gTimer_mode_key_time  < 10){
-                gctl_t.ai_flag =0;
+                gctl_t.ai_flag =2;
                 //LCD_Disp_Timer_Timing_Init();
 
                 set_timer_timing_blink_fun(gpro_t.set_timer_timing_hours,gpro_t.set_timer_timing_minutes);
@@ -336,7 +336,7 @@ void Display_WorksTimingr_Handler(uint8_t sel_item)
                 gpro_t.gTimer_timer_Counter =0; //start recoder timer timing is "0",from "0" start
                 gpro_t.global_temporary_set_timer_flag= 2; //don't display temporary "works of timing itme" timer timing.
 
-                gctl_t.ai_flag = 0;
+                gctl_t.ai_flag = 2;
                 gpro_t.disp_timer_switch_time_flag ++ ;
                 gkey_t.key_mode = disp_timer_timing;
                 gkey_t.key_add_dec_mode = set_temp_value_item;

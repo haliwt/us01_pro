@@ -37,7 +37,7 @@ void power_handler(void)
 
 
        case power_off:
-    
+          gkey_t.key_mode  = disp_works_timing;
           power_off_run_handler();
        break;
 

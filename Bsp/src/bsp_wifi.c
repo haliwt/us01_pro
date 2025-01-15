@@ -284,11 +284,7 @@ void wifi_get_beijint_time_handler(void)
                  gpro_t.gTimer_works_counter_sencods =  wifi_t.real_seconds;
 
                   gctl_t.get_beijing_time_success = 1; //WT.2024.04.25
-                    if(gkey_t.key_mode == disp_works_timing  && gctl_t.ai_flag == 1){
-
-                       // LCD_Number_FiveSixSeveEight_Hours(gpro_t.disp_works_hours_value,gpro_t.disp_works_minutes_value);
-
-                    }
+                  
                    
                      get_beijing_flag = 0;
                 }

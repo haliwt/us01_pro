@@ -292,7 +292,11 @@ void LCD_Timer_Colon_Flicker(uint8_t sel);
 
 
 
-void LCD_disp_default_FiveSixSeveEight_Codes(void);
+void LCD_disp_FiveSixSeveEight_Init(void);
+
+void lcd_disp_PtcKillMouse_Icon_Init(void);
+
+
 
 
 
