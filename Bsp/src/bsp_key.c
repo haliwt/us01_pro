@@ -69,10 +69,6 @@ void power_on_key_handler(void)
 *********************************************************************************/
 void smartphone_power_on_handler(void)
 {
-
-      
-  
-
       gkey_t.key_power=power_on;
       gkey_t.key_mode = disp_timer_timing;
        gctl_t.ai_flag = 1;
@@ -82,14 +78,9 @@ void smartphone_power_on_handler(void)
         gctl_t.step_process=0;
         gpro_t.power_off_flag =1;
             
-          
-    //   Buzzer_KeySound();
+       //   Buzzer_KeySound();
 
-      
-       
-      
 }
-
 /*********************************************************************************
 *
 *	函 数 名:static void mode_long_short_key_fun(void)

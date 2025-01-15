@@ -16,7 +16,7 @@ void power_handler(void)
 
         power_on_run_handler();
         lcd_disp_temperature_and_humidiy_handler();
-        disp_time_or_timer_handler();
+        lcd_disp_time_or_timer_handler();
         LCD_Disp_Wifi_Icon_State();
 
         fan_run_state_handler();//disp_fan_leaf_icon_handler();

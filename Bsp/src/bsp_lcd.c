@@ -384,7 +384,7 @@ void set_timer_timing_blink_fun(uint8_t hours_n,uint8_t minutes_n)
 
    
 
-   #if 1
+   #if 0
 
   
      if(wifi_t.set_wind_speed_value == 0){
@@ -479,6 +479,7 @@ void set_timer_timing_blink_fun(uint8_t hours_n,uint8_t minutes_n)
         
     }
     #endif 
+    
 }
 
 /*****************************************************************************

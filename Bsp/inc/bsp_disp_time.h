@@ -4,7 +4,7 @@
 
 
 
-void disp_time_or_timer_handler(void);
+void lcd_disp_time_or_timer_handler(void);
 
 
 

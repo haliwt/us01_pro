@@ -246,7 +246,7 @@ void Display_WorksTimingr_Handler(uint8_t sel_item)
  
     switch(sel_item){
 
-    case disp_works_timing :
+    case disp_works_timing : //0x00
    
           
           gctl_t.ai_flag = 1; // AI DISPLAY AI ICON
@@ -257,7 +257,7 @@ void Display_WorksTimingr_Handler(uint8_t sel_item)
       
     break;
     
-    case disp_timer_timing:
+    case disp_timer_timing: //0x01
    
 
  
