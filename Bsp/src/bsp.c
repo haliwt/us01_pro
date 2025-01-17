@@ -111,7 +111,7 @@ void power_on_run_handler(void)
             LED_Power_On();
             
             LCD_disp_FiveSixSeveEight_Init(); //WT.EDIT 2025.01.15
-            LCD_Wind_Run_Icon(0);
+            //LCD_Wind_Run_Icon(0);  //WT.EDIT 2025.01.17
             if(wifi_t.smartphone_app_power_on_flag==0){ //WT.EDIT 2025.01.15
                 lcd_disp_PtcKillMouse_Icon_Init();
             }
@@ -142,11 +142,6 @@ void power_on_run_handler(void)
 
             fan_run_state_handler();//disp_fan_leaf_icon_handler();
 
-
-            //fan on
-
-            
-           // Backlight_On();
 
             if(wifi_link_net_state() ==1){
 

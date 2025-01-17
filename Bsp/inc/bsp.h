@@ -49,16 +49,16 @@
 #include "bsp_disp_time.h"
 #include "bsp_disp_temphum.h"
 #include "bsp_power.h"
+//#include "bsp_key_app.h"
 #include "bsp_freertos_app.h"
     
-    //wifi
+//wifi
 #include "bsp_wifi.h"
 #include "bsp_wifi_fun.h"
 #include "bsp_esp8266.h"
 #include "bsp_publish.h"
 #include "bsp_subscription.h"
 #include "bsp_mqtt_iot.h"
-
 
 #define  USE_FreeRTOS      1
 
@@ -102,6 +102,12 @@ typedef struct {
    uint8_t key_long_mode_flag ;
    uint8_t key_mode_be_pressed_flag;
    uint8_t key_short_mode_flag;
+
+   uint8_t power_key_long_conter;
+   uint8_t key_long_power_flag;
+   uint8_t smart_phone_sound ;
+ 
+ 
  
   
    uint8_t disp_works_hours_value;
