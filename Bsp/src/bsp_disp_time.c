@@ -104,3 +104,51 @@ void disp_speical_time_number_fun(void)
 
 
 }
+
+
+void disp_num_4_5_part_fun(void)
+{
+    switch(gkey_t.key_mode){
+
+   case disp_works_timing :
+
+    
+    glcd_t.number5_low = gpro_t.disp_works_hours_value  /10 ;   //gpro_t.disp_works_hours_value,gpro_t.disp_works_minutes_value
+  
+    glcd_t.number5_high = glcd_t.number5_low ;//gpro_t.disp_works_hours_value /10 ;
+
+
+   
+
+
+    break; 
+
+    case mode_set_timer :
+
+       
+          glcd_t.number5_low = gpro_t.set_timer_timing_hours  /10 ;   //gpro_t.set_timer_timing_hours,gpro_t.set_timer_timing_minutes
+         
+           glcd_t.number5_high = glcd_t.number5_low;//hours_n  /10 ;
+    
+    
+          
+
+    break;
+
+
+    case disp_timer_timing:
+
+         glcd_t.number5_low = gpro_t.set_timer_timing_hours  /10 ;   //gpro_t.set_timer_timing_hours,gpro_t.set_timer_timing_minutes
+      
+        glcd_t.number5_high = glcd_t.number5_low;//hours_n  /10 ;
+
+
+      
+
+    break;
+
+
+    }
+
+
+}

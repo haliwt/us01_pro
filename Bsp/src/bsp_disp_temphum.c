@@ -29,6 +29,8 @@ static void lcd_disp_humidity_value(uint8_t hum_value)
    //glcd_t.number4_high =  hum_value  %10;
     glcd_t.number4_high =    glcd_t.number4_low;
 
+    disp_num_4_5_part_fun();  
+
    if(gkey_t.key_mode != mode_set_timer){
 
 
