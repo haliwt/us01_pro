@@ -102,20 +102,21 @@ void power_on_run_handler(void)
             wifi_t.set_wind_speed_value=0; //init is wind speed is max
 
             //timig init
+            gkey_t.key_disp_temp_hum_mode = disp_normal_temp;//WT.EDIT 2025.01.18
             gpro_t.gTimer_run_total=0;
-            
+            glcd_t.gTimer_fan_blink = 100;//WT.EDIT 2025.01.18
+            LCD_disp_FiveSixSeveEight_Init(); //WT.EDIT 2025.01.15
+            disp_temp_humidity_init();//WT.EDIT 2025.01.15
+            if(wifi_t.smartphone_app_power_on_flag==0){ //WT.EDIT 2025.01.15
+                lcd_disp_PtcKillMouse_Icon_Init();
+            }
             Backlight_On(); //WT.EDIT 2024.12.27
             //TIM1723_Write_Cmd(LUM_VALUE);//(0x9B);
 
             LED_Mode_On();
             LED_Power_On();
-            
-            LCD_disp_FiveSixSeveEight_Init(); //WT.EDIT 2025.01.15
-            //LCD_Wind_Run_Icon(0);  //WT.EDIT 2025.01.17
-            if(wifi_t.smartphone_app_power_on_flag==0){ //WT.EDIT 2025.01.15
-                lcd_disp_PtcKillMouse_Icon_Init();
-            }
-            disp_temp_humidity_init();
+            glcd_t.gTimer_fan_blink = 100;//WT.EDIT 2025.01.18
+          
            
             gctl_t.ai_flag = 1; // AI DISPLAY AI ICON
 
@@ -140,7 +141,7 @@ void power_on_run_handler(void)
             }
             glcd_t.gTimer_fan_blink =0;
 
-            fan_run_state_handler();//disp_fan_leaf_icon_handler();
+         //   fan_run_state_handler();//disp_fan_leaf_icon_handler();
 
 
             if(wifi_link_net_state() ==1){

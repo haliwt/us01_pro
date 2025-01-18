@@ -13,7 +13,7 @@ void power_handler(void)
             Set_Timer_Timing_Lcd_Blink();
 
         }
-
+         
         power_on_run_handler();
         lcd_disp_temperature_and_humidiy_handler();
         lcd_disp_time_or_timer_handler();
@@ -38,6 +38,7 @@ void power_handler(void)
 
        case power_off:
           gkey_t.key_mode  = disp_works_timing;
+          gkey_t.key_disp_temp_hum_mode = disp_normal_temp;
           power_off_run_handler();
        break;
 
