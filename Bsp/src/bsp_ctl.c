@@ -294,7 +294,7 @@ void SetTemp_Compare_SensoTemp(void)
 
       case 1:
            //compare with by read temperature of sensor value  
-            if(gctl_t.gSet_temperature_value > gctl_t.dht11_temp_value &&   gctl_t.smart_phone_manual_on_off ==0 &&  gctl_t.interval_stop_run_flag ==0){
+            if(gctl_t.gSet_temperature_value > gctl_t.dht11_temp_value &&   gctl_t.smart_phone_manual_on_off ==0 &&  gctl_t.two_hours_interval_f ==0){
                 gctl_t.ptc_flag = 1;
                 Ptc_On();
 
@@ -304,7 +304,7 @@ void SetTemp_Compare_SensoTemp(void)
             	}
 
             }
-            else if(gctl_t.gSet_temperature_value <   gctl_t.dht11_temp_value || gctl_t.gSet_temperature_value ==   gctl_t.dht11_temp_value &&  gctl_t.interval_stop_run_flag  ==0){
+            else if(gctl_t.gSet_temperature_value <   gctl_t.dht11_temp_value || gctl_t.gSet_temperature_value ==   gctl_t.dht11_temp_value &&  gctl_t.two_hours_interval_f  ==0){
                 gctl_t.ptc_flag = 0;
                  Ptc_Off();
                 if(wifi_link_net_state()==1){
@@ -318,14 +318,14 @@ void SetTemp_Compare_SensoTemp(void)
 
        case 0:
 
-        if((gctl_t.dht11_temp_value > 40 || gctl_t.dht11_temp_value==40) &&    gctl_t.interval_stop_run_flag  ==0){
+        if((gctl_t.dht11_temp_value > 40 || gctl_t.dht11_temp_value==40) &&    gctl_t.two_hours_interval_f  ==0){
 
             ptc_counter_on =1;
             gctl_t.ptc_flag = 0;
             Ptc_Off();
                      
          }
-         else if(gctl_t.dht11_temp_value < 39 && ptc_counter_on ==1 &&  gctl_t.interval_stop_run_flag  ==0){ // gctl_t.dht11_temp_value
+         else if(gctl_t.dht11_temp_value < 39 && ptc_counter_on ==1 &&  gctl_t.two_hours_interval_f  ==0){ // gctl_t.dht11_temp_value
 
             gctl_t.ptc_flag = 1;
             Ptc_On();

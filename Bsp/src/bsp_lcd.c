@@ -167,11 +167,6 @@ void TM1723_Write_Display_Data(uint8_t addr,uint8_t dat)
    TM1723_STB_SetHigh();
 
 }
-
-
-
-
-
 /*****************************************************
  * 
  * Function Name:  void lcd_disp_ai_icon(void)

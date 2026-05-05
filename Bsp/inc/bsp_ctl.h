@@ -46,7 +46,7 @@ typedef struct _bsp_ctl{
     uint8_t wifi_flag;
     uint8_t gSet_temperature_value;
     uint8_t step_process;
-    uint8_t interval_stop_run_flag;
+    uint8_t two_hours_interval_f;
 
     uint8_t get_beijing_time_success;
  

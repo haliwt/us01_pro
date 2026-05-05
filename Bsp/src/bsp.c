@@ -86,7 +86,7 @@ void power_off_run_handler(void)
 void power_on_run_handler(void)
 {
 
- //   static uint8_t disp_hum_times;
+   static uint8_t power_on_counter=0;
      switch(gctl_t.step_process){
 
 
@@ -159,9 +159,10 @@ void power_on_run_handler(void)
 
 
             }
+		   power_on_counter=0;
 
-
-            gctl_t.step_process = 1;
+           fan_max_run();
+           gctl_t.step_process = 1;
          
 		  break;
 
@@ -169,8 +170,10 @@ void power_on_run_handler(void)
     
 
       case 1: //7
-
-	  
+       if(power_on_counter < 10){
+	   	power_on_counter++;
+	     fan_max_run();
+       }
 	   if(wifi_link_net_state()==1 && wifi_t.smartphone_app_power_on_flag==0 && wifi_t.link_net_tencent_data_flag ==1){ //after send publish datat to tencent .){
              wifi_t.link_net_tencent_data_flag ++;
 		 
@@ -202,10 +205,10 @@ void power_on_run_handler(void)
 				   gpro_t.gTimer_fan_run_one_minute =0;
 				   fan_continue_flag=0;
                    gctl_t.step_process=7;
-			       gctl_t.interval_stop_run_flag  =1 ;
+			       gctl_t.two_hours_interval_f  =1 ;
 		         
 			    }
-          else if(gctl_t.interval_stop_run_flag  ==1){
+          else if(gctl_t.two_hours_interval_f  ==1){
                  gctl_t.step_process=7;
                 
           }
@@ -216,7 +219,7 @@ void power_on_run_handler(void)
 		  break;
 
 		  case 7: //works have a rest ten minutes
-        if(gctl_t.interval_stop_run_flag  ==1){
+        if(gctl_t.two_hours_interval_f  ==1){
 
 		          Works_Time_Out();
               gpro_t.gTimer_fan_detected_adc=0;
@@ -246,7 +249,7 @@ void mainboard_active_handler(void)
 
   if(gpro_t.gTimer_mainboard_run_fun > 5){
     gpro_t.gTimer_mainboard_run_fun =0;
-    if(gctl_t.interval_stop_run_flag  ==0){
+    if(gctl_t.two_hours_interval_f  ==0){
         if(run_default != flag_run){
             run_default = flag_run;
             flag_stop++;
@@ -318,7 +321,7 @@ static uint8_t Works_Time_Out(void)
 		gpro_t.gTimer_run_time_out=0;
 		gpro_t.gTimer_run_total=0;
 
-        gctl_t.interval_stop_run_flag= 0;
+        gctl_t.two_hours_interval_f= 0;
 		
         interval_continuce_works_fun();
 		
@@ -639,9 +642,12 @@ void detected_fault_state(void)
 ***********************************************************************************/
 void Detected_Fan_Works_State(void)
 {
-    if(gpro_t.gTimer_fan_detected_adc > 20 && gctl_t.interval_stop_run_flag==0 && gctl_t.fan_warning ==0 &&  gctl_t.interval_stop_run_flag==0){ //2 minute 180s
+
+    if(gctl_t.two_hours_interval_f==1) return ;
+
+	if(gpro_t.gTimer_fan_detected_adc > 20 && gctl_t.two_hours_interval_f==0 && gctl_t.fan_warning ==0 &&  gctl_t.two_hours_interval_f==0){ //2 minute 180s
 		gpro_t.gTimer_fan_detected_adc=0;
-      // fan_max_run();
+      fan_max_run(); //WT.EDIT 2026-05-05
       fan_run_state_handler();//disp_fan_leaf_icon_handler();
       // osDelay(200);
 

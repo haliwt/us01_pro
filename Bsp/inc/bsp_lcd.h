@@ -134,12 +134,24 @@
 #define seg_c              0x40
 #define seg_d              0x80
 
+
+
+
 #define  COLON_SYMBOL                    0x01
 #define  NO_COLON_SYMBOL                 0x00
 
 
+#define   DISPLAY_SUMG_5V               1  //WT.EDIT 2025.04.21
 
-#define LUM_VALUE      0X94//0x94//0x92//0x93//0x95//0x94//0x97(max)
+
+#if DISPLAY_SUMG_5V
+
+#define LUM_VALUE      0x92//0X97// 1/3 voltage //WT.EDIT 2026.05.05
+
+#else
+#define LUM_VALUE      0X94//0x94//0x92//0x93//0x95//0x94//0x97(max)// 1/3 voltage
+
+#endif 
 
 #define MAX_LUM_VALUE  0x9F
 
