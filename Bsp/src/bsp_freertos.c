@@ -415,16 +415,16 @@ static void AppTaskCreate (void)
 	xHandleTaskMsgPro = xTaskCreateStatic(
 			vTaskMsgPro,			/* 任务函数 */
 			"vTaskMsgPro",			/* 任务名 */
-			STACK_SIZE_MSG,					/* 栈大小（word） */
+			STACK_SIZE_MSG,			/* 栈大小（word） */
 			NULL,					/* 参数 */
 			1,						/* 优先级 */
-			xTaskMsgStack,		/* 栈数组 */
-			&xTaskMsgTCB); 		/* TCB */
+			xTaskMsgStack,		    /* 栈数组 */
+			&xTaskMsgTCB); 		    /* TCB */
 
 	xHandleTaskStart = xTaskCreateStatic(
 			vTaskStart, 			/* 任务函数 */
 			"vTaskStart",			/* 任务名 */
-			STACK_SIZE_START,					/* 栈大小（word） */
+			STACK_SIZE_START,		/* 栈大小（word） */
 			NULL,					/* 参数 */
 			2,						/* 优先级 */
 			xTaskStartStack,		/* 栈数组 */
