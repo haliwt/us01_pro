@@ -471,7 +471,7 @@ void Json_Parse_Command_Fun(void)
 		
         
         MqttData_Publish_SetOpen(0);  
-	    osDelay(200);//HAL_Delay(200);//350
+	    osDelay(200);//vTaskDelay(200);//350
             
 		if(gkey_t.key_power==power_off){
 
@@ -488,7 +488,7 @@ void Json_Parse_Command_Fun(void)
 		wifi_t.link_tencent_cloud_success=1;
 
 		MqttData_Publish_SetOpen(1);  
-		osDelay(200);//HAL_Delay(200);//300
+		osDelay(200);//vTaskDelay(200);//300
 		
 		if(gkey_t.key_power==power_on){
 
@@ -516,7 +516,7 @@ void Json_Parse_Command_Fun(void)
          LCD_Disp_PtcPlasmaUltra_Icon_handler();
 	    // LED_PTC_ICON_ON();
          MqttData_Publish_SetPtc(0x01);
-	  	 osDelay(100);//HAL_Delay(100);//350ms
+	  	 osDelay(100);//vTaskDelay(100);//350ms
 	  	 
 	    
 		
@@ -541,7 +541,7 @@ void Json_Parse_Command_Fun(void)
 	
 		 
          MqttData_Publish_SetPtc(0);
-		 osDelay(100);//HAL_Delay(100);
+		 osDelay(100);//vTaskDelay(100);
 	    
 
 		wifi_t.response_wifi_signal_label = 0xff;
@@ -562,7 +562,7 @@ void Json_Parse_Command_Fun(void)
 
 			
             MqttData_Publish_SetPlasma(0);
-			osDelay(100);//HAL_Delay(100);
+			osDelay(100);//vTaskDelay(100);
           
 	
 		   	wifi_t.linking_tencent_cloud_doing =0;
@@ -579,7 +579,7 @@ void Json_Parse_Command_Fun(void)
             LCD_Disp_PtcPlasmaUltra_Icon_handler();
 	     
             MqttData_Publish_SetPlasma(1);
-		    osDelay(100);//HAL_Delay(50);//350
+		    osDelay(100);//vTaskDelay(50);//350
            
 		 
 			wifi_t.linking_tencent_cloud_doing =0;
@@ -597,7 +597,7 @@ void Json_Parse_Command_Fun(void)
             LCD_Disp_PtcPlasmaUltra_Icon_handler();
 	      //  LED_RAT_ICON_OFF();
             MqttData_Publish_SetUltrasonic(0);
-			HAL_Delay(50);//
+			vTaskDelay(200);//
             
 			
 	
@@ -619,7 +619,7 @@ void Json_Parse_Command_Fun(void)
 
             
             MqttData_Publish_SetUltrasonic(1);
-			osDelay(100);//HAL_Delay(50);
+			osDelay(200);//vTaskDelay(50);
            
 		}
       
@@ -643,7 +643,7 @@ void Json_Parse_Command_Fun(void)
               Display_Timer_Timing();
               
               MqttData_Publish_SetState(2); //timer model  = 2
-              osDelay(100);//HAL_Delay(50);
+              osDelay(200);//vTaskDelay(50);
              
               
               
@@ -668,7 +668,7 @@ void Json_Parse_Command_Fun(void)
              
               Display_Works_Timing();
               MqttData_Publish_SetState(1); //beijing timing = 1
-              osDelay(200);//HAL_Delay(50);
+              osDelay(200);//vTaskDelay(50);
              
               
             
@@ -691,7 +691,7 @@ void Json_Parse_Command_Fun(void)
               if(gctl_t.gSet_temperature_value > 40)   gctl_t.gSet_temperature_value=40;
               if(gctl_t.gSet_temperature_value <20 )   gctl_t.gSet_temperature_value=20;
               MqttData_Publis_SetTemp(gctl_t.gSet_temperature_value);
-              osDelay(100);//HAL_Delay(100);//350
+              osDelay(100);//vTaskDelay(100);//350
 
               gkey_t.key_add_dec_mode = set_temp_value_item; //set_temp_value_item;
          
@@ -713,7 +713,7 @@ void Json_Parse_Command_Fun(void)
 				    LCD_Disp_PtcPlasmaUltra_Icon_handler();
                     
                      MqttData_Publish_SetPtc(1);
-                     osDelay(20);//HAL_Delay(200);
+                     osDelay(200);//vTaskDelay(200);
 
                      gpro_t.gTimer_run_dht11=10;  //at once display sensor of temperature value 
 		    	
@@ -726,7 +726,7 @@ void Json_Parse_Command_Fun(void)
                     LCD_Disp_PtcPlasmaUltra_Icon_handler();
                     
                      MqttData_Publish_SetPtc(0);
-                      osDelay(20);//HAL_Delay(200);
+                      osDelay(200);//vTaskDelay(200);
 
                      gpro_t.gTimer_run_dht11=10;  //at once display sensor of temperature value 
 			   		
@@ -760,7 +760,7 @@ void Json_Parse_Command_Fun(void)
               
            
               MqttData_Publis_SetFan(wifi_t.wind_txdata_tencent);
-              osDelay(100);//HAL_Delay(50);//
+              osDelay(200);//vTaskDelay(50);//
 
                    if(wifi_t.wind_txdata_tencent < 34 ){
 
@@ -786,7 +786,7 @@ void Json_Parse_Command_Fun(void)
                    wifi_t.set_wind_speed_value=0;
    
                   MqttData_Publis_SetFan(wifi_t.set_wind_speed_value);
-                  osDelay(100);//HAL_Delay(50);
+                  osDelay(200);//vTaskDelay(50);
                   //do seomthing 
    
    
@@ -912,7 +912,7 @@ static void smartphone_app_timer_power_on_handler(void)
         MqttData_Publis_App_PowerOn_Ref();
   
 		
-		HAL_Delay(200);//
+		vTaskDelay(200);//
 		app_step=0;
 
 	

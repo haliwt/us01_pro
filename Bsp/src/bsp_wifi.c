@@ -55,17 +55,18 @@ uint8_t get_beijing_flag;
         
           if(gpro_t.gPower_On == power_off){
 		     MqttData_Publish_PowerOff_Ref();
-               HAL_Delay(200);
+              vTaskDelay(200);//vTaskDelay(200);
 
           }
           else{
              MqttData_Publish_Update_Data();
-		     HAL_Delay(100);
+		     vTaskDelay(200);//vTaskDelay(100);
 
 
           }
           Subscriber_Data_FromCloud_Handler();
-          HAL_Delay(200);
+          //vTaskDelay(200);
+          vTaskDelay(200);
 		
 	}
 
@@ -115,7 +116,7 @@ void wifi_get_beijint_time_handler(void)
        flag_switch++;
        if(flag_switch ==1){
            Subscriber_Data_FromCloud_Handler();
-           osDelay(100);//HAL_Delay(200)
+           osDelay(100);//vTaskDelay(200)
            get_beijing_flag =1;
         }
       
@@ -123,7 +124,7 @@ void wifi_get_beijint_time_handler(void)
        if(flag_switch > 1 && gpro_t.gPower_On == power_off){
             flag_switch=0;
             Update_Dht11_Totencent_Value(); // Update_Dht11_Totencent_Value();
-            osDelay(100);//HAL_Delay(200)
+            osDelay(100);//vTaskDelay(200)
             get_beijing_flag =1;
 
        }
@@ -258,7 +259,7 @@ void wifi_get_beijint_time_handler(void)
     		Get_Beijing_Time();
             wifi_t.get_rx_beijing_time_enable=1; //enable beijing times
     		wifi_t.wifi_uart_counter=0;
-    		osDelay(200);//HAL_Delay(200);
+    		osDelay(200);//vTaskDelay(200);
             
     		wifi_t.gTimer_read_beijing_time=0;
              beijing_step =2;
@@ -371,7 +372,7 @@ void wifi_get_beijint_time_handler(void)
        
     		at_send_data("AT+RST\r\n", strlen("AT+RST\r\n"));
             
-            osDelay(1000);//HAL_Delay(1000);
+            osDelay(1000);//vTaskDelay(1000);
            
             
            
@@ -406,10 +407,10 @@ void wifi_get_beijint_time_handler(void)
 	        wifi_t.soft_ap_config_flag =0;
       
 	        HAL_UART_Transmit(&huart2, "AT+TCMQTTCONN=1,5000,240,0,1\r\n", strlen("AT+TCMQTTCONN=1,5000,240,0,1\r\n"), 0xffff);//开始连接
-            //HAL_Delay(1000);
+            //vTaskDelay(1000);
             
-            //HAL_Delay(1000);
-             osDelay(100);//HAL_Delay(1000);
+            //vTaskDelay(1000);
+             osDelay(100);//vTaskDelay(1000);
             
           
            
@@ -445,18 +446,18 @@ void wifi_get_beijint_time_handler(void)
 
           if(power_on_state() == power_on){
                 MqttData_Publish_Update_Data();//Publish_Data_ToTencent_Initial_Data();
-                osDelay(200);//HAL_Delay(200);
+                osDelay(200);//vTaskDelay(200);
 
             }
             else if(power_on_state() == power_off){
 
                MqttData_Publish_PowerOff_Ref();
-               osDelay(200);//HAL_Delay(200);
+               osDelay(200);//vTaskDelay(200);
 
 
             }
             Subscriber_Data_FromCloud_Handler();
-            osDelay(200);//HAL_Delay(200);
+            osDelay(200);//vTaskDelay(200);
 
              get_beijing_flag = 0;
 		
@@ -510,26 +511,26 @@ void link_wifi_net_handler(void)
             case 0: //one step
 
                // WIFI_IC_DISABLE();
-        		//HAL_Delay(300);
+        		//vTaskDelay(300);
         		
                 
         		//WIFI_IC_ENABLE();
         		//at_send_data("AT+RESTORE\r\n", strlen("AT+RESTORE\r\n"));
         		at_send_data("AT+RST\r\n", strlen("AT+RST\r\n"));
                 fan_leaf_icon_run_handler();
-        		osDelay(200);//HAL_Delay(300);
+        		osDelay(200);//vTaskDelay(300);
         		LCD_Disp_Wifi_Icon_State();
                 fan_leaf_icon_run_handler();
-                osDelay(200); //HAL_Delay(300);
+                osDelay(200); //vTaskDelay(300);
                 LCD_Disp_Wifi_Icon_State();
                 fan_leaf_icon_run_handler();
-                osDelay(200);//HAL_Delay(300);
+                osDelay(200);//vTaskDelay(300);
                 LCD_Disp_Wifi_Icon_State();
                 fan_leaf_icon_run_handler();
-                osDelay(200);//HAL_Delay(300);
+                osDelay(200);//vTaskDelay(300);
                 LCD_Disp_Wifi_Icon_State();
                 fan_leaf_icon_run_handler();
-                osDelay(200);//HAL_Delay(300);
+                osDelay(200);//vTaskDelay(300);
                 LCD_Disp_Wifi_Icon_State();
                 fan_leaf_icon_run_handler();
 
@@ -557,19 +558,19 @@ void link_wifi_net_handler(void)
             			
                         sprintf((char *)device_massage, "AT+TCPRDINFOSET=1,\"%s\",\"%s\",\"UYIJIA01-%d\"\r\n", PRODUCT_ID, DEVICE_SECRET,gctl_t.randomName[0]);
             			at_send_data(device_massage, strlen((const char *)device_massage));
-            	  		//HAL_Delay(1000);
+            	  		//vTaskDelay(1000);
             	  		fan_leaf_icon_run_handler();
             	  		LCD_Disp_Wifi_Icon_State();
-                        osDelay(200);//HAL_Delay(300);
+                        osDelay(200);//vTaskDelay(300);
                         fan_leaf_icon_run_handler();
                         LCD_Disp_Wifi_Icon_State();
-                        osDelay(200);//HAL_Delay(300);
+                        osDelay(200);//vTaskDelay(300);
                         fan_leaf_icon_run_handler();
                         LCD_Disp_Wifi_Icon_State();
-                        osDelay(200);//HAL_Delay(300);
+                        osDelay(200);//vTaskDelay(300);
                         fan_leaf_icon_run_handler();
                         LCD_Disp_Wifi_Icon_State();
-                        osDelay(200);//HAL_Delay(300);
+                        osDelay(200);//vTaskDelay(300);
                         LCD_Disp_Wifi_Icon_State();
                         fan_leaf_icon_run_handler();
                     
@@ -588,19 +589,19 @@ void link_wifi_net_handler(void)
                    gpro_t.link_net_step = 4;
              //WIFI_IC_ENABLE();
 		      HAL_UART_Transmit(&huart2, "AT+TCDEVREG\r\n", strlen("AT+TCDEVREG\r\n"), 0xffff); //动态注册 
-	  		//HAL_Delay(1000);
+	  		//vTaskDelay(1000);
 	  		LCD_Disp_Wifi_Icon_State();
             fan_leaf_icon_run_handler();
-            osDelay(200);//HAL_Delay(300);
+            osDelay(200);//vTaskDelay(300);
             LCD_Disp_Wifi_Icon_State();
             fan_leaf_icon_run_handler();
-            osDelay(200);//HAL_Delay(300);
+            osDelay(200);//vTaskDelay(300);
             LCD_Disp_Wifi_Icon_State();
             fan_leaf_icon_run_handler();
-            osDelay(200);//HAL_Delay(300);
+            osDelay(200);//vTaskDelay(300);
             LCD_Disp_Wifi_Icon_State();
             fan_leaf_icon_run_handler();
-            osDelay(200);//HAL_Delay(300);
+            osDelay(200);//vTaskDelay(300);
             LCD_Disp_Wifi_Icon_State();
             fan_leaf_icon_run_handler();
         
@@ -691,14 +692,14 @@ void link_wifi_net_handler(void)
               gpro_t.gTimer_get_data_from_tencent_data=0;
 			 
 				 MqttData_Publish_SetOpen(0x01);
-		         HAL_Delay(20);
+		         vTaskDelay(20);
 		       
 		         Publish_Data_ToTencent_Initial_Data();
-				 HAL_Delay(20);
+				 vTaskDelay(20);
                   //osDelay(100);
 
 				Subscriber_Data_FromCloud_Handler();
-				HAL_Delay(20);
+				vTaskDelay(20);
 	             //osDelay(100);
 
 			 gpro_t.link_net_step = 0xfe;
@@ -742,16 +743,16 @@ void once_again_link_net_fun(void)
     		at_send_data("AT+RST\r\n", strlen("AT+RST\r\n"));
             fan_run_state_handler();
             LCD_Disp_Wifi_Icon_State();
-            osDelay(200);//HAL_Delay(1000);
+            osDelay(200);//vTaskDelay(1000);
             fan_run_state_handler();
             LCD_Disp_Wifi_Icon_State();
-            osDelay(200);//HAL_Delay(1000);
+            osDelay(200);//vTaskDelay(1000);
             fan_run_state_handler();
             LCD_Disp_Wifi_Icon_State();
-            osDelay(200);//HAL_Delay(1000);
+            osDelay(200);//vTaskDelay(1000);
             fan_run_state_handler();
             LCD_Disp_Wifi_Icon_State();
-            osDelay(200);//HAL_Delay(1000);
+            osDelay(200);//vTaskDelay(1000);
             fan_run_state_handler();
             LCD_Disp_Wifi_Icon_State();
             
@@ -788,16 +789,16 @@ void once_again_link_net_fun(void)
 	        HAL_UART_Transmit(&huart2, "AT+TCMQTTCONN=1,5000,240,0,1\r\n", strlen("AT+TCMQTTCONN=1,5000,240,0,1\r\n"), 0xffff);//开始连接
             fan_run_state_handler();
             LCD_Disp_Wifi_Icon_State();
-            osDelay(200);//HAL_Delay(1000);
+            osDelay(200);//vTaskDelay(1000);
             fan_run_state_handler();
             LCD_Disp_Wifi_Icon_State();
-            osDelay(200);//HAL_Delay(1000);
+            osDelay(200);//vTaskDelay(1000);
             fan_run_state_handler();
             LCD_Disp_Wifi_Icon_State();
-            osDelay(200);//HAL_Delay(1000);
+            osDelay(200);//vTaskDelay(1000);
             fan_run_state_handler();
             LCD_Disp_Wifi_Icon_State();
-            osDelay(200);//HAL_Delay(1000);
+            osDelay(200);//vTaskDelay(1000);
             fan_run_state_handler();
             LCD_Disp_Wifi_Icon_State();
           
@@ -835,18 +836,18 @@ void once_again_link_net_fun(void)
 
           if(power_on_state() == power_on){
                 MqttData_Publish_Update_Data();//Publish_Data_ToTencent_Initial_Data();
-                osDelay(200);//HAL_Delay(200);
+                osDelay(200);//vTaskDelay(200);
 
             }
             else if(power_on_state() == power_off){
 
                MqttData_Publish_PowerOff_Ref();
-               osDelay(200);//HAL_Delay(200);
+               osDelay(200);//vTaskDelay(200);
 
 
             }
             Subscriber_Data_FromCloud_Handler();
-            osDelay(200);//HAL_Delay(200);
+            osDelay(200);//vTaskDelay(200);
 
             wifi_t.link_net_fail_flag ++;
               wifi_again_link_step=0;

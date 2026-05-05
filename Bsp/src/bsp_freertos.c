@@ -29,13 +29,20 @@ uint8_t key_long_power_flag;
 
 #define PHONE_POWER_ON_10         (1<<10)
 
-/*
-**********************************************************************************************************
-											函数声明
-**********************************************************************************************************
-*/
-//static void vTaskTaskUserIF(void *pvParameters);
-//static void vTaskLED(void *pvParameters);
+
+/*------------------ 静态任务内存定义 ------------------*/
+#define STACK_SIZE_START      128
+#define STACK_SIZE_MSG        768
+
+/* vTaskStart 任务 */
+static StaticTask_t xTaskStartTCB;
+static StackType_t xTaskStartStack[STACK_SIZE_START];
+
+static StaticTask_t xTaskMsgTCB;
+static StackType_t xTaskMsgStack[STACK_SIZE_MSG];
+
+
+
 static void vTaskMsgPro(void *pvParameters);
 static void vTaskStart(void *pvParameters);
 static void AppTaskCreate (void);
@@ -51,6 +58,36 @@ static void AppTaskCreate (void);
 //static TaskHandle_t xHandleTaskLED = NULL;
 static TaskHandle_t xHandleTaskMsgPro = NULL;
 static TaskHandle_t xHandleTaskStart = NULL;
+
+/* 定义静态内存块 */
+static StaticTask_t xIdleTaskTCB;
+static StackType_t uxIdleTaskStack[configMINIMAL_STACK_SIZE];
+
+/* 内核会自动调用这个回调函数来获取 Idle 任务的内存 */
+void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTaskTCBBuffer,
+                                    StackType_t **ppxIdleTaskStackBuffer,
+                                    uint32_t *pulIdleTaskStackSize )
+{
+    *ppxIdleTaskTCBBuffer = &xIdleTaskTCB;
+    *ppxIdleTaskStackBuffer = uxIdleTaskStack;
+    *pulIdleTaskStackSize = configMINIMAL_STACK_SIZE;
+}
+
+/* Timer Task（如果 configUSE_TIMERS = 1） */
+#if (configUSE_TIMERS == 1)
+static StaticTask_t xTimerTaskTCB;
+static StackType_t  xTimerStack[configTIMER_TASK_STACK_DEPTH];
+
+void vApplicationGetTimerTaskMemory( StaticTask_t **ppxTimerTaskTCBBuffer,
+                                     StackType_t **ppxTimerTaskStackBuffer,
+                                     uint32_t *pulTimerTaskStackSize )
+{
+    *ppxTimerTaskTCBBuffer   = &xTimerTaskTCB;
+    *ppxTimerTaskStackBuffer = xTimerStack;
+    *pulTimerTaskStackSize   = configTIMER_TASK_STACK_DEPTH;
+}
+#endif
+
 
 /**********************************************************************************************************
 *	函 数 名: main
@@ -298,7 +335,7 @@ static void vTaskStart(void *pvParameters)
 
         power_key_long_conter++;
         gpro_t.long_key_mode_counter=0;
-        if(power_key_long_conter > 60 && gkey_t.key_power==power_on ){
+        if(power_key_long_conter > 60 && gkey_t.key_power==power_on){
                   
             power_key_long_conter=0;
             key_long_power_flag= 1;
@@ -375,7 +412,25 @@ static void vTaskStart(void *pvParameters)
 static void AppTaskCreate (void)
 {
 
+	xHandleTaskMsgPro = xTaskCreateStatic(
+			vTaskMsgPro,			/* 任务函数 */
+			"vTaskMsgPro",			/* 任务名 */
+			STACK_SIZE_MSG,					/* 栈大小（word） */
+			NULL,					/* 参数 */
+			1,						/* 优先级 */
+			xTaskMsgStack,		/* 栈数组 */
+			&xTaskMsgTCB); 		/* TCB */
+
+	xHandleTaskStart = xTaskCreateStatic(
+			vTaskStart, 			/* 任务函数 */
+			"vTaskStart",			/* 任务名 */
+			STACK_SIZE_START,					/* 栈大小（word） */
+			NULL,					/* 参数 */
+			2,						/* 优先级 */
+			xTaskStartStack,		/* 栈数组 */
+			&xTaskStartTCB);		/* TCB */
 	
+  #if 0
 	xTaskCreate( vTaskMsgPro,     		/* 任务函数  */
                  "vTaskMsgPro",   		/* 任务名    */
                  256,             		/* 任务栈大小，单位word，也就是4字节 */
@@ -390,6 +445,8 @@ static void AppTaskCreate (void)
                  NULL,           		/* 任务参数  */
                  2,              		/* 任务优先级*/
                  &xHandleTaskStart );   /* 任务句柄  */
+
+  #endif 
 }
 
 

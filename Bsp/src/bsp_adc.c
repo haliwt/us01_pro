@@ -79,7 +79,7 @@ static uint16_t Get_Fan_Adc_Average(uint32_t ch,uint8_t times)
 	for(t=0;t<times;t++)
 	{
 		temp_val+=Get_Fan_Adc_Channel_0(ch);
-		HAL_Delay(10);
+		vTaskDelay(10);
 	}
 	return temp_val/times;
 } 
@@ -91,7 +91,7 @@ static uint16_t Get_Ptc_Adc_Average(uint32_t ch,uint8_t times)
 	for(t=0;t<times;t++)
 	{
 		temp_val+=Get_Ptc_Adc_Channel_1(ch);
-		HAL_Delay(10);
+		vTaskDelay(10);
 	}
 	return temp_val/times;
 } 
@@ -134,11 +134,11 @@ void Get_PTC_Temperature_Voltage(uint32_t channel,uint8_t times)
         if(wifi_link_net_state() ==1){
 
         Publish_Data_Warning(ptc_warning,warning);
-	     HAL_Delay(200);//osDelay(300);//HAL_Delay(350);
+	     vTaskDelay(200);//osDelay(300);//vTaskDelay(350);
  
  
         MqttData_Publish_SetPtc(0);
-		HAL_Delay(100);//osDelay(300);//HAL_Delay(350);  
+		vTaskDelay(100);//osDelay(300);//vTaskDelay(350);  
 
         }
    	      
@@ -164,11 +164,11 @@ void ptc_fault_buzzer_sound_warning_fun(uint8_t data)
             if(wifi_link_net_state() ==1){
     
             Publish_Data_Warning(ptc_warning,warning);
-             HAL_Delay(200);//osDelay(300);//HAL_Delay(350);
+             vTaskDelay(200);//osDelay(300);//vTaskDelay(350);
      
      
             MqttData_Publish_SetPtc(0);
-             HAL_Delay(100);//osDelay(300);//HAL_Delay(350);  
+             vTaskDelay(100);//osDelay(300);//vTaskDelay(350);  
     
             }
               
@@ -257,13 +257,13 @@ void Get_Fan_Adc_Fun(uint32_t channel,uint8_t times)
        
           if(wifi_link_net_state() ==1){
            Publish_Data_Warning(fan_warning,warning);
-	       HAL_Delay(100);//osDelay(350);//HAL_Delay(350);
+	       vTaskDelay(100);//osDelay(350);//vTaskDelay(350);
 
            MqttData_Publis_SetFan(0);
-	       HAL_Delay(100);//osDelay(350);//HAL_Delay(350);
+	       vTaskDelay(100);//osDelay(350);//vTaskDelay(350);
 
            MqttData_Publish_SetPtc(0x0);
-	        HAL_Delay(100);//osDelay(350);//HAL_Delay(350);
+	        vTaskDelay(100);//osDelay(350);//vTaskDelay(350);
       #endif 
 
       }
@@ -289,13 +289,13 @@ void fan_fault_buzzer_sound_warning_fun(uint8_t idata)
            
               if(wifi_link_net_state() ==1){
                Publish_Data_Warning(fan_warning,warning);
-               HAL_Delay(100);//osDelay(350);//HAL_Delay(350);
+               vTaskDelay(100);//osDelay(350);//vTaskDelay(350);
     
                MqttData_Publis_SetFan(0);
-               HAL_Delay(100);//osDelay(350);//HAL_Delay(350);
+               vTaskDelay(100);//osDelay(350);//vTaskDelay(350);
     
                MqttData_Publish_SetPtc(0x0);
-                HAL_Delay(100);//osDelay(350);//HAL_Delay(350);
+                vTaskDelay(100);//osDelay(350);//vTaskDelay(350);
           
 
                 }

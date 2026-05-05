@@ -1,5 +1,5 @@
-#ifndef __BSP_FREERTOS_APP_H
-#define __BSP_FREERTOS_APP_H
+#ifndef __BSP_FREERTOS_H
+#define __BSP_FREERTOS_H
 
 #include "main.h"
 

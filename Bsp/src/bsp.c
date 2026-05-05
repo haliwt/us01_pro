@@ -86,7 +86,7 @@ void power_off_run_handler(void)
 void power_on_run_handler(void)
 {
 
- //   static uint8_t disp_hum_times;
+     static uint8_t power_on_counter;
      switch(gctl_t.step_process){
 
 
@@ -147,11 +147,11 @@ void power_on_run_handler(void)
             if(wifi_link_net_state() ==1){
 
                 MqttData_Publish_SetOpen(1);  
-                osDelay(50);//300
+                osDelay(200);//300
                 Publish_Data_Warning(fan_warning,no_warning);
-                osDelay(50);//HAL_Delay(100);//osDelay(350);//HAL_Delay(350);
+                osDelay(200);//vTaskDelay(100);//osDelay(350);//vTaskDelay(350);
                 Publish_Data_Warning(ptc_warning,no_warning);
-                osDelay(50);//HAL_Delay(100);//osDelay(350);//HAL_Delay(350);
+                osDelay(200);//vTaskDelay(100);//osDelay(350);//vTaskDelay(350);
             }
 
             if(wifi_t.smartphone_app_power_on_flag==0){
@@ -160,7 +160,8 @@ void power_on_run_handler(void)
 
             }
 
-
+            fan_max_run(); //WT.EIDT 2026-05-05,the soft bug .
+            power_on_counter =0;
             gctl_t.step_process = 1;
          
 		  break;
@@ -170,12 +171,16 @@ void power_on_run_handler(void)
 
       case 1: //7
 
-	  
+	   if(power_on_counter< 10){
+	   	  power_on_counter++;
+	      fan_max_run();
+
+	   }
 	   if(wifi_link_net_state()==1 && wifi_t.smartphone_app_power_on_flag==0 && wifi_t.link_net_tencent_data_flag ==1){ //after send publish datat to tencent .){
              wifi_t.link_net_tencent_data_flag ++;
 		 
 		     MqttData_Publish_SetOpen(0x01);
-		     HAL_Delay(200);
+		     vTaskDelay(200);
             
 
 		}
@@ -184,7 +189,7 @@ void power_on_run_handler(void)
 		  
        
 		    MqttData_Publish_Update_Data();
-		     HAL_Delay(200);
+		     vTaskDelay(200);
 
 		}
 
@@ -639,9 +644,11 @@ void detected_fault_state(void)
 ***********************************************************************************/
 void Detected_Fan_Works_State(void)
 {
-    if(gpro_t.gTimer_fan_detected_adc > 20 && gctl_t.interval_stop_run_flag==0 && gctl_t.fan_warning ==0 &&  gctl_t.interval_stop_run_flag==0){ //2 minute 180s
+   if(gctl_t.interval_stop_run_flag==1) return ; //WT.EDIT 2026.05.05
+
+	if(gpro_t.gTimer_fan_detected_adc > 20 && gctl_t.interval_stop_run_flag==0 && gctl_t.fan_warning ==0 &&  gctl_t.interval_stop_run_flag==0){ //2 minute 180s
 		gpro_t.gTimer_fan_detected_adc=0;
-      // fan_max_run();
+      fan_max_run();
       fan_run_state_handler();//disp_fan_leaf_icon_handler();
       // osDelay(200);
 

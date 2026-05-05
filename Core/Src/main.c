@@ -15,6 +15,14 @@
   * version: 2.4 for midify deteeded fan voltage value ,
   *             with 355 be changed 550 .
   *              DATA:2024.11.29
+  * version:2.41   for midify add display smg power 5V ,luma is max 
+  *                DATA.2025.04.21
+  *
+  * version:2.42  DATA:2026-05-05 
+  *               for modify the smaprt phone timer timing power on that the fan 
+  *               is report "fans is errror" is bug.
+  *
+  *
   ******************************************************************************
   */
 /* USER CODE END Header */

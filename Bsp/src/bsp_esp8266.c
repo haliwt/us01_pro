@@ -47,7 +47,7 @@ void auto_link_tencent_cloud_fun(void)
    
 	  // at_send_data("AT+RESTORE\r\n", strlen("AT+RESTORE\r\n"));
 	   at_send_data("AT+RST\r\n", strlen("AT+RST\r\n"));
-       HAL_Delay(1000);
+       vTaskDelay(1000);
 
 	  wifi_t.auto_link_tencent_step=1;
       wifi_t.gTimer_power_first_link_tencent=0;
@@ -78,7 +78,7 @@ void auto_link_tencent_cloud_fun(void)
    case 3:
   
         HAL_UART_Transmit(&huart2, "AT+TCMQTTCONN=1,5000,240,0,1\r\n", strlen("AT+TCMQTTCONN=1,5000,240,0,1\r\n"), 0xffff);//开始连接
-       HAL_Delay(1000);
+       vTaskDelay(1000);
        wifi_t.gTimer_power_first_link_tencent=0;
 	
       wifi_t.auto_link_tencent_step=4; //4
@@ -119,7 +119,7 @@ void SmartPhone_LinkTencent_Cloud(void)
 	   wifi_t.gTimer_login_tencent_net=0;
        gpro_t.gTimer_get_data_from_tencent_data=0;
 	    HAL_UART_Transmit(&huart2, "AT+TCMQTTCONN=1,5000,240,0,1\r\n", strlen("AT+TCMQTTCONN=1,5000,240,0,1\r\n"), 5000);//开始连接
-	    HAL_Delay(1000);
+	    vTaskDelay(1000);
 	
 
 	}
@@ -176,7 +176,7 @@ void PowerOn_Self_Auto_Link_Tencent_Cloud(void)
     case 0:
            auto_link_tencent_cloud_fun();//InitWifiModule();
         
-		   HAL_Delay(1000);
+		   vTaskDelay(1000);
 
            auto_link_cloud_flag =wifi_set_cwmode;
 	break;
@@ -186,7 +186,7 @@ void PowerOn_Self_Auto_Link_Tencent_Cloud(void)
     	    //WIFI_IC_ENABLE();
          	HAL_UART_Transmit(&huart2, "AT+CWMODE=3\r\n", strlen("AT+CWMODE=3\r\n"), 5000);
      
-            HAL_Delay(1000);
+            vTaskDelay(1000);
 	
 			 wifi_t.randomName[0]=HAL_GetUIDw0();
 		

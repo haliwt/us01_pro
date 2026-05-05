@@ -50,7 +50,7 @@
 #include "bsp_disp_temphum.h"
 #include "bsp_power.h"
 //#include "bsp_key_app.h"
-#include "bsp_freertos_app.h"
+#include "bsp_freertos.h"
     
 //wifi
 #include "bsp_wifi.h"
